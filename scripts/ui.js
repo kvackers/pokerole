@@ -1,3 +1,22 @@
+const trainerModeButton = document.getElementById('trainer-mode-button');
+const pokemonModeButton = document.getElementById('pokemon-mode-button');
+
+trainerModeButton.onclick = () => {
+    trainerModeButton.classList.toggle('d-none');
+    pokemonModeButton.classList.toggle('d-none');
+
+    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
+    document.getElementById('pokemonModeSection').classList.toggle('d-none');
+}
+
+pokemonModeButton.onclick = () => {
+    trainerModeButton.classList.toggle('d-none');
+    pokemonModeButton.classList.toggle('d-none');
+
+    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
+    document.getElementById('pokemonModeSection').classList.toggle('d-none');
+}
+
 const darkModeButton = document.getElementById('dark-mode-button');
 const lightModeButton = document.getElementById('light-mode-button');
 

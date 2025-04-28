@@ -17,10 +17,17 @@
 </head>
 
 <body>
-    <button class="btn" id="light-mode-button">Light ☀️</button>
-    <button class="btn" id="dark-mode-button">Dark 🌙</button>
+    <nav class="d-flex justify-content-between">
+        <button class="btn" id="trainer-mode-button">Treinador <img
+                src="https://archives.bulbagarden.net/media/upload/e/ea/Menu_Icon_Pokedex_Platinum.png"></button>
+        <button class="btn d-none" id="pokemon-mode-button">Pokémon <img
+                src="https://archives.bulbagarden.net/media/upload/9/93/Bag_Pok%C3%A9_Ball_Sprite.png"></button>
 
-    <div class="accordion" id="accordionFlushExample">
+        <button class="btn" id="light-mode-button">Light ☀️</button>
+        <button class="btn" id="dark-mode-button">Dark 🌙</button>
+    </nav>
+
+    <div class="accordion d-none" id="trainerModeAccordion">
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -28,8 +35,7 @@
                     Dados Pessoais
                 </button>
             </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse show"
-                data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#trainerModeAccordion">
                 <div class="accordion-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text w85px">Nome</span>
@@ -89,7 +95,7 @@
                     Atributos
                 </button>
             </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#trainerModeAccordion">
                 <div class="accordion-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text w85px">Força</span>
@@ -152,7 +158,7 @@
                     Perícias
                 </button>
             </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#trainerModeAccordion">
                 <div class="accordion-body">
                     <p id="skill-points">Pontos a gastar: 0</p>
 
@@ -283,7 +289,7 @@
                     Bolsa
                 </button>
             </h2>
-            <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#trainerModeAccordion">
                 <div class="accordion-body">
                     <h5 class="text-center">Pokédex</h5>
                     <div class="input-group mb-3">
@@ -395,7 +401,7 @@
                     Misc.
                 </button>
             </h2>
-            <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#trainerModeAccordion">
                 <div class="accordion-body">
                     <h5 class="text-center">Conquistas</h5>
                     <div class="d-flex flex-column">
@@ -434,7 +440,7 @@
                     Exportar e Importar
                 </button>
             </h2>
-            <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#trainerModeAccordion">
                 <div class="accordion-body">
                     <button class="w49pc btn" id="export-button">Exportar Save</button>
                     <button class="w49pc btn" id="import-button">Importar Save</button>
@@ -450,8 +456,473 @@
             </div>
         </div>
     </div>
+    <div id="pokemonModeSection">
+        <div class="dropdown">
+            <button class="btn btn-secondary w100pc dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                style="text-align: left;" aria-expanded="false">
+                Equipe
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Novo Pokémon</a></li>
+            </ul>
+        </div>
+        <div id="pokemonTemplate" class="pt-2">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Dados Pessoais
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Apelido</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Espécie</span>
+                                <select class="form-select pokemon-species-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Habilidade</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Rank</span>
+                                <select class="form-select rank-select"></select>
+                                <span class="input-group-text">
+                                    <img>
+                                </span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Natureza</span>
+                                <select class="form-select nature-select"></select>
+                            </div>
+                            <hr>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Vitórias</span>
+                                <input type="number" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Evolução</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Tipos</span>
+                                <select class="form-select pokemon-type-select"></select>
+                                <select class="form-select pokemon-type-select"></select>
+                            </div>
+                            <hr>
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">PV</span>
+                                <input type="number" class="form-control">
+                                <span class="input-group-text w85px">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Vontade</span>
+                                <input type="number" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Confiança</span>
+                                <input type="number" class="form-control">
+                                <span class="input-group-text w85px">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Felicidade</span>
+                                <input type="number" class="form-control">
+                                <span class="input-group-text w85px">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Lealdade</span>
+                                <input type="number" class="form-control">
+                                <span class="input-group-text w85px">/ 5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Atributos
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Força</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Destreza</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Vitalidade</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Especial</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Intuição</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <hr>
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Durão</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Maneiro</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Lindo</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Esperto</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Fofo</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Perícias
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <h5 class="text-center">Perícias de Luta</h5>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Luta</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Canalizar</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Revidar</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Esquiva</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <hr>
+
+                            <h5 class="text-center">Perícias de Sobrevivência</h5>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Alerta</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Atletismo</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Natureza</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Furtivo</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <hr>
+
+                            <h5 class="text-center">Perícias Sociais</h5>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Charme</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Etiqueta</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Intimidação</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px">Performance</span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                            <hr>
+
+                            <h5 class="text-center">Perícias Extra</h5>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w105px" contenteditable=""></span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-text">/ 5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Derivados
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Status</span>
+                                <select class="form-select pokemon-status-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Volátil</span>
+                                <select class="form-select pokemon-volatile-select"></select>
+                            </div>
+                            <hr />
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Iniciativa</span>
+                                <input type="text" class="form-control" id="pokemon-X-initiative">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Evasão</span>
+                                <input type="number" class="form-control" id="pokemon-X-evasion">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Revide</span>
+                                <input type="text" class="form-control" id="pokemon-X-clash">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Defesa</span>
+                                <input type="number" class="form-control" id="pokemon-X-defense">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Def. Esp.</span>
+                                <input type="number" class="form-control" id="pokemon-X-spdefense">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Itens
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Item</span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group pb-3">
+                                <span class="input-group-text w85px">Acessório</span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <hr />
+                            <h5 class="text-center">Fitas</h5>
+                            <div class="d-flex flex-column">
+                                <div class="mx-auto pb-1">
+                                    <input type="text" class="form-control w49pc" id="badge1">
+                                    <input type="text" class="form-control w49pc" id="badge2">
+                                </div>
+                                <div class="mx-auto pb-1">
+                                    <input type="text" class="form-control w49pc" id="badge3">
+                                    <input type="text" class="form-control w49pc" id="badge4">
+                                </div>
+                                <div class="mx-auto pb-1">
+                                    <input type="text" class="form-control w49pc" id="badge5">
+                                    <input type="text" class="form-control w49pc" id="badge6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Ataques
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Ataque</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Tipo</span>
+                                <select class="form-select pokemon-type-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Dano</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Acurácia</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <textarea class="form-control w100pc" placeholder="Efeito" rows=" 3"></textarea>
+                            <hr />
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Ataque</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Tipo</span>
+                                <select class="form-select pokemon-type-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Dano</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Acurácia</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <textarea class="form-control w100pc" placeholder="Efeito" rows=" 3"></textarea>
+                            <hr />
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Ataque</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Tipo</span>
+                                <select class="form-select pokemon-type-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Dano</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Acurácia</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <textarea class="form-control w100pc" placeholder="Efeito" rows=" 3"></textarea>
+                            <hr />
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Ataque</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Tipo</span>
+                                <select class="form-select pokemon-type-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Dano</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Acurácia</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <textarea class="form-control w100pc" placeholder="Efeito" rows=" 3"></textarea>
+                            <hr />
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Ataque</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Tipo</span>
+                                <select class="form-select pokemon-type-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Dano</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Acurácia</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <textarea class="form-control w100pc" placeholder="Efeito" rows=" 3"></textarea>
+                            <hr />
+
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Ataque</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Tipo</span>
+                                <select class="form-select pokemon-type-select"></select>
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Dano</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="input-group pb-1">
+                                <span class="input-group-text w85px">Acurácia</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <textarea class="form-control w100pc" placeholder="Efeito" rows=" 3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            Observações e Anotações
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <textarea rows="20" class="w100pc"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+        integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
+        crossorigin="anonymous"></script>
     <script src="scripts/natures.js"></script>
     <script src="scripts/ranks.js"></script>
     <script src="scripts/ui.js"></script>
