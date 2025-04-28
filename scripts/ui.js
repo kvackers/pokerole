@@ -144,7 +144,11 @@ function collectSave() {
     const results = {};
     for (const id of IDS) {
         const elem = document.getElementById(id);
-        results[id] = elem.value || elem.innerText;
+        if (elem.type === "checkbox") {
+            results[id] = elem.checked ? true : '';
+        } else {
+            results[id] = elem.value || elem.innerText;
+        }
     }
 
     console.log(results);
@@ -165,7 +169,9 @@ document.getElementById('import-button').onclick = () => {
             }
 
             const elem = document.getElementById(id);
-            if (elem.tagName === 'INPUT') {
+            if (elem.type === "checkbox") {
+                elem.checked = !!data[id];
+            } else if (elem.tagName === 'INPUT') {
                 elem.value = data[id];
             } else {
                 elem.value = elem.innerText = data[id];
@@ -184,7 +190,9 @@ document.getElementById('clear-sheet').onclick = () => {
     if (confirmation) {
         for (const id of IDS) {
             const elem = document.getElementById(id);
-            if (elem.tagName === 'INPUT') {
+            if (elem.type === "checkbox") {
+                elem.checked = false;
+            } else if (elem.tagName === 'INPUT') {
                 elem.value = '';
             } else {
                 elem.value = elem.innerText = '';
