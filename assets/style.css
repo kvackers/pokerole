@@ -1,0 +1,60 @@
+body {
+    max-width: 310px;
+    margin: 0 auto;
+    padding-top: 20px;
+
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.w49pc {
+    width: 49%;
+    display: inline;
+}
+
+.w80pc {
+    width: 80%;
+    display: inline;
+}
+
+.w925pc {
+    width: 92.5%;
+    display: inline;
+}
+
+.w100pc {
+    width: 100%;
+    display: inline;
+}
+
+.w18pc {
+    width: 18%;
+    display: inline;
+}
+
+.w85px {
+    width: 85px;
+}
+
+.w105px {
+    width: 105px;
+}
+
+.h38px {
+    height: 38px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
