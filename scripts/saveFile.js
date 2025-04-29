@@ -1,3 +1,7 @@
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export function initSheet() {
     if (!localStorage.getItem('trainer')) {
         saveTrainer();
@@ -7,10 +11,32 @@ export function initSheet() {
 
     if (!localStorage.getItem('pokemon')) {
         localStorage.setItem('currentPokemon', 0);
+        localStorage.setItem('pokemon', '[]');
         savePokemon();
     } else {
         loadPokemon();
     }
+
+    const team = JSON.parse(localStorage.getItem('pokemon'));
+
+    const dropdown = document.getElementById('team-dropdown');
+    const createButtonRef = document.getElementById('create-pokemon-button-ref');
+    for (const pokemon of team) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.classList.add('dropdown-item');
+        a.href = "#";
+
+        const nickname = pokemon.personalInput[0] || "???";
+        const species = pokemon.personalSelect[0] === '-' ? "Pokémon" : capitalize(pokemon.personalSelect[0]);
+        a.innerHTML = `<span class='d-none'>${pokemon.id}</span>${nickname} - ${species}`;
+        a.onclick = () => loadPokemon(+pokemon.id);
+
+        li.appendChild(a);
+        dropdown.insertBefore(li, createButtonRef);
+    }
+
+    document.getElementById('create-pokemon-button').onclick = addPokemon;
 }
 
 export function saveTrainer() {
@@ -27,11 +53,28 @@ export function saveTrainer() {
         notes: document.getElementById('player-obs').value
     };
 
-    localStorage.setItem('trainer', JSON.stringify(trainer, null, 2));
+    localStorage.setItem('trainer', JSON.stringify(trainer, null, 0));
 }
 
+export function resetTrainer() {
+    const trainer = {
+        personalInput: ["", "", "", "", "", ""],
+        personalSelect: ["-", "-"],
+        stats: ["1", "1", "1", "1", "1", "1", "1", "1", "1"],
+        skills: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        extraSkillNames: [],
+        dexPotions: ["", "", "", "2", "", "4", "", "14"],
+        badgeBag: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        achievements: ["", "", "", "", ""],
+        achieved: [false, false, false, false, false],
+        notes: ""
+    };
+
+    localStorage.setItem('trainer', JSON.stringify(trainer, null, 0));
+};
+
 export function loadTrainer(trainr) {
-    const trainer = trainr || localStorage.getItem('trainer');
+    const trainer = JSON.parse(trainr || localStorage.getItem('trainer'));
 
     [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > select')].forEach((elem, idx) => {
         elem.value = trainer.personalSelect[idx];
@@ -67,15 +110,17 @@ export function loadTrainer(trainr) {
     });
 
     [...document.querySelectorAll('#flush-collapseFive > .accordion-body > .d-flex > .pb-1 > input[type="checkbox"]')].forEach((elem, idx) => {
-        elem.checked = trainer.achieved[idx];
+        elem.checked = !!trainer.achieved[idx];
     });
 
     document.getElementById('player-obs').value = trainer.notes;
 }
 
 export function savePokemon() {
+    const id = localStorage.getItem('currentPokemon');
+
     const pokemon = {
-        id: localStorage.getItem('currentPokemon'),
+        id,
         personalInput: [...document.querySelectorAll('#collapseOne > .accordion-body > .pb-1 > input')].map(e => e.value),
         personalSelect: [...document.querySelectorAll('#collapseOne > .accordion-body > .pb-1 > select')].map(e => e.value),
         stats: [...document.querySelectorAll('#collapseTwo > .accordion-body > .pb-1 > input')].map(e => e.value),
@@ -89,11 +134,51 @@ export function savePokemon() {
         attackEffects: [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > textarea')].map(e => e.value)
     }
 
-    localStorage.setItem('pokemon', JSON.stringify(pokemon, null, 2));
+    const team = JSON.parse(localStorage.getItem('pokemon'));
+    team.push(pokemon);
+
+    localStorage.setItem('pokemon', JSON.stringify(team, null, 0));
+
+    const nickname = pokemon.personalInput[0] || "???";
+    const species = pokemon.personalSelect[0] === '-' ? "Pokémon" : capitalize(pokemon.personalSelect[0]);
+    [...document.querySelectorAll('#team-dropdown > li > a > span.d-none')].forEach(elem => {
+        if (elem.innerText == id) {
+            const a = elem.parentNode;
+            a.innerHTML = `<span class='d-none'>${id}</span>${nickname} - ${species}`;
+        }
+    });
 }
 
-export function loadPokemon(pkmn) {
-    const pokemon = pkmn || localStorage.getItem('pokemon');
+export function resetPokemon(id) {
+    const effectiveId = id || localStorage.getItem('currentPokemon') || 0;
+    const pokemon = {
+        id: effectiveId,
+        personalInput: ["", "", "", "", "", "", "", "", ""],
+        personalSelect: ["-", "-", "-", "", ""],
+        stats: ["", "", "", "", "", "1", "1", "1", "1", "1"],
+        skills: ["", "", "", "", "", "", "", "", "", "", "", "", ""],
+        extraSkill: "",
+        derived: ["", ""],
+        items: ["", ""],
+        ribbons: ["", "", "", "", "", ""],
+        attackInputs: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        attackTypes: ["", "", "", "", "", ""],
+        attackEffects: []
+    };
+
+    localStorage.setItem('currentPokemon', effectiveId);
+    const team = JSON.parse(localStorage.getItem('pokemon'));
+    let dict = team.filter(e => e.id == effectiveId)[0];
+    dict = pokemon;
+
+    localStorage.setItem('pokemon', JSON.stringify(team, null, 0));
+    loadPokemon();
+}
+
+export function loadPokemon(id) {
+    const team = localStorage.getItem('pokemon');
+    const effectiveId = +id || +localStorage.getItem('currentPokemon');
+    const pokemon = JSON.parse(team).filter(e => +e.id === effectiveId)[0];
 
     localStorage.setItem('currentPokemon', pokemon.id);
 
@@ -139,4 +224,27 @@ export function loadPokemon(pkmn) {
     [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > textarea')].forEach((elem, idx) => {
         elem.value = pokemon.attackEffects[idx];
     });
+}
+
+export function addPokemon() {
+    savePokemon();
+
+    const team = JSON.parse(localStorage.getItem('pokemon'));
+    const maxID = team.map(e => +e.id).reduce((acc, e) => Math.max(acc, e));
+
+    localStorage.setItem('currentPokemon', maxID + 1);
+    resetPokemon(maxID + 1);
+
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.classList.add('dropdown-item');
+    a.href = "#";
+    a.innerHTML = `<span class='d-none'>${maxID + 1}</span>??? - Pokémon`;
+    a.onclick = () => loadPokemon(maxID + 1);
+
+    li.appendChild(a);
+
+    const dropdown = document.getElementById('team-dropdown');
+    const createButtonRef = document.getElementById('create-pokemon-button-ref');
+    dropdown.insertBefore(li, createButtonRef);
 }

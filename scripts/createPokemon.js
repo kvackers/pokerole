@@ -19,7 +19,7 @@ function updateHP() {
     document.getElementById('pokemon-max-hp').innerText = `/ ${maxHP}`;
 }
 
-function initPokemon() {
+export function initPokemon() {
     [...document.getElementsByClassName('nature-select')].forEach(select => {
         for (const { nature } of NATURES) {
             const option = document.createElement("option");
@@ -194,5 +194,3 @@ function initPokemon() {
         document.getElementById('pokemon-clash2').value = `${str + clash} / ${spc + clash}`;
     };
 }
-
-initPokemon();

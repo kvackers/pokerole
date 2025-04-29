@@ -1,3 +1,6 @@
+import { initPokemon } from "./createPokemon.js";
+import { initSheet } from "./saveFile.js";
+
 const trainerModeButton = document.getElementById('trainer-mode-button');
 const pokemonModeButton = document.getElementById('pokemon-mode-button');
 
@@ -50,3 +53,8 @@ document.getElementById('player-ins').onchange = () => {
     const insight = +document.getElementById('player-ins').value;
     document.getElementById('player-will').value = 2 + insight;
 }
+
+/* Initializing sheet */
+initPokemon();
+initSheet();
+console.log('Sheet initialized');
