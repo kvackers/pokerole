@@ -463,7 +463,7 @@
                 Equipe
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Novo Pokémon</a></li>
+                <li><a class="dropdown-item" href="#" id="create-pokemon-button">Novo Pokémon</a></li>
             </ul>
         </div>
         <div id="pokemonTemplate" class="pt-2">
@@ -483,7 +483,9 @@
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Espécie</span>
-                                <select class="form-select pokemon-species-select"></select>
+                                <select class="form-select pokemon-species-select" id="pokemon-species">
+                                    <option value="-">-</option>
+                                </select>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Habilidade</span>
@@ -491,14 +493,18 @@
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Rank</span>
-                                <select class="form-select rank-select"></select>
+                                <select class="form-select rank-select" id="pokemon-rank">
+                                    <option value="-">-</option>
+                                </select>
                                 <span class="input-group-text">
-                                    <img>
+                                    <img id="pokemon-rank-icon">
                                 </span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Natureza</span>
-                                <select class="form-select nature-select"></select>
+                                <select class="form-select nature-select" id="pokemon-nature-select">
+                                    <option value="-">-</option>
+                                </select>
                             </div>
                             <hr>
 
@@ -508,28 +514,28 @@
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Evolução</span>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="pokemon-evo-time">
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Tipos</span>
-                                <select class="form-select pokemon-type-select"></select>
-                                <select class="form-select pokemon-type-select"></select>
+                                <select class="form-select pokemon-type-select" id="pokemon-type1"></select>
+                                <select class="form-select pokemon-type-select" id="pokemon-type2"></select>
                             </div>
                             <hr>
 
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">PV</span>
-                                <input type="number" class="form-control">
-                                <span class="input-group-text w85px">/ 5</span>
+                                <input type="number" class="form-control" id="pokemon-hp">
+                                <span class="input-group-text w85px" id="pokemon-max-hp">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Vontade</span>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" id="pokemon-will">
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Confiança</span>
-                                <input type="number" class="form-control">
-                                <span class="input-group-text w85px">/ 5</span>
+                                <input type="number" class="form-control" id="pokemon-confidence">
+                                <span class="input-group-text w85px" id="pokemon-max-confidence">/ 4</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Felicidade</span>
@@ -555,54 +561,54 @@
                         <div class="accordion-body">
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Força</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control" id="pokemon-str">
+                                <span class="input-group-text" id="pokemon-max-str">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Destreza</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control" id="pokemon-dex">
+                                <span class="input-group-text" id="pokemon-max-dex">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Vitalidade</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control" id="pokemon-vit">
+                                <span class="input-group-text" id="pokemon-max-vit">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Especial</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control" id="pokemon-spc">
+                                <span class="input-group-text" id="pokemon-max-spc">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Intuição</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control" id="pokemon-ins">
+                                <span class="input-group-text" id="pokemon-max-ins">/ 5</span>
                             </div>
                             <hr>
 
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Durão</span>
-                                <input type="text" class="form-control">
+                                <input type="text" value=1 class="form-control">
                                 <span class="input-group-text">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Maneiro</span>
-                                <input type="text" class="form-control">
+                                <input type="text" value=1 class="form-control">
                                 <span class="input-group-text">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Lindo</span>
-                                <input type="text" class="form-control">
+                                <input type="text" value=1 class="form-control">
                                 <span class="input-group-text">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Esperto</span>
-                                <input type="text" class="form-control">
+                                <input type="text" value=1 class="form-control">
                                 <span class="input-group-text">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Fofo</span>
-                                <input type="text" class="form-control">
+                                <input type="text" value=1 class="form-control">
                                 <span class="input-group-text">/ 5</span>
                             </div>
                         </div>
@@ -617,80 +623,82 @@
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
+                            <p id="pokemon-skill-points">Pontos a gastar: 0</p>
+
                             <h5 class="text-center">Perícias de Luta</h5>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Luta</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Canalizar</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Revidar</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill" id="pokemon-clash">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Esquiva</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill" id="pokemon-dodge">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <hr>
 
                             <h5 class="text-center">Perícias de Sobrevivência</h5>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Alerta</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill" id="pokemon-alert">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Atletismo</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Natureza</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Furtivo</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <hr>
 
                             <h5 class="text-center">Perícias Sociais</h5>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Charme</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Etiqueta</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Intimidação</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px">Performance</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                             <hr>
 
                             <h5 class="text-center">Perícias Extra</h5>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w105px" contenteditable=""></span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-text">/ 5</span>
+                                <input type="text" class="form-control pokemon-skill">
+                                <span class="input-group-text pokemon-max-skill">/ 5</span>
                             </div>
                         </div>
                     </div>
@@ -716,23 +724,23 @@
 
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Iniciativa</span>
-                                <input type="text" class="form-control" id="pokemon-X-initiative">
+                                <input type="text" class="form-control" id="pokemon-initiative">
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Evasão</span>
-                                <input type="number" class="form-control" id="pokemon-X-evasion">
+                                <input type="number" class="form-control" id="pokemon-evasion">
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Revide</span>
-                                <input type="text" class="form-control" id="pokemon-X-clash">
+                                <input type="text" class="form-control" id="pokemon-clash2">
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Defesa</span>
-                                <input type="number" class="form-control" id="pokemon-X-defense">
+                                <input type="number" class="form-control" id="pokemon-defense">
                             </div>
                             <div class="input-group pb-1">
                                 <span class="input-group-text w85px">Def. Esp.</span>
-                                <input type="number" class="form-control" id="pokemon-X-spdefense">
+                                <input type="number" class="form-control" id="pokemon-spdef">
                             </div>
 
                         </div>
@@ -761,16 +769,16 @@
                             <h5 class="text-center">Fitas</h5>
                             <div class="d-flex flex-column">
                                 <div class="mx-auto pb-1">
-                                    <input type="text" class="form-control w49pc" id="badge1">
-                                    <input type="text" class="form-control w49pc" id="badge2">
+                                    <input type="text" class="form-control w49pc">
+                                    <input type="text" class="form-control w49pc">
                                 </div>
                                 <div class="mx-auto pb-1">
-                                    <input type="text" class="form-control w49pc" id="badge3">
-                                    <input type="text" class="form-control w49pc" id="badge4">
+                                    <input type="text" class="form-control w49pc">
+                                    <input type="text" class="form-control w49pc">
                                 </div>
                                 <div class="mx-auto pb-1">
-                                    <input type="text" class="form-control w49pc" id="badge5">
-                                    <input type="text" class="form-control w49pc" id="badge6">
+                                    <input type="text" class="form-control w49pc">
+                                    <input type="text" class="form-control w49pc">
                                 </div>
                             </div>
                         </div>
@@ -923,9 +931,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
         integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
         crossorigin="anonymous"></script>
-    <script src="scripts/natures.js"></script>
-    <script src="scripts/ranks.js"></script>
-    <script src="scripts/ui.js"></script>
+    <script type="module" src="scripts/data.js"></script>
+    <script type="module" src="scripts/natures.js"></script>
+    <script type="module" src="scripts/ranks.js"></script>
+    <script type="module" src="scripts/createPokemon.js"></script>
+    <script type="module" src="scripts/ui.js"></script>
 </body>
 
 </html>
