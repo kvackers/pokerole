@@ -30,8 +30,8 @@ export function saveTrainer() {
     localStorage.setItem('trainer', JSON.stringify(trainer, null, 2));
 }
 
-export function loadTrainer(trainer) {
-    const trainer = trainer || localStorage.getItem('trainer');
+export function loadTrainer(trainr) {
+    const trainer = trainr || localStorage.getItem('trainer');
 
     [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > select')].forEach((elem, idx) => {
         elem.value = trainer.personalSelect[idx];
@@ -92,8 +92,8 @@ export function savePokemon() {
     localStorage.setItem('pokemon', JSON.stringify(pokemon, null, 2));
 }
 
-export function loadPokemon(pokemon) {
-    const pokemon = pokemon || localStorage.getItem('pokemon');
+export function loadPokemon(pkmn) {
+    const pokemon = pkmn || localStorage.getItem('pokemon');
 
     localStorage.setItem('currentPokemon', pokemon.id);
 
