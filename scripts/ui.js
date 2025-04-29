@@ -1,5 +1,6 @@
 import { initPokemon } from "./createPokemon.js";
 import { initSheet } from "./saveFile.js";
+import * as db from './db.js';
 
 const trainerModeButton = document.getElementById('trainer-mode-button');
 const pokemonModeButton = document.getElementById('pokemon-mode-button');
@@ -54,7 +55,31 @@ document.getElementById('player-ins').onchange = () => {
     document.getElementById('player-will').value = 2 + insight;
 }
 
+document.getElementById('export-button').onclick = event => {
+    const database = db.readDatabase();
+    const serialized = JSON.stringify(database, null, 2);
+
+    document.getElementById('export-area').value = serialized;
+    navigator.clipboard.writeText(serialized);
+
+    const alert = document.getElementById('export-alert');
+    alert.classList.remove('d-none');
+    setTimeout(() => alert.classList.add('d-none'), 2000);
+}
+
+document.getElementById('import-button').onclick = event => {
+    try {
+        const newDB = JSON.parse(document.getElementById('export-area').value);
+        db.importDatabase(newDB);
+    } catch (e) {
+        console.log(e);
+        const alert = document.getElementById('save-alert');
+        alert.classList.remove('d-none');
+        setTimeout(() => alert.classList.add('d-none'), 2000);
+    }
+}
+
 /* Initializing sheet */
 initPokemon();
-initSheet();
+//initSheet();
 console.log('Sheet initialized');
