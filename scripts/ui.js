@@ -56,7 +56,7 @@ document.getElementById('player-ins').onchange = () => {
 
 /* Save shenanigans */
 function collectTrainer() {
-    const trainer = {
+    return {
         personalInput: [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > input')].map(e => e.value),
         personalSelect: [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > select')].map(e => e.value),
         stats: [...document.querySelectorAll('#flush-collapseTwo > .accordion-body > .mb-3 > input')].map(e => e.value),
@@ -68,8 +68,12 @@ function collectTrainer() {
         achieved: [...document.querySelectorAll('#flush-collapseFive > .accordion-body > .d-flex > .pb-1 > input[type="checkbox"]')].map(e => e.checked),
         notes: document.getElementById('player-obs').value
     };
+}
 
-    localStorage.setItem('trainer', JSON.stringify(trainer, null, 0));
+function saveTrainer() {
+    const trainer = collectTrainer();
+    const database = db.editTrainer(trainer);
+    loadDatabase(database);
 }
 
 function loadTrainer(trainer) {
@@ -290,6 +294,9 @@ document.getElementById('delete-pokemon-button').onclick = () => {
     const database = db.deletePokemon();
     loadDatabase(database);
 }
+
+document.getElementById('trainerModeAccordion').onchange = saveTrainer;
+document.getElementById('pokemonModeSection').onchange = savePokemon;
 
 /* Initializing sheet */
 initPokemon();
