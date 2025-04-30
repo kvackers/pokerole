@@ -1,60 +1,27 @@
 import { initPokemon } from "./createPokemon.js";
+import { NATURES } from "./data.js";
 import * as db from './db.js';
 
-const trainerModeButton = document.getElementById('trainer-mode-button');
-const pokemonModeButton = document.getElementById('pokemon-mode-button');
-
-trainerModeButton.onclick = () => {
-    trainerModeButton.classList.toggle('d-none');
-    pokemonModeButton.classList.toggle('d-none');
-
-    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
-    document.getElementById('pokemonModeSection').classList.toggle('d-none');
-}
-
-pokemonModeButton.onclick = () => {
-    trainerModeButton.classList.toggle('d-none');
-    pokemonModeButton.classList.toggle('d-none');
-
-    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
-    document.getElementById('pokemonModeSection').classList.toggle('d-none');
-}
-
-const darkModeButton = document.getElementById('dark-mode-button');
-const lightModeButton = document.getElementById('light-mode-button');
-
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.querySelector('html').setAttribute("data-bs-theme", "dark");
-    darkModeButton.classList.add('d-none');
-} else {
-    lightModeButton.classList.add('d-none');
-}
-
-darkModeButton.onclick = lightModeButton.onclick = () => {
-    const html = document.querySelector('html');
-
-    if (html.getAttribute('data-bs-theme') == 'dark') {
-        html.setAttribute('data-bs-theme', '');
-    } else {
-        html.setAttribute('data-bs-theme', 'dark');
+function updateMaxConfidence(selectId, maxConfidenceId) {
+    document.getElementById(selectId).onchange = event => {
+        const selection = event.target.value;
+        const index = NATURES.map(e => e.nature).indexOf(selection);
+        const maxConfidence = index >= 0 ? NATURES[index].maxConfidence : 0;
+        document.getElementById(maxConfidenceId).innerText = `/ ${maxConfidence}`;
     }
-
-    darkModeButton.classList.toggle('d-none');
-    lightModeButton.classList.toggle('d-none');
 }
 
-/* Updating PV and Will */
-document.getElementById('player-vit').onchange = () => {
-    const vitality = +document.getElementById('player-vit').value;
-    document.getElementById('player-max-hp').innerText = `/ ${4 + vitality}`;
+function populateNatures(selectId) {
+    const select = document.getElementById(selectId);
+    for (const { nature } of NATURES) {
+        const option = document.createElement("option");
+        option.value = nature;
+        option.innerText = nature;
+
+        select.appendChild(option);
+    }
 }
 
-document.getElementById('player-ins').onchange = () => {
-    const insight = +document.getElementById('player-ins').value;
-    document.getElementById('player-will').value = 2 + insight;
-}
-
-/* Save shenanigans */
 function collectTrainer() {
     return {
         personalInput: [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > input')].map(e => e.value),
@@ -246,45 +213,104 @@ function loadDatabase(db) {
     updateDropdown(db);
 }
 
+function initTrainer() {
+    document.getElementById('player-vit').onchange = () => {
+        const vitality = +document.getElementById('player-vit').value;
+        document.getElementById('player-max-hp').innerText = `/ ${4 + vitality}`;
+    }
+
+    document.getElementById('player-ins').onchange = () => {
+        const insight = +document.getElementById('player-ins').value;
+        document.getElementById('player-will').value = 2 + insight;
+    }
+
+    populateNatures('player-nature');
+    updateMaxConfidence('player-nature', 'player-max-confidence');
+
+    document.getElementById('export-button').onclick = () => {
+        const database = db.readDatabase();
+        const serialized = JSON.stringify(database, null, 2);
+
+        document.getElementById('export-area').value = serialized;
+        navigator.clipboard.writeText(serialized);
+
+        const alert = document.getElementById('export-alert');
+        alert.classList.remove('d-none');
+        setTimeout(() => alert.classList.add('d-none'), 2000);
+    }
+
+    document.getElementById('import-button').onclick = () => {
+        try {
+            const newDB = JSON.parse(document.getElementById('export-area').value);
+            const database = db.importDatabase(newDB);
+
+            loadDatabase(database);
+        } catch (e) {
+            console.log(e);
+            const alert = document.getElementById('save-alert');
+            alert.classList.remove('d-none');
+            setTimeout(() => alert.classList.add('d-none'), 2000);
+        }
+    }
+
+    document.getElementById('clear-sheet').onclick = () => {
+        const consent = confirm('Essa ação vai deletar a ficha inteira. Deseja continuar?');
+        if (!consent) { return; }
+
+        const database = db.nukeDatabase();
+        loadDatabase(database);
+    }
+}
+
 function initSheet() {
+    initTrainer();
+    initPokemon();
+
     const database = db.readDatabase();
     loadDatabase(database);
 }
 
 /* Adding listeners */
+const trainerModeButton = document.getElementById('trainer-mode-button');
+const pokemonModeButton = document.getElementById('pokemon-mode-button');
 
-document.getElementById('export-button').onclick = () => {
-    const database = db.readDatabase();
-    const serialized = JSON.stringify(database, null, 2);
+trainerModeButton.onclick = () => {
+    trainerModeButton.classList.toggle('d-none');
+    pokemonModeButton.classList.toggle('d-none');
 
-    document.getElementById('export-area').value = serialized;
-    navigator.clipboard.writeText(serialized);
-
-    const alert = document.getElementById('export-alert');
-    alert.classList.remove('d-none');
-    setTimeout(() => alert.classList.add('d-none'), 2000);
+    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
+    document.getElementById('pokemonModeSection').classList.toggle('d-none');
 }
 
-document.getElementById('import-button').onclick = () => {
-    try {
-        const newDB = JSON.parse(document.getElementById('export-area').value);
-        const database = db.importDatabase(newDB);
+pokemonModeButton.onclick = () => {
+    trainerModeButton.classList.toggle('d-none');
+    pokemonModeButton.classList.toggle('d-none');
 
-        loadDatabase(database);
-    } catch (e) {
-        console.log(e);
-        const alert = document.getElementById('save-alert');
-        alert.classList.remove('d-none');
-        setTimeout(() => alert.classList.add('d-none'), 2000);
+    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
+    document.getElementById('pokemonModeSection').classList.toggle('d-none');
+}
+
+const darkModeButton = document.getElementById('dark-mode-button');
+const lightModeButton = document.getElementById('light-mode-button');
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.querySelector('html').setAttribute("data-bs-theme", "dark");
+    darkModeButton.classList.add('d-none');
+} else {
+    lightModeButton.classList.add('d-none');
+}
+
+darkModeButton.onclick = lightModeButton.onclick = () => {
+    const html = document.querySelector('html');
+
+    if (html.getAttribute('data-bs-theme') == 'dark') {
+        html.setAttribute('data-bs-theme', '');
+    } else {
+        html.setAttribute('data-bs-theme', 'dark');
     }
-}
 
-document.getElementById('clear-sheet').onclick = () => {
-    const consent = confirm('Essa ação vai deletar a ficha inteira. Deseja continuar?');
-    if (!consent) { return; }
-
-    const database = db.nukeDatabase();
-    loadDatabase(database);
+    darkModeButton.classList.toggle('d-none');
+    lightModeButton.classList.toggle('d-none');
 }
 
 document.getElementById('delete-pokemon-button').onclick = () => {
@@ -298,7 +324,5 @@ document.getElementById('delete-pokemon-button').onclick = () => {
 document.getElementById('trainerModeAccordion').onchange = saveTrainer;
 document.getElementById('pokemonModeSection').onchange = savePokemon;
 
-/* Initializing sheet */
-initPokemon();
 initSheet();
 console.log('Sheet initialized');
