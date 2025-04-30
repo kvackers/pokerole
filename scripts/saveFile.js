@@ -2,6 +2,10 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/* TODO:
+   - Reavaliar initSheet
+*/
+
 export function initSheet() {
     if (!localStorage.getItem('trainer')) {
         saveTrainer();

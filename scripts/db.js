@@ -29,7 +29,17 @@ const BLANK_POKEMON = {
 function initDatabase() {
     let database = localStorage.getItem('database');
     if (database) {
-        return JSON.parse(database);
+        const db = JSON.parse(database);
+        const pokemon = {};
+        let minKey = Infinity;
+        for (const key of Object.keys(db.pokemon)) {
+            pokemon[+key] = structuredClone(db.pokemon[key]);
+            minKey = Math.min(+key, minKey);
+        }
+
+        db.pokemon = pokemon;
+        db.currentPokemon = minKey;
+        return db;
     } else {
         const database = {
             trainer: structuredClone(BLANK_TRAINER),
@@ -122,13 +132,24 @@ export function cleanTrainer() {
 
 // Creates a new Pokemon and switches to it
 export function createPokemon() {
-    const maxID = Object.keys(DATABASE.pokemon).sort().reduce((acc, e) => Math.max(acc, e));
+    const maxID = +Object.keys(DATABASE.pokemon).sort().reduce((acc, e) => Math.max(acc, e));
 
     const newCurrent = maxID + 1;
     const newPokemon = structuredClone(BLANK_POKEMON);
 
     DATABASE.pokemon[newCurrent] = newPokemon;
     DATABASE.currentPokemon = newCurrent;
+
+    localStorage.setItem(
+        'database',
+        JSON.stringify(DATABASE, null, 0)
+    );
+
+    return DATABASE;
+}
+
+export function switchPokemon(id) {
+    DATABASE.currentPokemon = id;
 
     localStorage.setItem(
         'database',
@@ -163,16 +184,16 @@ export function editPokemon(newPokemon) {
 
 // Deletes current Pokemon
 export function deletePokemon() {
-    if (DATABASE.pokemon.length == 1) {
+    if (Object.keys(DATABASE.pokemon).length < 2) {
         return cleanPokemon();
     } else {
         const current = DATABASE.currentPokemon;
-        const firstKey = Object.keys(DATABASE.pokemon).sort().filter(e => e !== current)[0];
+        const firstKey = Object.keys(DATABASE.pokemon).sort().filter(e => e != current)[0];
 
         const team = structuredClone(DATABASE.pokemon);
         delete team[current];
 
-        DATABASE.currentPokemon = firstKey;
+        DATABASE.currentPokemon = +firstKey;
         DATABASE.pokemon = team;
 
         localStorage.setItem(
