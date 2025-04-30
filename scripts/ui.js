@@ -1,5 +1,5 @@
 import { initPokemon } from "./createPokemon.js";
-import { NATURES } from "./data.js";
+import { NATURES, RANKS } from "./data.js";
 import * as db from './db.js';
 
 function updateMaxConfidence(selectId, maxConfidenceId) {
@@ -20,6 +20,49 @@ function populateNatures(selectId) {
 
         select.appendChild(option);
     }
+}
+
+function populateRank(rankId) {
+    const select = document.getElementById(rankId);
+    for (const { rank } of RANKS) {
+        const option = document.createElement("option");
+        option.value = rank;
+        option.innerText = rank;
+
+        select.appendChild(option);
+    }
+}
+
+function calculateSpentPoints(rankId, budgetId, skillClass) {
+    const selection = document.getElementById(rankId).value;
+    const index = RANKS.map(e => e.rank).indexOf(selection);
+
+    const sumOfSkills = [...document.getElementsByClassName(skillClass)].map(e => e.value ? +e.value : 0).reduce((acc, e) => e + acc);
+    const skillPoints = index >= 0 ? RANKS[index].skillPoints : 0;
+
+    document.getElementById(budgetId).innerText = `Pontos: ${skillPoints - sumOfSkills}`;
+}
+
+function addRankUpdaters(rankId, budgetId, maxSkillClass, skillClass) {
+    const rank = document.getElementById(rankId);
+
+    rank.addEventListener('change', event => {
+        const selection = event.target.value;
+        const index = RANKS.map(e => e.rank).indexOf(selection);
+
+        const { icon, skillCeiling } = index >= 0 ? RANKS[index] : { icon: '', skillCeiling: 5 };
+        document.getElementById(rankId + '-icon').src = icon;
+        [...document.getElementsByClassName(maxSkillClass)].forEach(e => e.innerText = `/ ${skillCeiling}`);
+
+        const sumOfSkills = [...document.getElementsByClassName('skill')].map(e => e.value ? +e.value : 0).reduce((acc, e) => e + acc);
+        const skillPoints = index >= 0 ? RANKS[index].skillPoints : 0;
+        const spentPoints = skillPoints - sumOfSkills;
+        document.getElementById('skill-points').innerText = `Pontos: ${spentPoints}`;
+    });
+
+    [rank, ...document.getElementsByClassName(skillClass)].forEach(elem => {
+        elem.addEventListener('change', () => calculateSpentPoints(rankId, budgetId, skillClass))
+    });
 }
 
 function collectTrainer() {
@@ -266,6 +309,9 @@ function initTrainer() {
 
     populateNatures('player-nature');
     updateMaxConfidence('player-nature', 'player-max-confidence');
+
+    populateRank('player-rank');
+    addRankUpdaters('player-rank', 'skill-points', 'max-skill', 'skill');
 
     document.getElementById('export-button').onclick = () => {
         const database = db.readDatabase();
