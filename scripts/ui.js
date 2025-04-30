@@ -1,6 +1,16 @@
-import { initPokemon } from "./createPokemon.js";
-import { NATURES, RANKS } from "./data.js";
+import { NATURES, RANKS, DEX, STATUS, VOLATILES, TYPES } from "./data.js";
 import * as db from './db.js';
+
+
+function updateHP() {
+    const selection = document.getElementById('pokemon-species').value.toLowerCase();
+    if (!DEX[selection]) { return; }
+
+    const baseHP = +document.getElementById('pokemon-vit').value;
+    const maxHP = +DEX[selection].baseHP + baseHP;
+    document.getElementById('pokemon-hp').value = maxHP;
+    document.getElementById('pokemon-max-hp').innerText = `/ ${maxHP}`;
+}
 
 function updateMaxConfidence(selectId, maxConfidenceId) {
     document.getElementById(selectId).onchange = event => {
@@ -11,26 +21,16 @@ function updateMaxConfidence(selectId, maxConfidenceId) {
     }
 }
 
-function populateNatures(selectId) {
-    const select = document.getElementById(selectId);
-    for (const { nature } of NATURES) {
-        const option = document.createElement("option");
-        option.value = nature;
-        option.innerText = nature;
+function populateSelect(selectQuery, population, mapper = x => x) {
+    [...document.querySelectorAll(selectQuery)].forEach(select => {
+        for (const val of population) {
+            const option = document.createElement("option");
+            option.value = mapper(val);
+            option.innerText = mapper(val);
 
-        select.appendChild(option);
-    }
-}
-
-function populateRank(rankId) {
-    const select = document.getElementById(rankId);
-    for (const { rank } of RANKS) {
-        const option = document.createElement("option");
-        option.value = rank;
-        option.innerText = rank;
-
-        select.appendChild(option);
-    }
+            select.appendChild(option);
+        }
+    });
 }
 
 function calculateSpentPoints(rankId, budgetId, skillClass) {
@@ -307,10 +307,10 @@ function initTrainer() {
         document.getElementById('player-will').value = 2 + insight;
     }
 
-    populateNatures('player-nature');
+    populateSelect('#player-nature', NATURES, obj => obj.nature);
     updateMaxConfidence('player-nature', 'player-max-confidence');
 
-    populateRank('player-rank');
+    populateSelect('#player-rank', RANKS, obj => obj.rank);
     addRankUpdaters('player-rank', 'skill-points', 'max-skill', 'skill');
 
     document.getElementById('export-button').onclick = () => {
@@ -348,20 +348,103 @@ function initTrainer() {
     }
 }
 
+function initPokemon() {
+    populateSelect('#pokemon-nature-select', NATURES, obj => obj.nature);
+    updateMaxConfidence('pokemon-nature-select', 'pokemon-max-confidence');
+
+    populateSelect('#pokemon-rank', RANKS, obj => obj.rank);
+    addRankUpdaters('pokemon-rank', 'pokemon-skill-points', 'pokemon-max-skill', 'pokemon-skill');
+
+    populateSelect('.pokemon-status-select', STATUS);
+    populateSelect('.pokemon-volatile-select', VOLATILES);
+    populateSelect('.pokemon-type-select', TYPES);
+    populateSelect('.pokemon-species-select', Object.keys(DEX), capitalize);
+
+    document.getElementById('pokemon-species').onchange = event => {
+        const pokemon = event.target.value.toLowerCase();
+
+        if (!DEX[pokemon]) { return; }
+
+        document.getElementById('pokemon-type1').value = DEX[pokemon].type1;
+        document.getElementById('pokemon-type2').value = DEX[pokemon].type2 || '-';
+
+        const attributes = ['STR', 'DEX', 'VIT', 'SPC', 'INS'];
+        for (const attribute of attributes) {
+            const lower = attribute.toLowerCase();
+
+            document.getElementById('pokemon-' + lower).value = DEX[pokemon]['base' + attribute];
+            document.getElementById('pokemon-max-' + lower).innerText = '/ ' + DEX[pokemon]['max' + attribute];
+        }
+
+        document.getElementById('pokemon-evo-time').value = DEX[pokemon].evoTime;
+        updateHP();
+
+        document.getElementById('pokemon-defense').value = DEX[pokemon].baseVIT;
+        document.getElementById('pokemon-spdef').value = DEX[pokemon].baseINS;
+        document.getElementById('pokemon-will').value = +DEX[pokemon].baseINS + 2;
+
+        const dex = +DEX[pokemon].baseDEX;
+        document.getElementById('pokemon-initiative').value = +(document.getElementById('pokemon-alert').value || 0) + dex;
+        document.getElementById('pokemon-evasion').value = +(document.getElementById('pokemon-dodge').value || 0) + dex;
+
+        const str = +DEX[pokemon].baseSTR;
+        const spc = +DEX[pokemon].baseSPC;
+        const clash = +document.getElementById('pokemon-clash').value;
+
+        document.getElementById('pokemon-clash2').value = `${str + clash} / ${spc + clash}`;
+    };
+
+    document.getElementById('pokemon-vit').onchange = event => {
+        updateHP();
+        document.getElementById('pokemon-defense').value = +event.target.value;
+    }
+
+    document.getElementById('pokemon-ins').onchange = event => {
+        document.getElementById('pokemon-spdef').value = +event.target.value;
+        document.getElementById('pokemon-will').value = +event.target.value + 2;
+    }
+
+    document.getElementById('pokemon-dex').onchange = event => {
+        const dex = +event.target.value;
+
+        document.getElementById('pokemon-initiative').value = +(document.getElementById('pokemon-alert').value || 0) + dex;
+        document.getElementById('pokemon-evasion').value = +(document.getElementById('pokemon-dodge').value || 0) + dex;
+    }
+
+    document.getElementById('pokemon-alert').onchange = event => {
+        const alert = +event.target.value;
+        document.getElementById('pokemon-initiative').value = +document.getElementById('pokemon-dex').value + alert;
+    }
+
+    document.getElementById('pokemon-dodge').onchange = event => {
+        const dodge = +event.target.value;
+        document.getElementById('pokemon-evasion').value = +document.getElementById('pokemon-dex').value + dodge;
+    }
+
+    [document.getElementById('pokemon-str'), document.getElementById('pokemon-spc'), document.getElementById('pokemon-clash')]
+        .forEach(elem => elem.addEventListener('change', () => {
+            const str = +document.getElementById('pokemon-str');
+            const spc = +document.getElementById('pokemon-spc').value;
+            const clash = +document.getElementById('pokemon-clash').value;
+
+            document.getElementById('pokemon-clash2').value = `${str + clash} / ${spc + clash}`;
+        }));
+
+    document.getElementById('delete-pokemon-button').onclick = () => {
+        const consent = confirm('Essa ação vai deletar o Pokémon atual. Deseja continuar?');
+        if (!consent) { return; }
+
+        const database = db.deletePokemon();
+        loadDatabase(database);
+    }
+}
+
 function initSheet() {
     initUI();
     initTrainer();
     initPokemon();
 
     const database = db.readDatabase();
-    loadDatabase(database);
-}
-
-document.getElementById('delete-pokemon-button').onclick = () => {
-    const consent = confirm('Essa ação vai deletar o Pokémon atual. Deseja continuar?');
-    if (!consent) { return; }
-
-    const database = db.deletePokemon();
     loadDatabase(database);
 }
 
