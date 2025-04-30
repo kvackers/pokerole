@@ -168,7 +168,7 @@ function updateDropdown(database) {
         a.innerHTML = `<span class='d-none'>${id}</span>${nickname} - ${species}`;
         a.onclick = () => switchToPokemon(+id);
         if (id == currentPokemon) {
-            li.classList.add('text-bg-secondary');
+            a.classList.add('active');
         }
 
         li.appendChild(a);
