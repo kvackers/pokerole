@@ -213,6 +213,46 @@ function loadDatabase(db) {
     updateDropdown(db);
 }
 
+function initUI() {
+    const trainerModeButton = document.getElementById('trainer-mode-button');
+    const pokemonModeButton = document.getElementById('pokemon-mode-button');
+
+    const trainerSection = document.getElementById('trainerModeAccordion');
+    const pokemonSection = document.getElementById('pokemonModeSection');
+
+    trainerModeButton.onclick = pokemonModeButton.onclick = () => {
+        trainerModeButton.classList.toggle('d-none');
+        pokemonModeButton.classList.toggle('d-none');
+
+        trainerSection.classList.toggle('d-none');
+        pokemonSection.classList.toggle('d-none');
+    };
+
+    const html = document.querySelector('html');
+    const darkModeButton = document.getElementById('dark-mode-button');
+    const lightModeButton = document.getElementById('light-mode-button');
+
+    darkModeButton.onclick = lightModeButton.onclick = () => {
+        html.setAttribute(
+            'data-bs-theme',
+            html.getAttribute('data-bs-theme') == 'dark' ? '' : 'dark'
+        );
+
+        darkModeButton.classList.toggle('d-none');
+        lightModeButton.classList.toggle('d-none');
+    }
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        html.setAttribute("data-bs-theme", "dark");
+        darkModeButton.classList.add('d-none');
+    } else {
+        lightModeButton.classList.add('d-none');
+    }
+
+    trainerSection.onchange = saveTrainer;
+    pokemonSection.onchange = savePokemon;
+}
+
 function initTrainer() {
     document.getElementById('player-vit').onchange = () => {
         const vitality = +document.getElementById('player-vit').value;
@@ -263,54 +303,12 @@ function initTrainer() {
 }
 
 function initSheet() {
+    initUI();
     initTrainer();
     initPokemon();
 
     const database = db.readDatabase();
     loadDatabase(database);
-}
-
-/* Adding listeners */
-const trainerModeButton = document.getElementById('trainer-mode-button');
-const pokemonModeButton = document.getElementById('pokemon-mode-button');
-
-trainerModeButton.onclick = () => {
-    trainerModeButton.classList.toggle('d-none');
-    pokemonModeButton.classList.toggle('d-none');
-
-    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
-    document.getElementById('pokemonModeSection').classList.toggle('d-none');
-}
-
-pokemonModeButton.onclick = () => {
-    trainerModeButton.classList.toggle('d-none');
-    pokemonModeButton.classList.toggle('d-none');
-
-    document.getElementById('trainerModeAccordion').classList.toggle('d-none');
-    document.getElementById('pokemonModeSection').classList.toggle('d-none');
-}
-
-const darkModeButton = document.getElementById('dark-mode-button');
-const lightModeButton = document.getElementById('light-mode-button');
-
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.querySelector('html').setAttribute("data-bs-theme", "dark");
-    darkModeButton.classList.add('d-none');
-} else {
-    lightModeButton.classList.add('d-none');
-}
-
-darkModeButton.onclick = lightModeButton.onclick = () => {
-    const html = document.querySelector('html');
-
-    if (html.getAttribute('data-bs-theme') == 'dark') {
-        html.setAttribute('data-bs-theme', '');
-    } else {
-        html.setAttribute('data-bs-theme', 'dark');
-    }
-
-    darkModeButton.classList.toggle('d-none');
-    lightModeButton.classList.toggle('d-none');
 }
 
 document.getElementById('delete-pokemon-button').onclick = () => {
@@ -320,9 +318,6 @@ document.getElementById('delete-pokemon-button').onclick = () => {
     const database = db.deletePokemon();
     loadDatabase(database);
 }
-
-document.getElementById('trainerModeAccordion').onchange = saveTrainer;
-document.getElementById('pokemonModeSection').onchange = savePokemon;
 
 initSheet();
 console.log('Sheet initialized');
