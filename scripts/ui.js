@@ -53,11 +53,6 @@ function addRankUpdaters(rankId, budgetId, maxSkillClass, skillClass) {
         const { icon, skillCeiling } = index >= 0 ? RANKS[index] : { icon: '', skillCeiling: 5 };
         document.getElementById(rankId + '-icon').src = icon;
         [...document.getElementsByClassName(maxSkillClass)].forEach(e => e.innerText = `/ ${skillCeiling}`);
-
-        const sumOfSkills = [...document.getElementsByClassName('skill')].map(e => e.value ? +e.value : 0).reduce((acc, e) => e + acc);
-        const skillPoints = index >= 0 ? RANKS[index].skillPoints : 0;
-        const spentPoints = skillPoints - sumOfSkills;
-        document.getElementById('skill-points').innerText = `Pontos: ${spentPoints}`;
     });
 
     [rank, ...document.getElementsByClassName(skillClass)].forEach(elem => {
