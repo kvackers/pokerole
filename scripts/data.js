@@ -27,13 +27,13 @@ export const NATURES = [
 ];
 
 export const RANKS = [
-    { rank: 'Zero', skillCeiling: 1, skillPoints: 5, icon: 'https://archives.bulbagarden.net/media/upload/5/55/Bag_Premier_Ball_Sprite.png' },
-    { rank: 'Iniciante', skillCeiling: 2, skillPoints: 9, icon: 'https://archives.bulbagarden.net/media/upload/9/93/Bag_Pok%C3%A9_Ball_Sprite.png' },
-    { rank: 'Amador', skillCeiling: 3, skillPoints: 12, icon: 'https://archives.bulbagarden.net/media/upload/c/ca/Bag_Great_Ball_Sprite.png' },
-    { rank: 'Ás', skillCeiling: 4, skillPoints: 13, icon: 'https://archives.bulbagarden.net/media/upload/0/03/Bag_Ultra_Ball_Sprite.png' },
-    { rank: 'Profissional', skillCeiling: 5, skillPoints: 14, icon: 'https://archives.bulbagarden.net/media/upload/f/ff/Bag_Cherish_Ball_Sprite.png' },
-    { rank: 'Mestre', skillCeiling: 5, skillPoints: 14, icon: 'https://archives.bulbagarden.net/media/upload/6/6d/Bag_Master_Ball_Sprite.png' },
-    { rank: 'Campeão', skillCeiling: 5, skillPoints: 15, icon: 'https://archives.bulbagarden.net/media/upload/b/b2/Bag_Park_Ball_Sprite.png' },
+    { rank: 'Zero', skillCeiling: 1, skillPoints: 5, icon: 'assets/premierball.png' },
+    { rank: 'Iniciante', skillCeiling: 2, skillPoints: 9, icon: 'assets/pokeball.png' },
+    { rank: 'Amador', skillCeiling: 3, skillPoints: 12, icon: 'assets/greatball.png' },
+    { rank: 'Ás', skillCeiling: 4, skillPoints: 13, icon: 'assets/ultraball.png' },
+    { rank: 'Profissional', skillCeiling: 5, skillPoints: 14, icon: 'assets/cherishball.png' },
+    { rank: 'Mestre', skillCeiling: 5, skillPoints: 14, icon: 'assets/masterball.png' },
+    { rank: 'Campeão', skillCeiling: 5, skillPoints: 15, icon: 'assets/parkball.png' },
 ];
 
 export const STATUS = [
