@@ -355,18 +355,20 @@ function initPokemon() {
     populateSelect('#pokemon-rank', RANKS, obj => obj.rank);
     addRankUpdaters('pokemon-rank', 'pokemon-skill-points', 'pokemon-max-skill', 'pokemon-skill');
 
-    populateSelect('.pokemon-status-select', STATUS);
-    populateSelect('.pokemon-volatile-select', VOLATILES);
+    populateSelect('#pokemon-status', STATUS);
+    populateSelect('#pokemon-volatile', VOLATILES);
     populateSelect('.pokemon-type-select', TYPES);
-    populateSelect('.pokemon-species-select', Object.keys(DEX), capitalize);
+    populateSelect('#pokemon-species', Object.keys(DEX), capitalize);
 
     document.getElementById('pokemon-species').onchange = event => {
         const pokemon = event.target.value.toLowerCase();
 
         if (!DEX[pokemon]) { return; }
 
-        document.getElementById('pokemon-type1').value = DEX[pokemon].type1;
-        document.getElementById('pokemon-type2').value = DEX[pokemon].type2 || '-';
+        const types = [DEX[pokemon].type1, DEX[pokemon].type2 || '-'];
+        [...document.getElementsByClassName('pokemon-type-select')].slice(0, 2).forEach((elem, idx) => {
+            elem.value = types[idx];
+        });
 
         const attributes = ['STR', 'DEX', 'VIT', 'SPC', 'INS'];
         for (const attribute of attributes) {
@@ -375,10 +377,9 @@ function initPokemon() {
             document.getElementById('pokemon-' + lower).value = DEX[pokemon]['base' + attribute];
             document.getElementById('pokemon-max-' + lower).innerText = '/ ' + DEX[pokemon]['max' + attribute];
         }
-
-        document.getElementById('pokemon-evo-time').value = DEX[pokemon].evoTime;
         updateHP();
 
+        document.getElementById('pokemon-evo-time').value = DEX[pokemon].evoTime;
         document.getElementById('pokemon-defense').value = DEX[pokemon].baseVIT;
         document.getElementById('pokemon-spdef').value = DEX[pokemon].baseINS;
         document.getElementById('pokemon-will').value = +DEX[pokemon].baseINS + 2;
