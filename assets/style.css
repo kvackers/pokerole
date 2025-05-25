@@ -19,7 +19,7 @@ body {
     display: inline;
 }
 
-.w925pc {
+.w90pc {
     width: 92.5%;
     display: inline;
 }
@@ -57,4 +57,14 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
+}
+
+.achievement-container {
+    display: flex;
+    align-items: center;
+}
+
+.achievement-box {
+    scale: 1.9;
+    margin-bottom: 5px;
 }
