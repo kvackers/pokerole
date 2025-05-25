@@ -62,15 +62,15 @@ function addRankUpdaters(rankId, budgetId, maxSkillClass, skillClass) {
 
 function collectTrainer() {
     return {
-        personalInput: [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > input')].map(e => e.value),
-        personalSelect: [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > select')].map(e => e.value),
-        stats: [...document.querySelectorAll('#flush-collapseTwo > .accordion-body > .mb-3 > input')].map(e => e.value),
-        skills: [...document.querySelectorAll('#flush-collapseThree > .accordion-body > .mb-3 > input')].map(e => e.value),
-        extraSkillNames: [...document.querySelectorAll('#flush-collapseThree > .accordion-body > .mb-3 > span[contentEditable="]')].map(e => e.value),
-        dexPotions: [...document.querySelectorAll('#flush-collapseFour > .accordion-body > .mb-3 > input')].map(e => e.value),
-        badgeBag: [...document.querySelectorAll('#flush-collapseFour > .accordion-body > .d-flex > .pb-1 > input')].map(e => e.value),
-        achievements: [...document.querySelectorAll('#flush-collapseFive > .accordion-body > .d-flex > .pb-1 > input[type="text"]')].map(e => e.value),
-        achieved: [...document.querySelectorAll('#flush-collapseFive > .accordion-body > .d-flex > .pb-1 > input[type="checkbox"]')].map(e => e.checked),
+        personalInput: [...document.querySelectorAll('.player-input')].map(e => e.value),
+        personalSelect: [...document.querySelectorAll('.player-select')].map(e => e.value),
+        stats: [...document.querySelectorAll('.stat')].map(e => e.value),
+        skills: [...document.querySelectorAll('.skill')].map(e => e.value),
+        extraSkillNames: [...document.querySelectorAll('.player-extra-skill')].map(e => e.value),
+        dexPotions: [...document.querySelectorAll('.pokedex, .potion, .potion-dose')].map(e => e.value),
+        badgeBag: [...document.querySelectorAll('.badge, .bag, .bag-unit')].map(e => e.value),
+        achievements: [...document.querySelectorAll('.achievement-text')].map(e => e.value),
+        achieved: [...document.querySelectorAll('.achievement-box')].map(e => e.checked),
         notes: document.getElementById('player-obs').value
     };
 }
@@ -82,40 +82,40 @@ function saveTrainer() {
 }
 
 function loadTrainer(trainer) {
-    [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > select')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.player-select')].forEach((elem, idx) => {
         elem.value = trainer.personalSelect[idx];
         elem.dispatchEvent(new Event('change'));
     });
 
-    [...document.querySelectorAll('#flush-collapseOne > .accordion-body > .mb-3 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.player-input')].forEach((elem, idx) => {
         elem.value = trainer.personalInput[idx];
     });
 
-    [...document.querySelectorAll('#flush-collapseTwo > .accordion-body > .mb-3 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.stat')].forEach((elem, idx) => {
         elem.value = trainer.stats[idx];
     });
 
-    [...document.querySelectorAll('#flush-collapseThree > .accordion-body > .mb-3 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.skill')].forEach((elem, idx) => {
         elem.value = trainer.skills[idx];
     });
 
-    [...document.querySelectorAll('#flush-collapseThree > .accordion-body > .mb-3 > span[contentEditable="]')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.player-extra-skill')].forEach((elem, idx) => {
         elem.value = trainer.extraSkillNames[idx];
     });
 
-    [...document.querySelectorAll('#flush-collapseFour > .accordion-body > .mb-3 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.pokedex, .potion, .potion-dose')].forEach((elem, idx) => {
         elem.value = trainer.dexPotions[idx];
     });
 
-    [...document.querySelectorAll('#flush-collapseFour > .accordion-body > .d-flex > .pb-1 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.badge, .bag, .bag-unit')].forEach((elem, idx) => {
         elem.value = trainer.badgeBag[idx];
     });
 
-    [...document.querySelectorAll('#flush-collapseFive > .accordion-body > .d-flex > .pb-1 > input[type="text"]')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.achievement-text')].forEach((elem, idx) => {
         elem.value = trainer.achievements[idx];
     });
 
-    [...document.querySelectorAll('#flush-collapseFive > .accordion-body > .d-flex > .pb-1 > input[type="checkbox"]')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.achievement-box')].forEach((elem, idx) => {
         elem.checked = !!trainer.achieved[idx];
     });
 
