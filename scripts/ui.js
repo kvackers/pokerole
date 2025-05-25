@@ -124,17 +124,17 @@ function loadTrainer(trainer) {
 
 function collectPokemon() {
     return {
-        personalInput: [...document.querySelectorAll('#collapseOne > .accordion-body > .pb-1 > input')].map(e => e.value),
-        personalSelect: [...document.querySelectorAll('#collapseOne > .accordion-body > .pb-1 > select')].map(e => e.value),
-        stats: [...document.querySelectorAll('#collapseTwo > .accordion-body > .pb-1 > input')].map(e => e.value),
-        skills: [...document.querySelectorAll('#collapseThree > .accordion-body > .pb-1 > input')].map(e => e.value),
+        personalInput: [...document.querySelectorAll('.pokemon-input')].map(e => e.value),
+        personalSelect: [...document.querySelectorAll('.pokemon-select')].map(e => e.value),
+        stats: [...document.querySelectorAll('.pokemon-stat')].map(e => e.value),
+        skills: [...document.querySelectorAll('.pokemon-skill')].map(e => e.value),
         extraSkill: document.getElementById('pokemon-extra-skill').innerText,
-        derived: [...document.querySelectorAll('#collapseFour > .accordion-body > .pb-1 > select')].map(e => e.value),
-        items: [...document.querySelectorAll('#collapseFive > .accordion-body > .input-group > input')].map(e => e.value),
-        ribbons: [...document.querySelectorAll('#collapseFive > .accordion-body > .d-flex > .pb-1 > input')].map(e => e.value),
-        attackInputs: [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > input')].map(e => e.value),
-        attackTypes: [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > select')].map(e => e.value),
-        attackEffects: [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > textarea')].map(e => e.value)
+        derived: [...document.querySelectorAll('.pokemon-derived')].map(e => e.value),
+        items: [...document.querySelectorAll('.pokemon-items')].map(e => e.value),
+        ribbons: [...document.querySelectorAll('.ribbon')].map(e => e.value),
+        attackInputs: [...document.querySelectorAll('.atk-inputs')].map(e => e.value),
+        attackTypes: [...document.querySelectorAll('.atk-types')].map(e => e.value),
+        attackEffects: [...document.querySelectorAll('.atk-effects')].map(e => e.value)
     }
 }
 
@@ -194,46 +194,46 @@ function updateDropdown(database) {
 }
 
 function loadPokemon(pokemon) {
-    [...document.querySelectorAll('#collapseOne > .accordion-body > .pb-1 > select')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.pokemon-select')].forEach((elem, idx) => {
         elem.value = pokemon.personalSelect[idx];
         elem.dispatchEvent(new Event('change'));
     });
 
-    [...document.querySelectorAll('#collapseOne > .accordion-body > .pb-1 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.pokemon-input')].forEach((elem, idx) => {
         elem.value = pokemon.personalInput[idx];
     });
 
-    [...document.querySelectorAll('#collapseTwo > .accordion-body > .pb-1 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.pokemon-stat')].forEach((elem, idx) => {
         elem.value = pokemon.stats[idx];
     });
 
-    [...document.querySelectorAll('#collapseThree > .accordion-body > .pb-1 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.pokemon-skill')].forEach((elem, idx) => {
         elem.value = pokemon.skills[idx];
     });
 
     document.getElementById('pokemon-extra-skill').innerText = pokemon.extraSkill;
 
-    [...document.querySelectorAll('#collapseFour > .accordion-body > .pb-1 > select')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.pokemon-derived')].forEach((elem, idx) => {
         elem.value = pokemon.derived[idx];
     });
 
-    [...document.querySelectorAll('#collapseFive > .accordion-body > .input-group > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.pokemon-items')].forEach((elem, idx) => {
         elem.value = pokemon.items[idx];
     });
 
-    [...document.querySelectorAll('#collapseFive > .accordion-body > .d-flex > .pb-1 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.ribbon')].forEach((elem, idx) => {
         elem.value = pokemon.ribbons[idx];
     });
 
-    [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > input')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.atk-inputs')].forEach((elem, idx) => {
         elem.value = pokemon.attackInputs[idx];
     });
 
-    [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > select')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.atk-types')].forEach((elem, idx) => {
         elem.value = pokemon.attackTypes[idx];
     });
 
-    [...document.querySelectorAll('#collapseSix > .accordion-body > .pb-1 > textarea')].forEach((elem, idx) => {
+    [...document.querySelectorAll('.atk-effects')].forEach((elem, idx) => {
         elem.value = pokemon.attackEffects[idx];
     });
 }
