@@ -66,7 +66,7 @@ function collectTrainer() {
         personalSelect: [...document.querySelectorAll('.player-select')].map(e => e.value),
         stats: [...document.querySelectorAll('.stat')].map(e => e.value),
         skills: [...document.querySelectorAll('.skill')].map(e => e.value),
-        extraSkillNames: [...document.querySelectorAll('.player-extra-skill')].map(e => e.value),
+        extraSkillNames: [...document.querySelectorAll('.player-extra-skill')].map(e => e.innerText),
         dexPotions: [...document.querySelectorAll('.pokedex, .potion, .potion-dose')].map(e => e.value),
         badgeBag: [...document.querySelectorAll('.badge, .bag, .bag-unit')].map(e => e.value),
         achievements: [...document.querySelectorAll('.achievement-text')].map(e => e.value),
@@ -100,7 +100,7 @@ function loadTrainer(trainer) {
     });
 
     [...document.querySelectorAll('.player-extra-skill')].forEach((elem, idx) => {
-        elem.value = trainer.extraSkillNames[idx];
+        elem.innerText = trainer.extraSkillNames[idx];
     });
 
     [...document.querySelectorAll('.pokedex, .potion, .potion-dose')].forEach((elem, idx) => {
@@ -288,6 +288,11 @@ function initUI() {
     }
 
     trainerSection.onchange = saveTrainer;
+    [...document.querySelectorAll('.player-extra-skill')].forEach(elem => {
+        elem.onblur = saveTrainer;
+        elem.oninput = saveTrainer;
+    });
+
     pokemonSection.onchange = savePokemon;
 }
 
