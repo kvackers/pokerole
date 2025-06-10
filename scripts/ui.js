@@ -251,6 +251,10 @@ function loadDatabase(db) {
     updateDropdown(db);
 }
 
+function orelse(number, value = 0) {
+    return +(isNaN(+number) ? value : number) || 0;
+}
+
 function initUI() {
     const trainerModeButton = document.getElementById('trainer-mode-button');
     const pokemonModeButton = document.getElementById('pokemon-mode-button');
@@ -406,27 +410,28 @@ function initPokemon() {
     }
 
     document.getElementById('pokemon-dex').onchange = event => {
-        const dex = +event.target.value;
+        let dex = orelse(+event.target.value);
 
-        document.getElementById('pokemon-initiative').value = +(document.getElementById('pokemon-alert').value || 0) + dex;
-        document.getElementById('pokemon-evasion').value = +(document.getElementById('pokemon-dodge').value || 0) + dex;
+        document.getElementById('pokemon-initiative').value = orelse(document.getElementById('pokemon-alert').value) + dex;
+        document.getElementById('pokemon-evasion').value = orelse(document.getElementById('pokemon-dodge').value) + dex;
     }
 
     document.getElementById('pokemon-alert').onchange = event => {
-        const alert = +event.target.value;
-        document.getElementById('pokemon-initiative').value = +document.getElementById('pokemon-dex').value + alert;
+        let alert = orelse(event.target.value);
+
+        document.getElementById('pokemon-initiative').value = orelse(document.getElementById('pokemon-dex').value) + alert;
     }
 
     document.getElementById('pokemon-dodge').onchange = event => {
-        const dodge = +event.target.value;
-        document.getElementById('pokemon-evasion').value = +document.getElementById('pokemon-dex').value + dodge;
+        const dodge = orelse(event.target.value);
+        document.getElementById('pokemon-evasion').value = orelse(document.getElementById('pokemon-dex').value) + dodge;
     }
 
     [document.getElementById('pokemon-str'), document.getElementById('pokemon-spc'), document.getElementById('pokemon-clash')]
         .forEach(elem => elem.addEventListener('change', () => {
-            const str = +document.getElementById('pokemon-str');
-            const spc = +document.getElementById('pokemon-spc').value;
-            const clash = +document.getElementById('pokemon-clash').value;
+            const str = orelse(document.getElementById('pokemon-str').value);
+            const spc = orelse(document.getElementById('pokemon-spc').value);
+            const clash = orelse(document.getElementById('pokemon-clash').value);
 
             document.getElementById('pokemon-clash2').value = `${str + clash} / ${spc + clash}`;
         }));
