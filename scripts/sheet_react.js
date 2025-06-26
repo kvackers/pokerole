@@ -31,6 +31,115 @@ function Navbar({ state, setState }) {
     `;
 }
 
+function TrainerBag({ state, setState }) {
+    const updateDex = (event, id) => {
+        const dex = state.trainer.dex;
+        dex[+id] = +event.target.value;
+
+        const trainer = { ...state.trainer, dex };
+        setState({ ...state, trainer })
+    }
+
+    const updateBadge = (event, id) => {
+        const badges = state.trainer.badges;
+        badges[+id] = event.target.value;
+
+        const trainer = { ...state.trainer, badges };
+        setState({ ...state, trainer })
+    }
+
+    const updatePotions = (event, id) => {
+        const potions = state.trainer.potions;
+        potions[+id] = +event.target.value;
+
+        const trainer = { ...state.trainer, potions };
+        setState({ ...state, trainer })
+    }
+
+    const updateBag = (event, id) => {
+        const bag = state.trainer.bag;
+        bag[+id] = id % 2 == 0 ? event.target.value : +event.target.value;
+
+        const trainer = { ...state.trainer, bag };
+        setState({ ...state, trainer })
+    }
+
+    const badgeElements = [0, 1, 2, 3].map(row => {
+        const unrolledId = row * 2;
+        return html`
+            <div class="mx-auto">
+                <input type="text" class="form-control w49pc"
+                       value=${state.trainer.badges[unrolledId]}
+                       onChange=${event => updateBadge(event, unrolledId)} />
+                <input type="text" class="form-control w49pc"
+                       value=${state.trainer.badges[unrolledId + 1]}
+                       onChange=${event => updateBadge(event, unrolledId + 1)} />
+            </div>
+        `;
+    })
+
+    const potionElements = ["Normal", "Super", "Hiper"].map((text, id) => {
+        const unrolledId = id * 2;
+        return html`
+        <div class="input-group">
+            <span class="input-group-text w85px">${text}</span>
+            <input type="number" min=1 max=5 class="form-control"
+                   value=${state.trainer.potions[unrolledId]}
+                   onChange=${event => updatePotions(event, unrolledId)} />
+            <span class="input-group-text">uds</span>
+            <input type="number" class="form-control"
+                   value=${state.trainer.potions[unrolledId + 1]}
+                   onChange=${event => updatePotions(event, unrolledId + 1)} />
+            <span class="input-group-text">/ 2</span>
+        </div>`;
+    });
+
+    const bagElements = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(id => {
+        const unrolledId = id * 2;
+        return html`
+        <div class="mx-auto pb-1">
+            <input type="text" class="form-control w80pc"
+                   value=${state.trainer.bag[unrolledId]}
+                   onChange=${event => updateBag(event, unrolledId)} />
+            <input type="number" class="form-control w18pc"
+                   value=${state.trainer.bag[unrolledId + 1]}
+                   onChange=${event => updateBag(event, unrolledId + 1)} />
+        </div>`;
+    });
+
+    return html`
+        <h5 class="text-center">Pokédex</h5>
+        <div class="input-group">
+            <span class="input-group-text w105px">Vistos</span>
+            <input type="number" min=0 class="form-control pokedex"
+                   value=${state.trainer.dex[0]} onChange=${event => updateDex(event, 0)}/>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w105px">Capturados</span>
+            <input type="number" min=0 class="form-control pokedex"
+                   value=${state.trainer.dex[1]} onChange=${event => updateDex(event, 1)}/>
+        </div>
+
+        <hr />
+
+        <h5 class="text-center">Insígnias</h5>
+        <div class="d-flex flex-column">
+            ${badgeElements}
+        </div>
+
+        <hr />
+
+        <h5 class="text-center">Poções</h5>
+        ${potionElements}
+        
+        <hr />
+        
+        <h5 class="text-center">Bolsa</h5>
+        <div class="d-flex flex-column">
+            ${bagElements}
+        </div>`;
+}
+
 function TrainerMisc({ state, setState }) {
     const updateNotes = event => {
         const trainer = { ...state.trainer, notes: event.target.value };
@@ -55,7 +164,7 @@ function TrainerMisc({ state, setState }) {
 
     const achievementElems = [0, 1, 2, 3, 4].map(id => {
         return html`
-        <div class="w100pc pb-1 achievement-container">
+        <div class="w100pc achievement-container">
             <input type="checkbox" class="form-check-input achievement-box" onclick=${event => updateCheckbox(event, id)} />
             <input type="text" class="form-control achievement-text"
                    value=${state.trainer.achievements[id]}
@@ -162,7 +271,9 @@ function TrainerMode({ state, setState }) {
             </button>
             </h2>
             <div id="tma4" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">body</div>
+                <div class="accordion-body">
+                    <${TrainerBag} state=${state} setState=${setState} />
+                </div>
             </div>
         </div>
         <div class="accordion-item">

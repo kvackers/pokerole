@@ -20,6 +20,10 @@ export const DEFAULT_APP_STATE = {
     mode: "trainer",
     version: 2,
     trainer: {
+        dex: [0, 0],
+        badges: ["", "", "", "", "", "", "", ""],
+        potions: [0, 2, 0, 4, 0, 14],
+        bag: ["", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0],
         achieved: [false, false, false, false, false],
         achievements: ["", "", "", "", ""],
         notes: ""
