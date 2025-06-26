@@ -20,6 +20,9 @@ export const DEFAULT_APP_STATE = {
     mode: "trainer",
     version: 2,
     trainer: {
+        stats: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        skills: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        extraSkillNames: ["", "", "", ""],
         dex: [0, 0],
         badges: ["", "", "", "", "", "", "", ""],
         potions: [0, 2, 0, 4, 0, 14],

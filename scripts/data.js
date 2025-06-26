@@ -36,6 +36,19 @@ export const RANKS = [
     { rank: 'Campeão', skillCeiling: 5, skillPoints: 15, icon: 'assets/parkball.png' },
 ];
 
+export const TRAINER_STATS = [
+    ["Força", "Destreza", "Vitalidade", "Intuição"],
+    ["Durão", "Maneiro", "Lindo", "Esperto", "Fofo"]
+];
+
+export const SKILLS = {
+    "de Luta": ["Luta", "Pontaria", "Esquiva", "Armas"],
+    "Sociais": ["Empatia", "Etiqueta", "Intimidação", "Performance"],
+    "de Sobrevivência": ["Alerta", "Atletismo", "Natureza", "Furtivo"],
+    "de Conhecimento": ["Construção", "Pokémon", "Medicina", "Ciência"],
+    "Extra": undefined
+};
+
 export const STATUS = [
     'Saudável',
     'Queimado 1',

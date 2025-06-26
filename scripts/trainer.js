@@ -1,33 +1,113 @@
 import "https://esm.sh/preact@10.26.9/debug";
-import { h, render } from 'https://esm.sh/preact@10.26.9';
-import { useEffect, useState } from 'https://esm.sh/preact@10.26.9/hooks';
+import { h } from 'https://esm.sh/preact@10.26.9';
+import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
-import { impureSetTheme, DEFAULT_APP_STATE } from './ui2.js';
+import { DEFAULT_APP_STATE } from './ui2.js';
+import { TRAINER_STATS, SKILLS } from "./data.js";
 
-// Initialize htm with Preact
 const html = htm.bind(h);
 
-function Navbar({ state, setState }) {
-    const { mode, theme } = state;
-    const setTheme = theme => setState({ ...state, theme });
-    const setMode = mode => setState({ ...state, mode });
+function TrainerStats({ state, setState }) {
+    const updateStats = (event, id) => {
+        const stats = state.trainer.stats;
+        stats[+id] = +event.target.value;
 
-    const displayTheme = currTheme => theme === currTheme ? "d-none" : "";
-    const displayMode = currMode => mode === currMode ? "d-none" : "";
+        const trainer = { ...state.trainer, stats };
+        setState({ ...state, trainer })
+    };
+
+    const statElems = TRAINER_STATS.map((stats, index) => {
+        return stats.map((stat, subdIndex) => {
+            const unrolledId = index * 4 + subdIndex;
+
+            return html`
+                <div class="input-group">
+                    <span class="input-group-text w105px">${stat}</span>
+                    <input type="number" class="form-control"
+                           value=${state.trainer.stats[unrolledId]}
+                           onChange=${event => updateStats(event, unrolledId)} />
+                    <span class="input-group-text">/ 5</span>
+                </div>`;
+        });
+    })
 
     return html`
-    <nav class="d-flex justify-content-between">
-        <button class="btn ${displayMode("trainer")}" onclick=${() => setMode("trainer")}>
-            Treinador <img src="assets/pokedex.png"/>
-        </button>
-        <button class="btn ${displayMode("pokemon")}" onclick=${() => setMode("pokemon")}>
-            Pokémon <img src="assets/pokeball.png"/>
-        </button>
+    <p>Pontos a gastar: ${0}</p>
+    
+    ${statElems[0]}
+    <hr />
 
-        <button class="btn ${displayTheme("light")}" onclick=${() => setTheme("light")}>Claro ☀️</button>
-        <button class="btn ${displayTheme("dark")}" onclick=${() => setTheme("dark")}>Escuro 🌙</button>
-    </nav>
+    ${statElems[1]}
+    `;
+}
+
+function TrainerSkills({ state, setState }) {
+    const updateSkills = (event, id) => {
+        const skills = state.trainer.skills;
+        skills[+id] = +event.target.value;
+
+        const trainer = { ...state.trainer, skills };
+        setState({ ...state, trainer })
+    };
+
+    const updateExtraSkillNames = (event, id) => {
+        const extraSkillNames = state.trainer.extraSkillNames;
+        extraSkillNames[+id] = event.target.value;
+
+        const trainer = { ...state.trainer, extraSkillNames };
+        setState({ ...state, trainer })
+    };
+
+    const skillElems = Object.entries(SKILLS).map(([header, names], index) => {
+        let elems;
+        if (names) {
+            const skillEntries = names.map((skill, subIndex) => {
+                const unrolledIndex = index * 4 + subIndex;
+
+                return html`
+                    <div class="input-group">
+                        <span class="input-group-text w105px">${skill}</span>
+                        <input type="text" class="form-control" 
+                               value=${state.trainer.skills[unrolledIndex]}
+                               onChange=${event => updateSkills(event, unrolledIndex)} />
+                        <span class="input-group-text">/ 1</span>
+                    </div>
+                `;
+            });
+
+            elems = html`
+                <h5 class="text-center">Perícias ${header}</h5>
+                <div class="mb-3">${skillEntries}</div>
+            `;
+        } else {
+            const skillEntries = [16, 17, 18, 19].map((globalIndex, arrayIndex) => {
+                return html`
+                    <div class="input-group">
+                        <input type="text" class="input-group-text text-start w105px"
+                               value=${state.trainer.extraSkillNames[arrayIndex]} 
+                               onChange=${event => updateExtraSkillNames(event, arrayIndex)} />
+                        <input type="text" class="form-control" 
+                               value=${state.trainer.skills[globalIndex]}
+                               onChange=${event => updateSkills(event, globalIndex)} />
+                        <span class="input-group-text">/ 1</span>
+                    </div>
+                `;
+            });
+
+            elems = html`
+                <h5 class="text-center">Perícias ${header}</h5>
+                <div class="mb-3">${skillEntries}</div>
+            `;
+        }
+
+        return elems;
+    });
+
+    return html`
+    <p>Pontos a gastar: ${0}</p>
+    
+    ${skillElems}
     `;
 }
 
@@ -97,7 +177,7 @@ function TrainerBag({ state, setState }) {
     const bagElements = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(id => {
         const unrolledId = id * 2;
         return html`
-        <div class="mx-auto pb-1">
+        <div class="mx-auto">
             <input type="text" class="form-control w80pc"
                    value=${state.trainer.bag[unrolledId]}
                    onChange=${event => updateBag(event, unrolledId)} />
@@ -231,7 +311,7 @@ function ExportImport({ state, setState }) {
         <button class="w100pc btn btn-danger" onclick=${nukeSheet}>Limpar Ficha</button>`;
 }
 
-function TrainerMode({ state, setState }) {
+export function TrainerMode({ state, setState }) {
     return html`
     <div class="accordion" id="tmaparent">
         <div class="accordion-item">
@@ -251,7 +331,9 @@ function TrainerMode({ state, setState }) {
             </button>
             </h2>
             <div id="tma2" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">body</div>
+                <div class="accordion-body">
+                    <${TrainerStats} state=${state} setState=${setState} />
+                </div>
             </div>
         </div>
         <div class="accordion-item">
@@ -261,7 +343,9 @@ function TrainerMode({ state, setState }) {
             </button>
             </h2>
             <div id="tma3" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">body</div>
+                <div class="accordion-body">
+                    <${TrainerSkills} state=${state} setState=${setState} />
+                </div>
             </div>
         </div>
         <div class="accordion-item">
@@ -303,18 +387,3 @@ function TrainerMode({ state, setState }) {
     </div>
 `;
 }
-
-function App() {
-    const [state, setState] = useState({ ...DEFAULT_APP_STATE });
-    useEffect(() => impureSetTheme(state.theme), [state.theme]);
-
-    return html`
-        <${Navbar} state=${state} setState=${setState}/>
-        <${TrainerMode} state=${state} setState=${setState}/>
-		`;
-}
-
-render(
-    html`<${App} />`,
-    document.body
-);
