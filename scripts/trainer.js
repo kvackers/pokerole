@@ -4,9 +4,161 @@ import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
 import { DEFAULT_APP_STATE } from './ui2.js';
-import { TRAINER_STATS, SKILLS } from "./data.js";
+import { NATURES, RANKS, TRAINER_STATS, SKILLS } from "./data.js";
 
 const html = htm.bind(h);
+
+function TrainerPersonal({ state, setState }) {
+    const updateImage = image => {
+        const trainer = { ...state.trainer, image };
+        setState({ ...state, trainer })
+    };
+
+    const updateName = event => {
+        const trainer = { ...state.trainer, name: event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const updateConcept = event => {
+        const trainer = { ...state.trainer, concept: event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const updateMoney = event => {
+        const trainer = { ...state.trainer, money: +event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const updateHealth = event => {
+        const trainer = { ...state.trainer, health: +event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const updateConfidence = event => {
+        const trainer = { ...state.trainer, confidence: +event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const updateWillPoints = event => {
+        const trainer = { ...state.trainer, willPoints: +event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const updateNature = event => {
+        const trainer = { ...state.trainer, nature: event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const updateRank = event => {
+        const trainer = { ...state.trainer, rank: event.target.value };
+        setState({ ...state, trainer })
+    };
+
+    const promptImageURL = () => {
+        let url = prompt("Insira o link para a imagem, por favor:");
+        if (url === null) { return; }
+
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://" + url;
+        }
+
+        updateImage(url);
+        setFlags({ warning: false, error: false });
+    };
+
+    const getRankIcon = rank => RANKS.filter(e => e.rank === rank)[0].icon;
+    const getMaxConfidence = nature => NATURES.filter(e => e.nature === nature)[0].maxConfidence;
+
+    const defaultURL = "assets/ditto_anon.png";
+    const [flags, setFlags] = useState({ warning: state.trainer.image === defaultURL, error: false });
+
+    const onError = () => {
+        updateImage(defaultURL);
+        setFlags({ warning: false, error: true });
+    };
+
+    return html`
+    <div class="mb-3">
+        <div class="mb-2">
+            <img src=${state.trainer.image} class="mb-1" style="display: block"
+                 onclick=${promptImageURL}
+                 onerror=${onError} />
+            <div class="text-center alert alert-info ${flags.warning ? "" : "d-none"}"
+                 onclick=${() => setFlags({ ...flags, warning: false })}>
+                Para mudar a imagem, clique nela.<br />
+                Clique aqui para deletar o aviso.
+            </div>
+            <div class="text-center alert alert-warning ${flags.error ? "" : "d-none"}"
+                 onclick=${() => setFlags({ ...flags, error: false })}>
+                O link não apontava para uma imagem, ou a ficha não tem permissão para vê-la.<br />
+                Por favor, tente novamente com outro link.<br />
+                Clique aqui para deletar o aviso.
+            </div>
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text w85px">Nome</span>
+            <input type="text" class="form-control"
+                value=${state.trainer.name}
+                onChange=${updateName} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Conceito</span>
+            <input type="text" class="form-control" 
+                value=${state.trainer.concept}
+                onChange=${updateConcept} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">₽</span>
+            <input type="number" class="form-control"
+                value=${state.trainer.money}
+                onChange=${updateMoney} />
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text w85px">Natureza</span>
+            <select class="form-select"
+                    value=${state.trainer.nature}
+                    onChange=${updateNature}>
+                ${NATURES.map(({ nature }) => html`<option value=${nature}>${nature}</option>`)}
+            </select>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Rank</span>
+            <select class="form-select"
+                    value=${state.trainer.rank}
+                    onChange=${updateRank}>
+                ${RANKS.map(({ rank }) => html`<option value=${rank}>${rank}</option>`)}
+            </select>
+            <span class="input-group-text">
+                <img src=${getRankIcon(state.trainer.rank)} />
+            </span>
+        </div>
+    </div>
+    <div>
+        <div class="input-group">
+            <span class="input-group-text w85px">PV</span>
+            <input type="number" class="form-control" 
+                value=${state.trainer.health}
+                onChange=${updateHealth} />
+                <span class="input-group-text">/ 5</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Confiança</span>
+            <input type="number" class="form-control" 
+                value=${state.trainer.confidence}
+                onChange=${updateConfidence} />
+                <span class="input-group-text">/ ${getMaxConfidence(state.trainer.nature)}</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Vontade</span>
+            <input type="number" class="form-control" 
+                value=${state.trainer.willPoints}
+                onChange=${updateWillPoints} />
+        </div>
+    </div>`;
+}
 
 function TrainerStats({ state, setState }) {
     const updateStats = (event, id) => {
@@ -321,7 +473,9 @@ export function TrainerMode({ state, setState }) {
                 </button>
             </h2>
             <div id="tma1" class="accordion-collapse collapse show" data-bs-parent="#tmaparent">
-                <div class="accordion-body">body</div>
+                <div class="accordion-body">
+                    <${TrainerPersonal} state=${state} setState=${setState} />
+                </div>
             </div>
         </div>
         <div class="accordion-item">

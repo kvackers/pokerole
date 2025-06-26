@@ -9,6 +9,11 @@ body {
     font-style: normal;
 }
 
+img {
+    max-width: 360px;
+    margin: 0 auto;
+}
+
 .w49pc {
     width: 49%;
     display: inline;
