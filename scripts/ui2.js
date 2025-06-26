@@ -15,9 +15,13 @@ export function impureSetTheme(preference) {
     }
 }
 
-export const DEFAULT_APP_STATE = {
+export const DEFAULT_UI_STATE = {
     theme: readThemePreference(),
     mode: "trainer",
+    textMode: "dropdown",
+};
+
+export const DEFAULT_APP_STATE = {
     version: 2,
     trainer: {
         image: "assets/ditto_anon.png",

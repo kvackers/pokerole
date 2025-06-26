@@ -463,81 +463,81 @@ function ExportImport({ state, setState }) {
         <button class="w100pc btn btn-danger" onclick=${nukeSheet}>Limpar Ficha</button>`;
 }
 
-export function TrainerMode({ state, setState }) {
+export function TrainerMode({ state, setState, display }) {
     return html`
-    <div class="accordion" id="tmaparent">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tma1">
-                    Dados Pessoais
+        <div class="accordion" id="tmaparent">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tma1">
+                        Dados Pessoais
+                    </button>
+                </h2>
+                <div id="tma1" class="accordion-collapse collapse show" data-bs-parent="#tmaparent">
+                    <div class="accordion-body">
+                        <${TrainerPersonal} state=${state} setState=${setState} />
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma2">
+                    Atributos
                 </button>
-            </h2>
-            <div id="tma1" class="accordion-collapse collapse show" data-bs-parent="#tmaparent">
-                <div class="accordion-body">
-                    <${TrainerPersonal} state=${state} setState=${setState} />
+                </h2>
+                <div id="tma2" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
+                    <div class="accordion-body">
+                        <${TrainerStats} state=${state} setState=${setState} />
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma3">
+                    Perícias
+                </button>
+                </h2>
+                <div id="tma3" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
+                    <div class="accordion-body">
+                        <${TrainerSkills} state=${state} setState=${setState} />
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma4">
+                    Bolsa
+                </button>
+                </h2>
+                <div id="tma4" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
+                    <div class="accordion-body">
+                        <${TrainerBag} state=${state} setState=${setState} />
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma5">
+                    Misc.
+                </button>
+                </h2>
+                <div id="tma5" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
+                    <div class="accordion-body">
+                        <${TrainerMisc} state=${state} setState=${setState}/>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma6">
+                    Exportar e Importar
+                </button>
+                </h2>
+                <div id="tma6" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
+                    <div class="accordion-body">
+                        <${ExportImport} state=${state} setState=${setState}/>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma2">
-                Atributos
-            </button>
-            </h2>
-            <div id="tma2" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">
-                    <${TrainerStats} state=${state} setState=${setState} />
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma3">
-                Perícias
-            </button>
-            </h2>
-            <div id="tma3" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">
-                    <${TrainerSkills} state=${state} setState=${setState} />
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma4">
-                Bolsa
-            </button>
-            </h2>
-            <div id="tma4" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">
-                    <${TrainerBag} state=${state} setState=${setState} />
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma5">
-                Misc.
-            </button>
-            </h2>
-            <div id="tma5" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">
-                    <${TrainerMisc} state=${state} setState=${setState}/>
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tma6">
-                Exportar e Importar
-            </button>
-            </h2>
-            <div id="tma6" class="accordion-collapse collapse" data-bs-parent="#tmaparent">
-                <div class="accordion-body">
-                    <${ExportImport} state=${state} setState=${setState}/>
-                </div>
-            </div>
-        </div>
-    </div>
-`;
+    `;
 }
