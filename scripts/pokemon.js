@@ -169,6 +169,7 @@ function PokemonPersonal({ state, setState }) {
 
     const rankIcon = RANKS.filter(e => e.rank === currentPokemon.rank)[0].icon;
     const maxConfidence = NATURES.filter(e => e.nature === currentPokemon.nature)[0].maxConfidence;
+    const maxHealth = +DEX[currentPokemon.species].baseHP + +currentPokemon.stats[2];
 
     const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
 
@@ -269,7 +270,7 @@ function PokemonPersonal({ state, setState }) {
             <input type="number" class="form-control"
                    value=${currentPokemon.health}
                    onChange=${updateHealth} />
-            <span class="input-group-text w85px">/ 5</span>
+            <span class="input-group-text w85px">/ ${maxHealth}</span>
         </div>
         <div class="input-group">
             <span class="input-group-text w85px">Confiança</span>
@@ -306,6 +307,15 @@ function PokemonStats({ state, setState }) {
     const updateStat = (event, id) => {
         const { pokemon, pokemonId } = state;
         const currentPokemon = pokemon[pokemonId];
+
+        // VIT updates HP
+        if (id === 2) {
+            currentPokemon.health += +event.target.value - currentPokemon.stats[id];
+        } // INS updates Will
+        else if (id === 4) {
+            currentPokemon.willPoints += +event.target.value - currentPokemon.stats[id];
+        }
+
         currentPokemon.stats[id] = +event.target.value;
 
         setState({ ...state, pokemon });
