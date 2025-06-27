@@ -82,5 +82,6 @@ export const DEFAULT_APP_STATE = {
     version: 2,
     trainer: { ...DEFAULT_TRAINER_STATE },
     pokemon: { 0: { ...DEFAULT_POKEMON_STATE } },
-    pokemonId: 0
+    pokemonId: 0,
+    numCreated: 1,
 };

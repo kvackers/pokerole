@@ -3,12 +3,17 @@ import { h } from 'https://esm.sh/preact@10.26.9';
 import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 import { POKEMON_STATS, POKEMON_SKILLS, TYPES, STATUS, VOLATILES, NATURES, RANKS, DEX } from "./data.js";
+import { DEFAULT_POKEMON_STATE } from "./ui2.js";
 
 const html = htm.bind(h);
 
 function getCurrentPokemon(state) {
     const { pokemon, pokemonId } = state;
     return pokemon[pokemonId];
+}
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function PokemonPersonal({ state, setState }) {
@@ -170,8 +175,6 @@ function PokemonPersonal({ state, setState }) {
     const rankIcon = RANKS.filter(e => e.rank === currentPokemon.rank)[0].icon;
     const maxConfidence = NATURES.filter(e => e.nature === currentPokemon.nature)[0].maxConfidence;
     const maxHealth = +DEX[currentPokemon.species].baseHP + +currentPokemon.stats[2];
-
-    const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
 
     return html`
         <div class="mb-2">
@@ -631,8 +634,49 @@ function PokemonNotes({ state, setState }) {
         </textarea>`;
 }
 
-export function PokemonMode({ state, setState, display }) {
+export function PokemonMode({ state, setState }) {
+    const teamDisplay = Object.entries(state.pokemon).map(([k, v]) => {
+        const optionText = (capitalize(v.nickname) || "???") + " - " + capitalize(v.species);
+        return html`<option value=${k}>${optionText}</option>`;
+    });
+
+    const updateTeam = event => {
+        const id = event.target.value;
+        if (id === '+') {
+            const pokemon = state.pokemon;
+            const numCreated = state.numCreated;
+
+            pokemon[numCreated] = { ...DEFAULT_POKEMON_STATE };
+            setState({ ...state, numCreated: numCreated + 1, pokemonId: numCreated });
+        } else {
+            setState({ ...state, pokemonId: +id });
+        }
+    }
+
+    const deleteCurrentPokemon = () => {
+        const consent = confirm("Ao prosseguir, o Pokémon atual vai ser deletado.\nDeseja continuar?");
+        if (!consent) { return; }
+
+        if (Object.entries(state.pokemon).length === 1) {
+            const pokemon = { 0: { ...DEFAULT_POKEMON_STATE } }
+            setState({ ...state, pokemon, pokemonId: 0, numCreated: 1 });
+        } else {
+            delete state.pokemon[state.pokemonId];
+            const minKey = Object.entries(state.pokemon)
+                .map(([k, v]) => k)
+                .reduce((acc, e) => Math.min(acc, e));
+
+            setState({ ...state, pokemonId: minKey });
+        }
+    }
+
     return html`
+            <select class="w100pc mb-2"
+                    value=${state.pokemonId}
+                    onChange=${updateTeam}>
+                ${teamDisplay}
+                <option value="+">+ Novo Pokémon</option>
+            </select>
             <div class="accordion" id="pkaparent">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -719,6 +763,6 @@ export function PokemonMode({ state, setState, display }) {
                 </div>
             </div>
         </div>
-        <button class="mt-2 btn btn-danger w100pc" onclick=${() => console.log(state.pokemon[0])}>Limpar Pokémon</button>
+        <button class="mt-2 btn btn-danger w100pc" onclick=${deleteCurrentPokemon}> Limpar Pokémon</button >
     `;
 }
