@@ -82,6 +82,7 @@ export const VOLATILES = [
 ];
 
 export const TYPES = [
+    "-",
     "Aço",
     "Água",
     "Dragão",

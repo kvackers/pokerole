@@ -22,6 +22,21 @@ export const DEFAULT_UI_STATE = {
 };
 
 export const DEFAULT_POKEMON_STATE = {
+    image: "assets/ditto_anon.png",
+    nickname: "",
+    species: "ditto",
+    ability: "",
+    rank: "Zero",
+    nature: "Firme",
+    types: ["Normal", "-"],
+    evoTime: "",
+    wins: 0,
+    trainingSessions: 0,
+    health: 3,
+    confidence: 4,
+    willPoints: 3,
+    happiness: 2,
+    loyalty: 2,
     stats: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     skills: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     status: "Saudável",

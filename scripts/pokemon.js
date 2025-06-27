@@ -2,7 +2,7 @@ import "https://esm.sh/preact@10.26.9/debug";
 import { h } from 'https://esm.sh/preact@10.26.9';
 import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
-import { POKEMON_STATS, POKEMON_SKILLS, TYPES, STATUS, VOLATILES } from "./data.js";
+import { POKEMON_STATS, POKEMON_SKILLS, TYPES, STATUS, VOLATILES, NATURES, RANKS, DEX } from "./data.js";
 
 const html = htm.bind(h);
 
@@ -11,7 +11,294 @@ function getCurrentPokemon(state) {
     return pokemon[pokemonId];
 }
 
-function PokemonPersonal({ state, setState }) { }
+function PokemonPersonal({ state, setState }) {
+    const currentPokemon = getCurrentPokemon(state);
+
+    const updateImage = url => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.image = url;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateSpecies = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.species = event.target.value;
+
+        const dexEntry = DEX[event.target.value];
+        [dexEntry.baseSTR, dexEntry.baseDEX, dexEntry.baseVIT, dexEntry.baseSPC, dexEntry.baseINS].forEach((value, idx) => {
+            currentPokemon.stats[idx] = +value;
+        });
+
+        currentPokemon.health = +dexEntry.baseHP + +dexEntry.baseVIT;
+        currentPokemon.evoTime = dexEntry.evoTime;
+        currentPokemon.types[0] = dexEntry.type1;
+        currentPokemon.types[1] = dexEntry.type2 || '-';
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateNickname = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.nickname = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateAbility = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.ability = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateRank = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.rank = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateNature = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+
+        const nature = event.target.value;
+        currentPokemon.nature = nature;
+        currentPokemon.confidence = NATURES.filter(e => e.nature === nature)[0].maxConfidence;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateTypes = (event, id) => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.types[id] = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateEvoTime = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.evoTime = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateWins = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.wins = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateTrainingSessions = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.trainingSessions = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateHealth = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.health = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateConfidence = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.confidence = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateWillPoints = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.willPoints = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateHappiness = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.happiness = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateLoyalty = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.loyalty = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const defaultURL = "assets/ditto_anon.png";
+    const [flags, setFlags] = useState({ warning: state.trainer.image === defaultURL, error: false });
+
+    const promptImageURL = () => {
+        let url = prompt("Insira o link para a imagem, por favor:");
+        if (url === null) { return; }
+
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://" + url;
+        }
+
+        updateImage(url);
+        setFlags({ warning: false, error: false });
+    };
+
+    const onError = () => {
+        updateImage(defaultURL);
+        setFlags({ warning: false, error: true });
+    };
+
+    const rankIcon = RANKS.filter(e => e.rank === currentPokemon.rank)[0].icon;
+    const maxConfidence = NATURES.filter(e => e.nature === currentPokemon.nature)[0].maxConfidence;
+
+    const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
+
+    return html`
+        <div class="mb-2">
+            <img src="${currentPokemon.image}" class="mb-1" style="display: block"
+                 onError=${onError}
+                 onclick=${promptImageURL} />
+            <div class="text-center alert alert-info ${flags.warning ? "" : "d-none"}"
+                 onclick=${() => setFlags({ ...flags, warning: false })}>
+                Para mudar a imagem, clique nela.<br />
+                Clique aqui para deletar o aviso.
+            </div>
+            <div class="text-center alert alert-warning ${flags.error ? "" : "d-none"}"
+                 onclick=${() => setFlags({ ...flags, error: false })}>
+                O link não apontava para uma imagem, ou a ficha não tem permissão para vê-la.<br />
+                Por favor, tente novamente com outro link.<br />
+                Clique aqui para deletar o aviso.
+            </div>
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text w85px">Apelido</span>
+            <input type="text" class="form-control"
+                   value=${currentPokemon.nickname}
+                   onChange=${updateNickname} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Espécie</span>
+            <select class="form-select pokemon-select"
+                    value=${currentPokemon.species}
+                    onChange=${updateSpecies}>
+                ${Object.keys(DEX).map(mon => html`<option value=${mon}>${capitalize(mon)}</option>`)}
+            </select>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Habilidade</span>
+            <input type="text" class="form-control"
+                   value=${currentPokemon.ability}
+                   onChange=${updateAbility} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Rank</span>
+            <select class="form-select"
+                    value=${currentPokemon.rank}
+                    onChange=${updateRank} >
+                ${RANKS.map(({ rank }) => html`<option value=${rank}>${rank}</option>`)}
+            </select>
+            <span class="input-group-text">
+                <img src=${rankIcon} />
+            </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Natureza</span>
+            <select class="form-select"
+                    value=${currentPokemon.nature}
+                    onChange=${updateNature}>
+                ${NATURES.map(({ nature }) => html`<option value=${nature}>${nature}</option>`)}
+            </select>
+        </div>
+        <hr />
+        
+        <div class="input-group">
+            <span class="input-group-text w85px">Tipos</span>
+            <select class="form-select pokemon-select"
+                    value=${currentPokemon.types[0]}
+                    onChange=${event => updateTypes(event, 0)}>
+                    ${TYPES.map(type => html`<option value=${type}>${type}</option>`)}
+            </select>
+            <select class="form-select pokemon-select"
+                    value=${currentPokemon.types[1]}
+                    onChange=${event => updateTypes(event, 1)}>>
+                    ${TYPES.map(type => html`<option value=${type}>${type}</option>`)}
+            </select>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Evolução</span>
+            <input type="text" class="form-control"
+                   value=${currentPokemon.evoTime}
+                   onChange=${updateEvoTime} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Vitórias</span>
+            <input type="number" class="form-control"
+                   value=${currentPokemon.wins}
+                   onChange=${updateWins} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Treinos</span>
+            <input type="number" class="form-control"
+                   value=${currentPokemon.trainingSessions}
+                   onChange=${updateTrainingSessions} />
+        </div>
+        <hr />
+        
+        <div class="input-group">
+            <span class="input-group-text w85px">PV</span>
+            <input type="number" class="form-control"
+                   value=${currentPokemon.health}
+                   onChange=${updateHealth} />
+            <span class="input-group-text w85px">/ 5</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Confiança</span>
+            <input type="number" class="form-control"
+                   value=${currentPokemon.confidence}
+                   onChange=${updateConfidence} />
+            <span class="input-group-text w85px">/ ${maxConfidence}</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Vontade</span>
+            <input type="number" class="form-control"
+                   value=${currentPokemon.willPoints}
+                   onChange=${updateWillPoints} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Felicidade</span>
+            <input type="number" class="form-control"
+                   value=${currentPokemon.happiness}
+                   onChange=${updateHappiness} />
+            <span class="input-group-text w85px">/ 5</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Lealdade</span>
+            <input type="number" class="form-control"
+                   value=${currentPokemon.loyalty}
+                   onChange=${updateLoyalty}/>
+            <span class="input-group-text w85px">/ 5</span>
+        </div>`;
+}
 
 function PokemonStats({ state, setState }) {
     const currentPokemon = getCurrentPokemon(state);
@@ -24,6 +311,11 @@ function PokemonStats({ state, setState }) {
         setState({ ...state, pokemon });
     };
 
+    const get = (dict, key, orelse) => dict && dict[key] ? dict[key] : orelse;
+    const dexEntry = DEX[currentPokemon.species];
+    const statNames = ['STR', 'DEX', 'VIT', 'SPC', 'INS']
+    const maxStats = statNames.map(stat => +get(dexEntry, 'max' + stat, 1)).concat(statNames.map(_ => 5));
+
     const statElems = POKEMON_STATS.map((stats, index) => {
         return stats.map((stat, subdIndex) => {
             const unrolledId = index * 5 + subdIndex;
@@ -34,18 +326,29 @@ function PokemonStats({ state, setState }) {
                         <input type="number" class="form-control"
                                value=${currentPokemon.stats[unrolledId]}
                                onChange=${event => updateStat(event, unrolledId)} />
-                        <span class="input-group-text">/ 5</span>
+                        <span class="input-group-text">/ ${maxStats[unrolledId]}</span>
                     </div>`;
         });
     });
 
+    const rawStats = currentPokemon.stats;
+
+    const stats = rawStats.slice(0, 5);
+    const maxStatPoints = RANKS.filter(e => e.rank === currentPokemon.rank)[0].statPoints - 2;
+    const spentStatsPoints = stats.reduce((acc, x) => acc + x) -
+        statNames.map(stat => +get(dexEntry, 'base' + stat, 1)).reduce((acc, e) => acc + e);
+
+    const social = rawStats.slice(5);
+    const maxSocialPoints = RANKS.filter(e => e.rank === currentPokemon.rank)[0].socialPoints - 2;
+    const spentSocialPoints = social.reduce((acc, x) => acc + x) - social.length;
+
     return html`
-    <p>Pontos a gastar: ${0}</p>
+    <p>Pontos a gastar: ${maxStatPoints - spentStatsPoints}</p>
     ${statElems[0]}
 
     <hr />
 
-    <p>Pontos a gastar: ${0}</p>
+    <p>Pontos a gastar: ${maxSocialPoints - spentSocialPoints}</p>
     ${statElems[1]}
     `;
 }
@@ -109,11 +412,11 @@ function PokemonSkills({ state, setState }) {
         return elems;
     });
 
-    /*const maxSkillPoints = currentRank.skillPoints;
-    const spentSkillPoints = state.trainer.skills.reduce((acc, x) => acc + x);*/
+    const maxSkillPoints = RANKS.filter(e => e.rank === currentPokemon.rank)[0].skillPoints;
+    const spentSkillPoints = currentPokemon.skills.reduce((acc, x) => acc + x);
 
     return html`
-        <p>Pontos a gastar: ${0}</p>
+        <p>Pontos a gastar: ${maxSkillPoints - spentSkillPoints}</p>
         
         ${skillElems}
         `;
