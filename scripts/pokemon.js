@@ -644,10 +644,8 @@ export function PokemonMode({ state, setState }) {
         const id = event.target.value;
         if (id === '+') {
             const pokemon = state.pokemon;
-            const numCreated = state.numCreated;
-
-            pokemon[numCreated] = { ...DEFAULT_POKEMON_STATE };
-            setState({ ...state, numCreated: numCreated + 1, pokemonId: numCreated });
+            pokemon.push({ ...DEFAULT_POKEMON_STATE });
+            setState({ ...state, pokemonId: pokemon.length - 1 });
         } else {
             setState({ ...state, pokemonId: +id });
         }
@@ -658,15 +656,11 @@ export function PokemonMode({ state, setState }) {
         if (!consent) { return; }
 
         if (Object.entries(state.pokemon).length === 1) {
-            const pokemon = { 0: { ...DEFAULT_POKEMON_STATE } }
-            setState({ ...state, pokemon, pokemonId: 0, numCreated: 1 });
+            const pokemon = [{ ...DEFAULT_POKEMON_STATE }];
+            setState({ ...state, pokemon, pokemonId: 0 });
         } else {
             delete state.pokemon[state.pokemonId];
-            const minKey = Object.entries(state.pokemon)
-                .map(([k, v]) => k)
-                .reduce((acc, e) => Math.min(acc, e));
-
-            setState({ ...state, pokemonId: minKey });
+            setState({ ...state, pokemonId: 0 });
         }
     }
 
