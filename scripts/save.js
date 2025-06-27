@@ -1,4 +1,4 @@
-import { DEFAULT_TRAINER_STATE, DEFAULT_POKEMON_STATE } from "./ui2.js";
+import { DEFAULT_TRAINER_STATE, DEFAULT_POKEMON_STATE } from "./ui.js";
 
 const Ajv = window.ajv7
 const ajv = new Ajv();

@@ -3,7 +3,7 @@ import { h, render } from 'https://esm.sh/preact@10.26.9';
 import { useEffect, useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
-import { impureSetTheme, DEFAULT_APP_STATE, DEFAULT_UI_STATE } from './ui2.js';
+import { impureSetTheme, DEFAULT_APP_STATE, DEFAULT_UI_STATE } from './ui.js';
 import { TrainerMode } from './trainer.js';
 import { PokemonMode } from "./pokemon.js";
 import { loadSave } from "./save.js";

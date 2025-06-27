@@ -3,7 +3,7 @@ import { h } from 'https://esm.sh/preact@10.26.9';
 import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
-import { DEFAULT_APP_STATE } from './ui2.js';
+import { DEFAULT_APP_STATE } from './ui.js';
 import { NATURES, RANKS, TRAINER_STATS, TRAINER_SKILLS } from "./data.js";
 import { loadSave } from "./save.js";
 
