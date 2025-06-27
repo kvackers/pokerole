@@ -44,8 +44,11 @@ function TrainerPersonal({ state, setState }) {
         setState({ ...state, trainer })
     };
 
+    const getMaxConfidence = nature => NATURES.filter(e => e.nature === nature)[0].maxConfidence;
+
     const updateNature = event => {
-        const trainer = { ...state.trainer, nature: event.target.value };
+        const nature = event.target.value;
+        const trainer = { ...state.trainer, nature, confidence: getMaxConfidence(nature) };
         setState({ ...state, trainer })
     };
 
@@ -67,7 +70,7 @@ function TrainerPersonal({ state, setState }) {
     };
 
     const getRankIcon = rank => RANKS.filter(e => e.rank === rank)[0].icon;
-    const getMaxConfidence = nature => NATURES.filter(e => e.nature === nature)[0].maxConfidence;
+
 
     const defaultURL = "assets/ditto_anon.png";
     const [flags, setFlags] = useState({ warning: state.trainer.image === defaultURL, error: false });
@@ -142,7 +145,7 @@ function TrainerPersonal({ state, setState }) {
             <input type="number" class="form-control" 
                 value=${state.trainer.health}
                 onChange=${updateHealth} />
-                <span class="input-group-text">/ 5</span>
+                <span class="input-group-text">/ ${+state.trainer.stats[2] + 4}</span>
         </div>
         <div class="input-group">
             <span class="input-group-text w85px">Confiança</span>
@@ -165,7 +168,14 @@ function TrainerStats({ state, setState }) {
         const stats = state.trainer.stats;
         stats[+id] = +event.target.value;
 
-        const trainer = { ...state.trainer, stats };
+        /* Derived values */
+        const insight = +stats[3];
+        const vitality = +stats[2];
+
+        const health = vitality + 4;
+        const willPoints = insight + 2;
+
+        const trainer = { ...state.trainer, stats, health, willPoints };
         setState({ ...state, trainer })
     };
 
@@ -182,14 +192,25 @@ function TrainerStats({ state, setState }) {
                     <span class="input-group-text">/ 5</span>
                 </div>`;
         });
-    })
+    });
+
+    const rawStats = state.trainer.stats;
+
+    const stats = rawStats.slice(0, 4);
+    const maxStatPoints = RANKS.filter(e => e.rank === state.trainer.rank)[0].statPoints;
+    const spentStatsPoints = stats.reduce((acc, x) => acc + x) - stats.length;
+
+    const social = rawStats.slice(4);
+    const maxSocialPoints = RANKS.filter(e => e.rank === state.trainer.rank)[0].socialPoints;
+    const spentSocialPoints = social.reduce((acc, x) => acc + x) - social.length;
 
     return html`
-    <p>Pontos a gastar: ${0}</p>
-    
+    <p>Pontos a gastar: ${maxStatPoints - spentStatsPoints}</p>
     ${statElems[0]}
+
     <hr />
 
+    <p>Pontos a gastar: ${maxSocialPoints - spentSocialPoints}</p>
     ${statElems[1]}
     `;
 }
@@ -211,6 +232,8 @@ function TrainerSkills({ state, setState }) {
         setState({ ...state, trainer })
     };
 
+    const currentRank = RANKS.filter(e => e.rank === state.trainer.rank)[0];
+
     const skillElems = Object.entries(SKILLS).map(([header, names], index) => {
         let elems;
         if (names) {
@@ -223,7 +246,7 @@ function TrainerSkills({ state, setState }) {
                         <input type="text" class="form-control" 
                                value=${state.trainer.skills[unrolledIndex]}
                                onChange=${event => updateSkills(event, unrolledIndex)} />
-                        <span class="input-group-text">/ 1</span>
+                        <span class="input-group-text">/ ${currentRank.skillCeiling}</span>
                     </div>
                 `;
             });
@@ -242,7 +265,7 @@ function TrainerSkills({ state, setState }) {
                         <input type="text" class="form-control" 
                                value=${state.trainer.skills[globalIndex]}
                                onChange=${event => updateSkills(event, globalIndex)} />
-                        <span class="input-group-text">/ 1</span>
+                        <span class="input-group-text">/ ${currentRank.skillCeiling}</span>
                     </div>
                 `;
             });
@@ -256,8 +279,11 @@ function TrainerSkills({ state, setState }) {
         return elems;
     });
 
+    const maxSkillPoints = currentRank.skillPoints;
+    const spentSkillPoints = state.trainer.skills.reduce((acc, x) => acc + x);
+
     return html`
-    <p>Pontos a gastar: ${0}</p>
+    <p>Pontos a gastar: ${maxSkillPoints - spentSkillPoints}</p>
     
     ${skillElems}
     `;
