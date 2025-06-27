@@ -22,6 +22,11 @@ export const DEFAULT_UI_STATE = {
 };
 
 export const DEFAULT_POKEMON_STATE = {
+    stats: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    skills: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    status: "Saudável",
+    volatile: "Saudável",
+    extraSkillName: "",
     item: "",
     accessory: "",
     ribbons: ["", "", "", "", "", ""],

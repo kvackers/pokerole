@@ -41,11 +41,23 @@ export const TRAINER_STATS = [
     ["Durão", "Maneiro", "Lindo", "Esperto", "Fofo"]
 ];
 
-export const SKILLS = {
+export const POKEMON_STATS = [
+    ["Força", "Destreza", "Vitalidade", "Especial", "Intuição"],
+    ["Durão", "Maneiro", "Lindo", "Esperto", "Fofo"]
+];
+
+export const TRAINER_SKILLS = {
     "de Luta": ["Luta", "Pontaria", "Esquiva", "Armas"],
     "Sociais": ["Empatia", "Etiqueta", "Intimidação", "Performance"],
     "de Sobrevivência": ["Alerta", "Atletismo", "Natureza", "Furtivo"],
     "de Conhecimento": ["Construção", "Pokémon", "Medicina", "Ciência"],
+    "Extra": undefined
+};
+
+export const POKEMON_SKILLS = {
+    "de Luta": ["Luta", "Canalizar", "Revidar", "Esquiva"],
+    "de Sobrevivência": ["Alerta", "Atletismo", "Natureza", "Furtivo"],
+    "Sociais": ["Charme", "Etiqueta", "Intimidação", "Performance"],
     "Extra": undefined
 };
 

@@ -2,13 +2,189 @@ import "https://esm.sh/preact@10.26.9/debug";
 import { h } from 'https://esm.sh/preact@10.26.9';
 import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
-import { TYPES } from "./data.js";
+import { POKEMON_STATS, POKEMON_SKILLS, TYPES, STATUS, VOLATILES } from "./data.js";
 
 const html = htm.bind(h);
 
 function getCurrentPokemon(state) {
     const { pokemon, pokemonId } = state;
     return pokemon[pokemonId];
+}
+
+function PokemonPersonal({ state, setState }) { }
+
+function PokemonStats({ state, setState }) {
+    const currentPokemon = getCurrentPokemon(state);
+
+    const updateStat = (event, id) => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.stats[id] = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const statElems = POKEMON_STATS.map((stats, index) => {
+        return stats.map((stat, subdIndex) => {
+            const unrolledId = index * 5 + subdIndex;
+
+            return html`
+                    <div class="input-group">
+                        <span class="input-group-text w105px">${stat}</span>
+                        <input type="number" class="form-control"
+                               value=${currentPokemon.stats[unrolledId]}
+                               onChange=${event => updateStat(event, unrolledId)} />
+                        <span class="input-group-text">/ 5</span>
+                    </div>`;
+        });
+    });
+
+    return html`
+    <p>Pontos a gastar: ${0}</p>
+    ${statElems[0]}
+
+    <hr />
+
+    <p>Pontos a gastar: ${0}</p>
+    ${statElems[1]}
+    `;
+}
+
+function PokemonSkills({ state, setState }) {
+    const updateSkills = (event, id) => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.skills[id] = +event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateExtraSkillName = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.extraSkillName = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const currentPokemon = getCurrentPokemon(state);
+
+    const skillElems = Object.entries(POKEMON_SKILLS).map(([header, names], index) => {
+        let elems;
+        if (names) {
+            const skillEntries = names.map((skill, subIndex) => {
+                const unrolledIndex = index * 4 + subIndex;
+
+                return html`
+                        <div class="input-group">
+                            <span class="input-group-text w105px">${skill}</span>
+                            <input type="text" class="form-control" 
+                                   value=${currentPokemon.skills[unrolledIndex]}
+                                   onChange=${event => updateSkills(event, unrolledIndex)} />
+                            <span class="input-group-text">/ ${1}</span>
+                        </div>
+                    `;
+            });
+
+            elems = html`
+                    <h5 class="text-center">Perícias ${header}</h5>
+                    <div class="mb-3">${skillEntries}</div>
+                `;
+        } else {
+            const unrolledIndex = index * 4;
+            return html`
+                    <h5 class="text-center">Perícias ${header}</h5>
+                    <div class="input-group">
+                        <input type="text" class="input-group-text text-start w105px"
+                                value=${currentPokemon.extraSkillName} 
+                                onChange=${updateExtraSkillName} />
+                        <input type="text" class="form-control" 
+                                value=${currentPokemon.skills[unrolledIndex]}
+                                onChange=${event => updateSkills(event, unrolledIndex)} />
+                        <span class="input-group-text">/ ${1}</span>
+                    </div>
+                `;
+        }
+
+        return elems;
+    });
+
+    /*const maxSkillPoints = currentRank.skillPoints;
+    const spentSkillPoints = state.trainer.skills.reduce((acc, x) => acc + x);*/
+
+    return html`
+        <p>Pontos a gastar: ${0}</p>
+        
+        ${skillElems}
+        `;
+}
+
+function PokemonDerived({ state, setState }) {
+    const currentPokemon = getCurrentPokemon(state);
+
+    const updateStatus = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.status = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateVolatile = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.volatile = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    return html`
+        <div class="input-group">
+            <span class="input-group-text w85px">Status</span>
+            <select class="form-select" value=${currentPokemon.status}
+                    onChange=${updateStatus}>
+                ${STATUS.map(status => html`<option value=${status}>${status}</status>`)}
+            </select>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Volátil</span>
+            <select class="form-select" value=${currentPokemon.volatile}
+                    onChange=${updateVolatile}>
+                ${VOLATILES.map(volatile => html`<option value=${volatile}>${volatile}</status>`)}
+            </select>
+        </div>
+        <hr />
+
+        <div class="input-group">
+            <span class="input-group-text w85px">Iniciativa</span>
+            <input type="text" class="form-control"
+                   comment="Iniciativa = 1d6 + DES + Alerta"
+                   value="1d6 + ${currentPokemon.stats[1] + currentPokemon.skills[4]}" />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Evasão</span>
+            <input type="number" class="form-control"
+                   comment="DES + Esquiva"
+                   value=${currentPokemon.stats[1] + currentPokemon.skills[3]}/>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Revide</span>
+            <input type="text" class="form-control"
+                   comment="FOR + Revide / SPC + Revide"
+                   value="${currentPokemon.stats[0] + currentPokemon.skills[2]} / ${currentPokemon.stats[3] + currentPokemon.skills[2]}"/>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Defesa</span>
+            <input type="number" class="form-control"
+                   comment="VIT"
+                   value=${currentPokemon.stats[2]} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Def. Esp.</span>
+            <input type="number" class="form-control"
+                   comment="INT"
+                   value=${currentPokemon.stats[4]} />
+        </div>`;
 }
 
 function PokemonItems({ state, setState }) {
@@ -153,7 +329,7 @@ export function PokemonMode({ state, setState, display }) {
                 </h2>
                 <div id="pka1" class="accordion-collapse collapse show" data-bs-parent="#pkaparent">
                     <div class="accordion-body">
-                        b
+                        <${PokemonPersonal} state=${state} setState=${setState} />
                     </div>
                 </div>
             </div>
@@ -165,7 +341,7 @@ export function PokemonMode({ state, setState, display }) {
                 </h2>
                 <div id="pka2" class="accordion-collapse collapse" data-bs-parent="#pkaparent">
                     <div class="accordion-body">
-                        c
+                       <${PokemonStats} state=${state} setState=${setState} />
                     </div>
                 </div>
             </div>
@@ -177,7 +353,19 @@ export function PokemonMode({ state, setState, display }) {
                 </h2>
                 <div id="pka3" class="accordion-collapse collapse" data-bs-parent="#pkaparent">
                     <div class="accordion-body">
-                        d
+                        <${PokemonSkills} state=${state} setState=${setState} />
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pka7">
+                    Derivados
+                </button>
+                </h2>
+                <div id="pka7" class="accordion-collapse collapse" data-bs-parent="#pkaparent">
+                    <div class="accordion-body">
+                        <${PokemonDerived} state=${state} setState=${setState} />
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 
 import { DEFAULT_APP_STATE } from './ui2.js';
-import { NATURES, RANKS, TRAINER_STATS, SKILLS } from "./data.js";
+import { NATURES, RANKS, TRAINER_STATS, TRAINER_SKILLS } from "./data.js";
 
 const html = htm.bind(h);
 
@@ -234,7 +234,7 @@ function TrainerSkills({ state, setState }) {
 
     const currentRank = RANKS.filter(e => e.rank === state.trainer.rank)[0];
 
-    const skillElems = Object.entries(SKILLS).map(([header, names], index) => {
+    const skillElems = Object.entries(TRAINER_SKILLS).map(([header, names], index) => {
         let elems;
         if (names) {
             const skillEntries = names.map((skill, subIndex) => {
