@@ -11,6 +11,69 @@ function getCurrentPokemon(state) {
     return pokemon[pokemonId];
 }
 
+function PokemonItems({ state, setState }) {
+    const currentPokemon = getCurrentPokemon(state);
+
+    const updateItem = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.item = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateAccessory = event => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.accessory = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const updateRibbon = (event, id) => {
+        const { pokemon, pokemonId } = state;
+        const currentPokemon = pokemon[pokemonId];
+        currentPokemon.ribbons[id] = event.target.value;
+
+        setState({ ...state, pokemon });
+    };
+
+    const ribbonElems = Array.from({ length: 3 }).map((_, id) => {
+        const unrolledId = 2 * id;
+        return html`
+            <div class="mx-auto">
+                <input type="text" class="form-control w49pc"
+                       value=${currentPokemon.ribbons[unrolledId]}
+                       onChange=${event => updateRibbon(event, unrolledId)} />
+                <input type="text" class="form-control w49pc"
+                       value=${currentPokemon.ribbons[unrolledId + 1]}
+                       onChange=${event => updateRibbon(event, unrolledId + 1)} />
+            </div>`;
+    });
+
+
+
+    return html`
+        <div class="input-group">
+            <span class="input-group-text w85px">Item</span>
+            <input type="text" class="form-control" 
+                   value=${currentPokemon.item}
+                   onChange=${updateItem} />
+        </div>
+        <div class="input-group">
+            <span class="input-group-text w85px">Acessório</span>
+            <input type="text" class="form-control"
+                   value=${currentPokemon.accessory}
+                   onChange=${updateAccessory} />
+        </div>
+        
+        <hr />
+        <h5 class="text-center">Fitas</h5>
+        <div class="d-flex flex-column">
+            ${ribbonElems}
+        </div>`;
+}
+
 function PokemonAttacks({ state, setState }) {
     const currentPokemon = getCurrentPokemon(state);
     const attacks = currentPokemon.attacks;
@@ -121,12 +184,12 @@ export function PokemonMode({ state, setState, display }) {
             <div class="accordion-item">
                 <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pka4">
-                    Bolsa
+                    Itens
                 </button>
                 </h2>
                 <div id="pka4" class="accordion-collapse collapse" data-bs-parent="#pkaparent">
                     <div class="accordion-body">
-                        c
+                        <${PokemonItems} state=${state} setState=${setState} />
                     </div>
                 </div>
             </div>

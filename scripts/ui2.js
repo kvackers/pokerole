@@ -22,6 +22,9 @@ export const DEFAULT_UI_STATE = {
 };
 
 export const DEFAULT_POKEMON_STATE = {
+    item: "",
+    accessory: "",
+    ribbons: ["", "", "", "", "", ""],
     attacks: [
         { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" },
         { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" },
