@@ -17,31 +17,47 @@ export function impureSetTheme(preference) {
 
 export const DEFAULT_UI_STATE = {
     theme: readThemePreference(),
-    mode: "trainer",
+    mode: "pokemon", //"trainer",
     textMode: "dropdown",
+};
+
+export const DEFAULT_POKEMON_STATE = {
+    attacks: [
+        { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" },
+        { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" },
+        { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" },
+        { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" },
+        { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" },
+        { name: "", type: "Normal", damage: "", accuracy: "", notes: "Efeito" }
+    ],
+    notes: ""
+};
+
+export const DEFAULT_TRAINER_STATE = {
+    image: "assets/ditto_anon.png",
+    name: "",
+    concept: "",
+    money: 500,
+    health: 5,
+    nature: "Firme",
+    rank: "Zero",
+    confidence: 4,
+    willPoints: 3,
+    stats: [1, 1, 1, 1, 1, 1, 1, 1, 1],
+    skills: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    extraSkillNames: ["", "", "", ""],
+    dex: [0, 0],
+    badges: ["", "", "", "", "", "", "", ""],
+    potions: [0, 2, 0, 4, 0, 14],
+    bag: ["", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0],
+    achieved: [false, false, false, false, false],
+    achievements: ["", "", "", "", ""],
+    notes: ""
 };
 
 export const DEFAULT_APP_STATE = {
     version: 2,
-    trainer: {
-        image: "assets/ditto_anon.png",
-        name: "",
-        concept: "",
-        money: 500,
-        health: 5,
-        nature: "Firme",
-        rank: "Zero",
-        confidence: 4,
-        willPoints: 3,
-        stats: [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        skills: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        extraSkillNames: ["", "", "", ""],
-        dex: [0, 0],
-        badges: ["", "", "", "", "", "", "", ""],
-        potions: [0, 2, 0, 4, 0, 14],
-        bag: ["", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", 0],
-        achieved: [false, false, false, false, false],
-        achievements: ["", "", "", "", ""],
-        notes: ""
-    }
+    trainer: { ...DEFAULT_TRAINER_STATE },
+    pokemon: { 0: { ...DEFAULT_POKEMON_STATE } },
+    pokemonId: 0
 };

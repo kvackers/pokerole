@@ -5,11 +5,12 @@ import htm from 'https://esm.sh/htm@3.1.1';
 
 import { impureSetTheme, DEFAULT_APP_STATE, DEFAULT_UI_STATE } from './ui2.js';
 import { TrainerMode } from './trainer.js';
+import { PokemonMode } from "./pokemon.js";
 
 const html = htm.bind(h);
 
 function Navbar({ state, setState }) {
-    const { textMode, mode, theme } = state;
+    const { mode, theme } = state;
     const setTheme = theme => setState({ ...state, theme });
     const setMode = mode => setState({ ...state, mode });
 
@@ -36,9 +37,13 @@ function App() {
     useEffect(() => impureSetTheme(uiState.theme), [uiState.theme]);
 
     const [appState, setAppState] = useState({ ...DEFAULT_APP_STATE });
+    const currentMode = uiState.mode === "trainer" ?
+        html`<${TrainerMode} state=${appState} setState=${setAppState} />` :
+        html`<${PokemonMode} state=${appState} setState=${setAppState} />`;
+
     return html`
         <${Navbar} state=${uiState} setState=${setUIState}/>
-        <${TrainerMode} state=${appState} setState=${setAppState} />
+        ${currentMode}
 		`;
 }
 
