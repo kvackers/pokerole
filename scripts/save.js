@@ -229,7 +229,7 @@ export function loadSave(data) {
     } else {
         const validate = ajv.compile(SCHEMA_V2);
         const valid = validate(data);
-        console.log(valid);
+
         if (!valid) {
             console.log(validate.errors);
             throw new Error("Invalid Save");

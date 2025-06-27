@@ -17,7 +17,7 @@ export function impureSetTheme(preference) {
 
 export const DEFAULT_UI_STATE = {
     theme: readThemePreference(),
-    mode: "pokemon", //"trainer"
+    mode: "trainer"
 };
 
 export const DEFAULT_POKEMON_STATE = {
