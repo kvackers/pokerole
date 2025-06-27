@@ -1,4 +1,5 @@
 import { DEFAULT_TRAINER_STATE, DEFAULT_POKEMON_STATE } from "./ui.js";
+import { NATURES } from "./data.js";
 
 const Ajv = window.ajv7
 const ajv = new Ajv();
@@ -155,7 +156,7 @@ function loadSaveV1(data) {
             health: +data.trainer.personalInput[3],
             willPoints: +data.trainer.personalInput[4],
             confidence: +data.trainer.personalInput[5],
-            nature: data.trainer.personalSelect[0],
+            nature: !NATURES.includes(data.trainer.personalSelect[0]) ? "Firme" : data.trainer.personalSelect[0],
             rank: data.trainer.personalSelect[1],
             stats: data.trainer.stats.map(e => +e),
             skills: data.trainer.skills.map(e => +e),
@@ -202,7 +203,7 @@ function loadSaveV1(data) {
             trainingSessions: +(v.personalInput[9] || 0),
             species: v.personalSelect[0].toLowerCase(),
             rank: v.personalSelect[1],
-            nature: v.personalSelect[2],
+            nature: !NATURES.includes(v.personalSelect[2]) ? "Firme" : v.personalSelect[2],
             types: v.personalSelect.slice(3),
             stats: v.stats.map(e => +e),
             skills: v.skills.map(e => +e),
