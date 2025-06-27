@@ -27,14 +27,39 @@ export const NATURES = [
 ];
 
 export const RANKS = [
-    { rank: 'Zero', skillCeiling: 1, skillPoints: 5, icon: 'assets/premierball.png' },
-    { rank: 'Iniciante', skillCeiling: 2, skillPoints: 9, icon: 'assets/pokeball.png' },
-    { rank: 'Amador', skillCeiling: 3, skillPoints: 12, icon: 'assets/greatball.png' },
-    { rank: 'Ás', skillCeiling: 4, skillPoints: 13, icon: 'assets/ultraball.png' },
-    { rank: 'Profissional', skillCeiling: 5, skillPoints: 14, icon: 'assets/cherishball.png' },
-    { rank: 'Mestre', skillCeiling: 5, skillPoints: 14, icon: 'assets/masterball.png' },
-    { rank: 'Campeão', skillCeiling: 5, skillPoints: 15, icon: 'assets/parkball.png' },
+    { rank: 'Zero', skillCeiling: 1, skillPoints: 5, statPoints: 2, socialPoints: 2, icon: 'assets/premierball.png' },
+    { rank: 'Iniciante', skillCeiling: 2, skillPoints: 9, statPoints: 4, socialPoints: 4, icon: 'assets/pokeball.png' },
+    { rank: 'Amador', skillCeiling: 3, skillPoints: 12, statPoints: 6, socialPoints: 6, icon: 'assets/greatball.png' },
+    { rank: 'Ás', skillCeiling: 4, skillPoints: 13, statPoints: 8, socialPoints: 8, icon: 'assets/ultraball.png' },
+    { rank: 'Profissional', skillCeiling: 5, skillPoints: 14, statPoints: 10, socialPoints: 10, icon: 'assets/cherishball.png' },
+    { rank: 'Mestre', skillCeiling: 5, skillPoints: 15, statPoints: 12, socialPoints: 14, icon: 'assets/masterball.png' },
+    { rank: 'Campeão', skillCeiling: 5, skillPoints: 16, statPoints: 14, socialPoints: 14, icon: 'assets/parkball.png' },
 ];
+
+export const TRAINER_STATS = [
+    ["Força", "Destreza", "Vitalidade", "Intuição"],
+    ["Durão", "Maneiro", "Lindo", "Esperto", "Fofo"]
+];
+
+export const POKEMON_STATS = [
+    ["Força", "Destreza", "Vitalidade", "Especial", "Intuição"],
+    ["Durão", "Maneiro", "Lindo", "Esperto", "Fofo"]
+];
+
+export const TRAINER_SKILLS = {
+    "de Luta": ["Luta", "Pontaria", "Esquiva", "Armas"],
+    "Sociais": ["Empatia", "Etiqueta", "Intimidação", "Performance"],
+    "de Sobrevivência": ["Alerta", "Atletismo", "Natureza", "Furtivo"],
+    "de Conhecimento": ["Construção", "Pokémon", "Medicina", "Ciência"],
+    "Extra": undefined
+};
+
+export const POKEMON_SKILLS = {
+    "de Luta": ["Luta", "Canalizar", "Revidar", "Esquiva"],
+    "de Sobrevivência": ["Alerta", "Atletismo", "Natureza", "Furtivo"],
+    "Sociais": ["Charme", "Etiqueta", "Intimidação", "Performance"],
+    "Extra": undefined
+};
 
 export const STATUS = [
     'Saudável',
@@ -57,6 +82,7 @@ export const VOLATILES = [
 ];
 
 export const TYPES = [
+    "-",
     "Aço",
     "Água",
     "Dragão",
