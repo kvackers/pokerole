@@ -153,7 +153,7 @@ function PokemonPersonal({ state, setState }) {
     };
 
     const defaultURL = "assets/ditto_anon.png";
-    const [flags, setFlags] = useState({ warning: state.trainer.image === defaultURL, error: false });
+    const [flags, setFlags] = useState({ warning: currentPokemon.image === defaultURL, error: false });
 
     const promptImageURL = () => {
         let url = prompt("Insira o link para a imagem, por favor:");
