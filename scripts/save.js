@@ -136,7 +136,7 @@ const SCHEMA_V2 = {
 };
 
 // read save according to v1 logic
-function loadSaveV1(data) {
+function validateSaveV1(data) {
     const validate = ajv.compile(SCHEMA_V1);
     const valid = validate(data);
 
@@ -221,12 +221,12 @@ function loadSaveV1(data) {
     }
 
     newSave.pokemon = newPokemon;
-    return loadSave(newSave);
+    return validateSave(newSave);
 }
 
-export function loadSave(data) {
+export function validateSave(data) {
     if (!data.version) {
-        return loadSaveV1(data);
+        return validateSaveV1(data);
     } else {
         const validate = ajv.compile(SCHEMA_V2);
         const valid = validate(data);
@@ -243,7 +243,7 @@ export function loadSave(data) {
 export function tryLoadSave(orelse) {
     let save = JSON.parse(localStorage.getItem('database'));
     try {
-        save = loadSave(save);
+        save = validateSave(save);
     } catch (e) {
         save = { ...orelse };
     }

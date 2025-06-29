@@ -5,7 +5,7 @@ import htm from 'https://esm.sh/htm@3.1.1';
 
 import { DEFAULT_APP_STATE } from './utils.js';
 import { NATURES, RANKS, TRAINER_STATS, TRAINER_SKILLS } from "./data.js";
-import { loadSave } from "./save.js";
+import { validateSave } from "./save.js";
 
 const html = htm.bind(h);
 
@@ -460,7 +460,7 @@ function ExportImport({ state, setState }) {
     const importSheet = () => {
         try {
             const parsed = JSON.parse(text);
-            const newState = loadSave(parsed);
+            const newState = validateSave(parsed);
             setState(newState);
         } catch (e) {
             console.log(e);
