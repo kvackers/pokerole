@@ -3,7 +3,7 @@ import { h } from 'https://esm.sh/preact@10.26.9';
 import { useState } from 'https://esm.sh/preact@10.26.9/hooks';
 import htm from 'https://esm.sh/htm@3.1.1';
 import { POKEMON_STATS, POKEMON_SKILLS, TYPES, STATUS, VOLATILES, NATURES, RANKS, DEX } from "./data.js";
-import { DEFAULT_POKEMON_STATE } from "./ui.js";
+import { DEFAULT_POKEMON_STATE } from "./utils.js";
 
 const html = htm.bind(h);
 

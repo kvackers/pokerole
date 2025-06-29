@@ -1,4 +1,4 @@
-import { DEFAULT_TRAINER_STATE, DEFAULT_POKEMON_STATE } from "./ui.js";
+import { DEFAULT_TRAINER_STATE, DEFAULT_POKEMON_STATE } from "./utils.js";
 import { NATURES } from "./data.js";
 
 const Ajv = window.ajv7
@@ -238,4 +238,15 @@ export function loadSave(data) {
 
         return data;
     }
+}
+
+export function tryLoadSave(orelse) {
+    let save = JSON.parse(localStorage.getItem('database'));
+    try {
+        save = loadSave(save);
+    } catch (e) {
+        save = { ...orelse };
+    }
+
+    return save;
 }
