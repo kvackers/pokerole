@@ -25,7 +25,14 @@
 		stats: Array.from({ length: 9 }, () => 1),
 		skills: Array.from({ length: 16 }, () => 0),
 
-		extraSkills: [{ name: '???', value: 0 }]
+		extraSkills: [{ name: '???', value: 0 }],
+
+		dex: [0, 0],
+		badges: 0,
+		potions: Array.from({ length: 6 }, () => 0),
+		bag: [{ item: '???', count: 0 }],
+		achievements: Array.from({ length: 5 }, () => ({ name: '', checked: false })),
+		notes: ''
 	});
 
 	const maxHP = $derived(trainer.stats[2] + 4);
@@ -42,17 +49,6 @@
 	$effect(() => {
 		console.log($state.snapshot(trainer));
 	});
-	/* {
-                dex: { type: "array", minItems: 2, items: { type: "integer", minimum: 0 } },
-                badges: { type: "array", minItems: 8, items: { type: "string" } },
-                potions: { type: "array", minItems: 6, items: { type: "integer", minimum: 0 } },
-                bag: {
-                    type: "array", minItems: 20, items: { anyOf: [{ type: "integer", minimum: 0 }, { type: "string" }] }
-                },
-                achieved: { type: "array", minItems: 5, items: { type: "boolean" } },
-                achievements: { type: "array", minItems: 5, items: { type: "string" } },
-                notes: { type: "string" }
-            } */
 </script>
 
 <div
@@ -80,5 +76,12 @@
 		{skillBudget}
 		{skillCeiling}
 	></TrainerSkills>
-	<TrainerBag></TrainerBag>
+	<TrainerBag
+		bind:dex={trainer.dex}
+		bind:badges={trainer.badges}
+		bind:potions={trainer.potions}
+		bind:bag={trainer.bag}
+		bind:achievements={trainer.achievements}
+		bind:notes={trainer.notes}
+	></TrainerBag>
 </div>
