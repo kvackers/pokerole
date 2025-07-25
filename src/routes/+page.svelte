@@ -20,7 +20,10 @@
 		confidence: 0,
 		willPoints: 0,
 
-		stats: Array.from({ length: 9 }, () => 1)
+		stats: Array.from({ length: 9 }, () => 1),
+		skills: Array.from({ length: 16 }, () => 0),
+
+		extraSkills: [{ name: '???', value: 0 }]
 	});
 
 	const maxHP = $derived(trainer.stats[2] + 4);
@@ -29,12 +32,13 @@
 	const statBudget = $derived(getRank(trainer.rank).statPoints);
 	const socialBudget = $derived(getRank(trainer.rank).socialPoints);
 
+	const skillBudget = $derived(getRank(trainer.rank).skillPoints);
+	const skillCeiling = $derived(getRank(trainer.rank).skillCeiling);
+
 	$effect(() => {
 		console.log($state.snapshot(trainer));
 	});
 	/* {
-                skills: { type: "array", minItems: 20, items: { type: "integer", minimum: 0 } },
-                extraSkillNames: { type: "array", minItems: 4, items: { type: "string" } },
                 dex: { type: "array", minItems: 2, items: { type: "integer", minimum: 0 } },
                 badges: { type: "array", minItems: 8, items: { type: "string" } },
                 potions: { type: "array", minItems: 6, items: { type: "integer", minimum: 0 } },
@@ -65,6 +69,11 @@
 		{maxWill}
 	></TrainerData>
 	<TrainerStats bind:stats={trainer.stats} {statBudget} {socialBudget}></TrainerStats>
-	<TrainerSkills></TrainerSkills>
+	<TrainerSkills
+		bind:skills={trainer.skills}
+		bind:extraSkills={trainer.extraSkills}
+		{skillBudget}
+		{skillCeiling}
+	></TrainerSkills>
 	<TrainerBag></TrainerBag>
 </div>
