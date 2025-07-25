@@ -1,5 +1,33 @@
 export const DEFAULT_IMAGE: string = "./ditto_anon.png";
 
+export const DEFAULT_TRAINER = {
+    image: DEFAULT_IMAGE,
+    name: '',
+    concept: '',
+    money: 1500,
+
+    nature: 'Firme',
+    rank: 'Zero',
+
+    health: 0,
+    confidence: 0,
+    willPoints: 0,
+
+    age: 'Adolescente',
+
+    stats: Array.from({ length: 9 }, () => 1),
+    skills: Array.from({ length: 16 }, () => 0),
+
+    extraSkills: [{ name: '???', value: 0 }],
+
+    dex: [0, 0],
+    badges: 0,
+    potions: Array.from({ length: 6 }, () => 0),
+    bag: [{ item: '???', count: 0 }],
+    achievements: Array.from({ length: 5 }, () => ({ name: '', checked: false })),
+    notes: ''
+};
+
 export const NATURES = [
     { nature: "Firme", maxConfidence: 4 },
     { nature: "Tímida", maxConfidence: 6 },
