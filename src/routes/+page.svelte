@@ -1,6 +1,10 @@
+<script lang="ts">
+	import TrainerData from '$lib/TrainerData.svelte';
+</script>
+
 <div
-	class="h-screen p-2 dark:bg-zinc-800 dark:text-zinc-100"
-	style="font-family: Oswald, sans-serif;"
+	class="min-h-screen p-2 dark:bg-zinc-800 dark:text-zinc-100"
+	style="font-family: 'Roboto Condensed', sans-serif;"
 >
-	<nav>Oie</nav>
+	<TrainerData></TrainerData>
 </div>
