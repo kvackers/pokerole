@@ -2,7 +2,7 @@
 	import { AGES, DEFAULT_IMAGE, NATURES, RANKS } from './data';
 
 	import { Alert } from 'flowbite-svelte';
-	import { InfoCircleSolid } from 'flowbite-svelte-icons';
+	import { AngleDownOutline, AngleUpOutline, InfoCircleSolid } from 'flowbite-svelte-icons';
 	import { getNature, getRank } from './utils';
 
 	let {
@@ -39,16 +39,24 @@
 
 		image = url;
 	};
+
+	let hidden = $state(false);
 </script>
 
 <div class="box-content flex w-[360px] flex-col p-2">
 	<div
-		class="rounded-t-lg border border-b-0 border-solid border-zinc-950 px-4 py-2 dark:border-zinc-50"
+		class="flex justify-between rounded-t-lg border border-solid border-zinc-950 px-4 py-2 dark:border-zinc-50"
 	>
-		Dados Pessoais
+		<span>Dados Pessoais</span>
+		{#if hidden}
+			<button onclick={() => (hidden = false)}><AngleDownOutline></AngleDownOutline></button>
+		{:else}
+			<button onclick={() => (hidden = true)}><AngleUpOutline></AngleUpOutline></button>
+		{/if}
 	</div>
 	<div
-		class="flex flex-col rounded-b-lg border border-solid border-zinc-950 p-2 dark:border-zinc-50"
+		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
+		style:display={hidden ? 'none' : 'block'}
 	>
 		<button onclick={promptImageURL}
 			><img

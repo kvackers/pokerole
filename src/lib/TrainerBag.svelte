@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from 'flowbite-svelte';
-	import { CirclePlusSolid } from 'flowbite-svelte-icons';
+	import { AngleDownOutline, AngleUpOutline, CirclePlusSolid } from 'flowbite-svelte-icons';
 
 	let {
 		dex = $bindable(),
@@ -17,16 +17,24 @@
 			bag = bag.filter((e: any) => e.item.trim().length > 0);
 		}
 	};
+
+	let hidden = $state(false);
 </script>
 
 <div class="flex w-[360px] flex-col p-2">
 	<div
-		class="rounded-t-lg border border-b-0 border-solid border-zinc-950 px-4 py-2 dark:border-zinc-50"
+		class="flex justify-between rounded-t-lg border border-solid border-zinc-950 px-4 py-2 dark:border-zinc-50"
 	>
-		Bolsa & Misc.
+		<span>Bolsa & Misc.</span>
+		{#if hidden}
+			<button onclick={() => (hidden = false)}><AngleDownOutline></AngleDownOutline></button>
+		{:else}
+			<button onclick={() => (hidden = true)}><AngleUpOutline></AngleUpOutline></button>
+		{/if}
 	</div>
 	<div
-		class="flex flex-col rounded-b-lg border border-solid border-zinc-950 p-2 dark:border-zinc-50"
+		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
+		style:display={hidden ? 'none' : 'block'}
 	>
 		<div class="flex">
 			<span
