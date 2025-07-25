@@ -20,6 +20,8 @@ type Age = {
     socialPoints: number;
 };
 
+type Mode = 'sm' | 'md' | 'lg' | 'xl';
+
 export const getRank = (rank: string): Rank => {
     return RANKS.filter(e => e.rank === rank)[0];
 };
@@ -30,4 +32,11 @@ export const getNature = (nature: string): Nature => {
 
 export const getAge = (age: string): Age => {
     return AGES.filter(e => e.age === age)[0];
+}
+
+export const getMode = (width: any): Mode => {
+    if (width >= 1280) { return 'xl'; }
+    if (width >= 960) { return 'lg'; }
+    if (width > 640) { return 'md'; }
+    return 'sm';
 }

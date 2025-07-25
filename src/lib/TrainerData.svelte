@@ -43,7 +43,7 @@
 	let hidden = $state(false);
 </script>
 
-<div class="box-content flex w-[360px] flex-col p-2">
+<div class="flex w-[360px] flex-col p-2">
 	<div
 		class="flex justify-between rounded-t-lg border border-solid border-zinc-950 px-4 py-2 dark:border-zinc-50"
 	>
@@ -62,7 +62,7 @@
 			><img
 				src={image}
 				alt="Ditto transformado em um bloco, sorrindo"
-				style="max-width: 340px; margin: 0 auto;"
+				style="max-width: 320px; margin: 0 auto;"
 			/></button
 		>
 		{#if image === DEFAULT_IMAGE}
