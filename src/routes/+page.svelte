@@ -1,5 +1,6 @@
 <script lang="ts">
 	import TrainerData from '$lib/TrainerData.svelte';
+	import TrainerSkills from '$lib/TrainerSkills.svelte';
 	import TrainerStats from '$lib/TrainerStats.svelte';
 </script>
 
@@ -9,4 +10,5 @@
 >
 	<TrainerData></TrainerData>
 	<TrainerStats></TrainerStats>
+	<TrainerSkills></TrainerSkills>
 </div>
