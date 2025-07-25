@@ -5,7 +5,7 @@
 	import TrainerData from '$lib/TrainerData.svelte';
 	import TrainerSkills from '$lib/TrainerSkills.svelte';
 	import TrainerStats from '$lib/TrainerStats.svelte';
-	import { getRank } from '$lib/utils';
+	import { getRank, getAge } from '$lib/utils';
 
 	let trainer = $state({
 		image: DEFAULT_IMAGE,
@@ -20,6 +20,8 @@
 		confidence: 0,
 		willPoints: 0,
 
+		age: 'Adolescente',
+
 		stats: Array.from({ length: 9 }, () => 1),
 		skills: Array.from({ length: 16 }, () => 0),
 
@@ -29,8 +31,10 @@
 	const maxHP = $derived(trainer.stats[2] + 4);
 	const maxWill = $derived(trainer.stats[3] + 2);
 
-	const statBudget = $derived(getRank(trainer.rank).statPoints);
-	const socialBudget = $derived(getRank(trainer.rank).socialPoints);
+	const statBudget = $derived(getAge(trainer.age).statPoints + getRank(trainer.rank).statPoints);
+	const socialBudget = $derived(
+		getAge(trainer.age).socialPoints + getRank(trainer.rank).socialPoints
+	);
 
 	const skillBudget = $derived(getRank(trainer.rank).skillPoints);
 	const skillCeiling = $derived(getRank(trainer.rank).skillCeiling);
@@ -65,6 +69,7 @@
 		bind:health={trainer.health}
 		bind:confidence={trainer.confidence}
 		bind:willPoints={trainer.willPoints}
+		bind:age={trainer.age}
 		{maxHP}
 		{maxWill}
 	></TrainerData>

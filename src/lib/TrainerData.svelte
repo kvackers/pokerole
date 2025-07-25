@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DEFAULT_IMAGE, NATURES, RANKS } from './data';
+	import { AGES, DEFAULT_IMAGE, NATURES, RANKS } from './data';
 
 	import { Alert } from 'flowbite-svelte';
 	import { InfoCircleSolid } from 'flowbite-svelte-icons';
@@ -17,6 +17,8 @@
 		health = $bindable(),
 		confidence = $bindable(),
 		willPoints = $bindable(),
+
+		age = $bindable(),
 
 		maxHP,
 		maxWill
@@ -181,6 +183,20 @@
 				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
 				>/ {maxWill}
 			</span>
+		</div>
+		<div class="mt-2 flex">
+			<span
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				>Idade</span
+			>
+			<select
+				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				bind:value={age}
+			>
+				{#each AGES as { age }}
+					<option value={age}>{age}</option>
+				{/each}
+			</select>
 		</div>
 	</div>
 </div>
