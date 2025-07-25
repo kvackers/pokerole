@@ -16,7 +16,10 @@
 
 		health = $bindable(),
 		confidence = $bindable(),
-		willPoints = $bindable()
+		willPoints = $bindable(),
+
+		maxHP,
+		maxWill
 	} = $props();
 
 	const natureObject = $derived(getNature(nature));
@@ -146,7 +149,7 @@
 			/>
 			<span
 				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-				>/
+				>/ {maxHP}
 			</span>
 		</div>
 		<div class="flex">
@@ -172,8 +175,12 @@
 			<input
 				type="number"
 				bind:value={willPoints}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
 			/>
+			<span
+				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				>/ {maxWill}
+			</span>
 		</div>
 	</div>
 </div>

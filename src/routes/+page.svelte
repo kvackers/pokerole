@@ -5,6 +5,7 @@
 	import TrainerData from '$lib/TrainerData.svelte';
 	import TrainerSkills from '$lib/TrainerSkills.svelte';
 	import TrainerStats from '$lib/TrainerStats.svelte';
+	import { getRank } from '$lib/utils';
 
 	let trainer = $state({
 		image: DEFAULT_IMAGE,
@@ -17,19 +18,21 @@
 
 		health: 0,
 		confidence: 0,
-		willPoints: 0
+		willPoints: 0,
+
+		stats: Array.from({ length: 9 }, () => 1)
 	});
+
+	const maxHP = $derived(trainer.stats[2] + 4);
+	const maxWill = $derived(trainer.stats[3] + 2);
+
+	const statBudget = $derived(getRank(trainer.rank).statPoints);
+	const socialBudget = $derived(getRank(trainer.rank).socialPoints);
 
 	$effect(() => {
 		console.log($state.snapshot(trainer));
 	});
 	/* {
-                health: { type: "integer", minimum: 0 },
-                nature: { type: "string" },
-                rank: { type: "string" },
-                confidence: { type: "integer", minimum: 0 },
-                willPoints: { type: "integer", minimum: 0 },
-                stats: { type: "array", minItems: 9, items: { type: "integer", minimum: 1 } },
                 skills: { type: "array", minItems: 20, items: { type: "integer", minimum: 0 } },
                 extraSkillNames: { type: "array", minItems: 4, items: { type: "string" } },
                 dex: { type: "array", minItems: 2, items: { type: "integer", minimum: 0 } },
@@ -58,8 +61,10 @@
 		bind:health={trainer.health}
 		bind:confidence={trainer.confidence}
 		bind:willPoints={trainer.willPoints}
+		{maxHP}
+		{maxWill}
 	></TrainerData>
-	<TrainerStats></TrainerStats>
+	<TrainerStats bind:stats={trainer.stats} {statBudget} {socialBudget}></TrainerStats>
 	<TrainerSkills></TrainerSkills>
 	<TrainerBag></TrainerBag>
 </div>
