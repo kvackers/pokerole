@@ -20,7 +20,7 @@
 </script>
 
 {#if mode === 'xl'}
-	<div class="flex">
+	<div class="flex" style:width="1280px" style:margin="0 auto">
 		<TrainerData
 			bind:image={trainer.image}
 			bind:name={trainer.name}
@@ -52,7 +52,7 @@
 		></TrainerBag>
 	</div>
 {:else if mode === 'lg'}
-	<div class="flex">
+	<div class="flex" style:width="960px" style:margin="0 auto">
 		<TrainerData
 			bind:image={trainer.image}
 			bind:name={trainer.name}
@@ -86,7 +86,7 @@
 		></TrainerSkills>
 	</div>
 {:else if mode === 'md'}
-	<div class="flex">
+	<div class="flex" style:width="640px" style:margin="0 auto">
 		<div class="flex flex-col">
 			<TrainerData
 				bind:image={trainer.image}

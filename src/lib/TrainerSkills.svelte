@@ -95,7 +95,11 @@
 			</div>
 		{/each}
 
-		<Button class="mt-2" color="green" onclick={() => extraSkills.push({ name: '???', value: 0 })}>
+		<Button
+			class="mt-2 w-full"
+			color="green"
+			onclick={() => extraSkills.push({ name: '???', value: 0 })}
+		>
 			<CirclePlusSolid class="me-2 h-5 w-5" /> Adicionar Perícia
 		</Button>
 	</div>
