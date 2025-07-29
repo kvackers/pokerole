@@ -3,11 +3,9 @@
 	import { AngleDownOutline, AngleUpOutline, CirclePlusSolid } from 'flowbite-svelte-icons';
 
 	let {
-		dex = $bindable(),
 		badges = $bindable(),
 		potions = $bindable(),
 		bag = $bindable(),
-		achievements = $bindable(),
 		notes = $bindable()
 	} = $props();
 
@@ -36,29 +34,6 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
 		style:display={hidden ? 'none' : 'block'}
 	>
-		<div class="flex">
-			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-				>Pokedex</span
-			>
-			<input
-				type="number"
-				bind:value={dex[0]}
-				class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
-			/>
-			<span
-				class="input-group-text border border-x-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-				>/</span
-			>
-			<input
-				type="number"
-				bind:value={dex[1]}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
-			/>
-		</div>
-
-		<hr class="my-3" />
-
 		<div class="flex">
 			<span
 				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
@@ -171,33 +146,8 @@
 
 		<hr class="my-3" />
 
-		<p class="mt-0 mb-2 ml-1">Conquistas</p>
-		{#each achievements as _, index}
-			<div class="flex">
-				<input
-					type="text"
-					bind:value={achievements[index].name}
-					class="input-group-text w-full rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-				/>
-				<input
-					type="checkbox"
-					bind:checked={achievements[index].checked}
-					class="h-[40px] w-[40px] rounded-r-lg border-zinc-950 accent-blue-600 dark:border-zinc-50 dark:bg-zinc-800"
-				/>
-			</div>
-		{/each}
-
-		<hr class="my-3" />
-
 		<p class="mt-0 mb-2 ml-1">Observações e Anotações</p>
 		<textarea class="w-full dark:bg-neutral-900 dark:text-zinc-100" rows="20" bind:value={notes}
 		></textarea>
-
-		<hr class="my-3" />
-		<div class="my-2 flex">
-			<Button class="mr-2 w-full" color="green">Exportar Save</Button>
-			<Button class="w-full" color="yellow">Importar Save</Button>
-		</div>
-		<textarea class="w-full dark:bg-neutral-900 dark:text-zinc-100" rows="20"></textarea>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AngleDownOutline, AngleUpOutline } from 'flowbite-svelte-icons';
 
-	const { stats = $bindable(), statBudget, socialBudget } = $props();
+	const { stats = $bindable() } = $props();
 
 	const statNames = [
 		'Força',
@@ -14,9 +14,6 @@
 		'Esperto',
 		'Fofo'
 	];
-
-	let spentStat = $derived(stats.slice(0, 4).reduce((acc: number, e: number) => acc + e) - 4);
-	let spentSocial = $derived(stats.slice(4).reduce((acc: number, e: number) => acc + e) - 5);
 
 	let hidden = $state(false);
 </script>
@@ -36,7 +33,6 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
 		style:display={hidden ? 'none' : 'block'}
 	>
-		<p class="mt-0 mb-2 ml-1">Pontos a gastar: {statBudget - spentStat}</p>
 		{#each statNames.slice(0, 4) as stat, index}
 			<div class="flex">
 				<span
@@ -57,7 +53,6 @@
 
 		<hr class="my-3" />
 
-		<p class="mt-0 mb-2 ml-1">Pontos a gastar: {socialBudget - spentSocial}</p>
 		{#each statNames.slice(4) as stat, index}
 			<div class="flex">
 				<span

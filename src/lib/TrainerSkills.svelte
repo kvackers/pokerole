@@ -2,7 +2,7 @@
 	import { Button } from 'flowbite-svelte';
 	import { AngleDownOutline, AngleUpOutline, CirclePlusSolid } from 'flowbite-svelte-icons';
 
-	let { skills = $bindable(), extraSkills = $bindable(), skillCeiling, skillBudget } = $props();
+	let { skills = $bindable(), extraSkills = $bindable() } = $props();
 
 	const skillNames = [
 		'Luta',
@@ -30,11 +30,6 @@
 		}
 	};
 
-	let spentSkills = $derived(
-		skills.reduce((acc: number, e: number) => acc + e) +
-			extraSkills.map((e: any) => e.value).reduce((acc: number, e: number) => acc + e)
-	);
-
 	let hidden = $state(false);
 </script>
 
@@ -53,7 +48,6 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
 		style:display={hidden ? 'none' : 'block'}
 	>
-		<p class="mt-0 mb-2 ml-1">Pontos a gastar: {skillBudget - spentSkills}</p>
 		{#each skillNames as skill, index}
 			<div class="flex">
 				<span
@@ -67,7 +61,7 @@
 				/>
 				<span
 					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-					>/ {skillCeiling}
+					>/ 5
 				</span>
 			</div>
 			{#if index % 4 === 3}
@@ -90,7 +84,7 @@
 				/>
 				<span
 					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-					>/ {skillCeiling}
+					>/ 5
 				</span>
 			</div>
 		{/each}
