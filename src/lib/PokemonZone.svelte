@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PokemonAttacks from './PokemonAttacks.svelte';
 	import PokemonData from './PokemonData.svelte';
 	import PokemonMisc from './PokemonMisc.svelte';
 	import PokemonSkills from './PokemonSkills.svelte';
@@ -55,6 +56,7 @@
 	</div>
 	<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
 	></PokemonSkills>
+	<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
 </div>
 
 <!-- {#if mode === 'xl'}

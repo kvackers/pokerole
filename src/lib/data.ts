@@ -48,6 +48,10 @@ export const DEFAULT_POKEMON = {
 
     status: 'Saudável',
     notes: '',
+
+    attacks: Array.from({ length: 5 }, () => (
+        { name: '', type: '-', damage: '', acc: '', effect: '' }
+    ))
 };
 
 export const TYPES = [
