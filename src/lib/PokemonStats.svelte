@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { A } from 'flowbite-svelte';
 	import { AngleDownOutline, AngleUpOutline } from 'flowbite-svelte-icons';
 
-	const { stats = $bindable() } = $props();
+	const { stats = $bindable(), dexEntry } = $props();
 
 	const statNames = [
 		'Força',
@@ -15,6 +16,20 @@
 		'Esperto',
 		'Fofo'
 	];
+
+	const physicalStatShorthand = ['STR', 'DEX', 'VIT', 'INS', 'SPC'];
+
+	const physicalTotal = $derived((stats as Array<number>).slice(0, 5).reduce((a, e) => a + e));
+	const physicalBase = $derived(
+		physicalStatShorthand
+			.map((stat) => {
+				return dexEntry['base' + stat];
+			})
+			.reduce((a, e) => a + e)
+	);
+
+	const socialTotal = $derived((stats as Array<number>).slice(5).reduce((a, e) => a + e));
+	const socialBase = 5;
 
 	let hidden = $state(false);
 </script>
@@ -34,6 +49,7 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
 		style:display={hidden ? 'none' : 'block'}
 	>
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {physicalTotal - physicalBase} / 8</p>
 		{#each statNames.slice(0, 5) as stat, index}
 			<div class="flex">
 				<span
@@ -47,13 +63,14 @@
 				/>
 				<span
 					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-					>/ 5
+					>/ {dexEntry['max' + physicalStatShorthand[index]]}
 				</span>
 			</div>
 		{/each}
 
 		<hr class="my-3" />
 
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {socialTotal - socialBase} / 8</p>
 		{#each statNames.slice(5) as stat, index}
 			<div class="flex">
 				<span

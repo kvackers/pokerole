@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { DEX } from './data';
 	import PokemonAttacks from './PokemonAttacks.svelte';
 	import PokemonData from './PokemonData.svelte';
 	import PokemonMisc from './PokemonMisc.svelte';
@@ -9,7 +10,30 @@
 
 	const pokemon = $derived(pokemonList[currentPokemon]);
 
-	const maxHP = $derived(pokemon.stats[2] + 4);
+	const changeSpecies = (e: any) => {
+		const newSpecies = e.target.value;
+		const dexEntry = DEX[newSpecies];
+		if (dexEntry === undefined) {
+			return;
+		}
+
+		pokemon.evoTime = dexEntry.evoTime;
+		pokemon.types = dexEntry.types;
+
+		pokemon.stats.splice(
+			0,
+			5,
+			dexEntry.baseSTR,
+			dexEntry.baseDEX,
+			dexEntry.baseVIT,
+			dexEntry.baseINS,
+			dexEntry.baseSPC
+		);
+	};
+
+	const dexEntry = $derived(DEX[pokemon.species]);
+
+	const maxHP = $derived(pokemon.stats[2] + dexEntry.baseHP);
 	const maxWill = $derived(pokemon.stats[3] + 2);
 	const maxConfidence = $derived(pokemon.stats[4] + 4);
 
@@ -39,9 +63,10 @@
 		{maxHP}
 		{maxWill}
 		{maxConfidence}
+		{changeSpecies}
 	></PokemonData>
 	<div class="flex flex-col">
-		<PokemonStats bind:stats={pokemon.stats}></PokemonStats>
+		<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
 		<PokemonMisc
 			bind:item={pokemon.item}
 			bind:accessory={pokemon.accessory}

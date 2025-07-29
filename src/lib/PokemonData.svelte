@@ -24,7 +24,8 @@
 
 		maxHP,
 		maxWill,
-		maxConfidence
+		maxConfidence,
+		changeSpecies
 	} = $props();
 
 	const promptImageURL = () => {
@@ -91,6 +92,7 @@
 			<select
 				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
 				bind:value={species}
+				onchange={changeSpecies}
 			>
 				{#each Object.entries(DEX) as [species, _]}
 					<option value={species}>{capitalize(species)}</option>
