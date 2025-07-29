@@ -41,9 +41,7 @@
 </script>
 
 <div class="flex w-[360px] flex-col p-2">
-	<div
-		class="flex justify-between rounded-t-lg border border-solid border-zinc-950 px-4 py-2 dark:border-zinc-50"
-	>
+	<div class="0 flex justify-between rounded-t-lg border border-solid border-zinc-50 px-4 py-2">
 		<span>Perícias</span>
 		{#if hidden}
 			<button onclick={() => (hidden = false)}><AngleDownOutline></AngleDownOutline></button>
@@ -52,23 +50,23 @@
 		{/if}
 	</div>
 	<div
-		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
+		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
 		style:display={hidden ? 'none' : 'block'}
 	>
 		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {skillTotal} / 13</p>
 		{#each skillNames as skill, index}
 			<div class="flex">
 				<span
-					class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+					class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 					>{skill}</span
 				>
 				<input
 					type="number"
 					bind:value={skills[index]}
-					class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+					class="w-full border-zinc-50 bg-zinc-800 text-zinc-100"
 				/>
 				<span
-					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
 					>/ 5
 				</span>
 			</div>
@@ -83,15 +81,15 @@
 					type="text"
 					bind:value={extraSkills[index].name}
 					onchange={trimExtra}
-					class="input-group-text w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+					class="input-group-text w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				/>
 				<input
 					type="number"
 					bind:value={extraSkills[index].value}
-					class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+					class="w-full border-zinc-50 bg-zinc-800 text-zinc-100"
 				/>
 				<span
-					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
 					>/ 5
 				</span>
 			</div>

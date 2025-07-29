@@ -46,9 +46,7 @@
 </script>
 
 <div class="flex w-[360px] flex-col p-2">
-	<div
-		class="flex justify-between rounded-t-lg border border-solid border-zinc-950 px-4 py-2 dark:border-zinc-50"
-	>
+	<div class="flex justify-between rounded-t-lg border border-solid border-zinc-50 px-4 py-2">
 		<span>Dados Pessoais</span>
 		{#if hidden}
 			<button onclick={() => (hidden = false)}><AngleDownOutline></AngleDownOutline></button>
@@ -57,7 +55,7 @@
 		{/if}
 	</div>
 	<div
-		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-950 p-2 dark:border-zinc-50"
+		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
 		style:display={hidden ? 'none' : 'block'}
 	>
 		<button onclick={promptImageURL}
@@ -76,22 +74,22 @@
 
 		<div class="mt-2 flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Apelido</span
 			>
 			<input
 				type="text"
 				bind:value={name}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Espécie</span
 			>
 			<select
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 				bind:value={species}
 				onchange={changeSpecies}
 			>
@@ -102,13 +100,13 @@
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Habilidade</span
 			>
 			<input
 				type="text"
 				bind:value={ability}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 		</div>
 
@@ -116,46 +114,46 @@
 
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>PV</span
 			>
 			<input
 				type="number"
 				bind:value={health}
-				class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 			<span
-				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
 				>/ {maxHP}
 			</span>
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Confiança</span
 			>
 			<input
 				type="number"
 				bind:value={confidence}
-				class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 			<span
-				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
 				>/ {maxConfidence}
 			</span>
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Vontade</span
 			>
 			<input
 				type="number"
 				bind:value={willPoints}
-				class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 			<span
-				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
 				>/ {maxWill}
 			</span>
 		</div>
@@ -164,19 +162,16 @@
 
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Tipos</span
 			>
-			<select
-				class="w-full border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
-				bind:value={types[0]}
-			>
+			<select class="w-full border-zinc-50 bg-zinc-800 text-zinc-100" bind:value={types[0]}>
 				{#each TYPES as type}
 					<option value={type}>{type}</option>
 				{/each}
 			</select>
 			<select
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 				bind:value={types[1]}
 			>
 				{#each TYPES as type}
@@ -186,11 +181,11 @@
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Teratipo</span
 			>
 			<select
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 				bind:value={teratype}
 			>
 				{#each TYPES as type}
@@ -200,57 +195,57 @@
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Evolução</span
 			>
 			<input
 				type="text"
 				bind:value={evoTime}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Vitórias</span
 			>
 			<input
 				type="text"
 				bind:value={wins}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Treinos</span
 			>
 			<input
 				type="text"
 				bind:value={training}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Felicidade</span
 			>
 			<input
 				type="text"
 				bind:value={happiness}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 		</div>
 		<div class="flex">
 			<span
-				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
 				>Lealdade</span
 			>
 			<input
 				type="text"
 				bind:value={loyalty}
-				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
 		</div>
 	</div>

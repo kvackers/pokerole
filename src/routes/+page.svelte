@@ -27,7 +27,7 @@
 </script>
 
 <div
-	class="min-h-screen p-2 dark:bg-zinc-800 dark:text-zinc-100"
+	class="min-h-screen bg-zinc-800 p-2 text-zinc-100"
 	style:font-family="'Roboto Condensed', sans-serif;"
 >
 	<Navbar {mode} bind:displayTrainer bind:trainer></Navbar>
