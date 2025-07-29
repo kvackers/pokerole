@@ -78,6 +78,7 @@
 			{dodge}
 			{clash}
 			{defenses}
+			types={pokemon.types}
 		></PokemonMisc>
 	</div>
 	<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}

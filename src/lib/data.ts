@@ -57,10 +57,10 @@ export const DEFAULT_POKEMON = {
 
 export const TYPES = [
     "-",
-    "Aco",
-    "Agua",
-    "Dragao",
-    "Eletrico",
+    "Aço",
+    "Água",
+    "Dragão",
+    "Elétrico",
     "Fada",
     "Fantasma",
     "Fogo",
@@ -70,7 +70,7 @@ export const TYPES = [
     "Lutador",
     "Normal",
     "Pedra",
-    "Psiquico",
+    "Psíquico",
     "Sinistro",
     "Solo",
     "Veneno",
@@ -88,6 +88,165 @@ export const STATUS = [
     'Tóxico',
     'Sono'
 ];
+
+export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
+    "normal": {
+        "lutador": 2,
+        "fantasma": 0
+    },
+    "fogo": {
+        "água": 2,
+        "terra": 2,
+        "pedra": 2,
+        "fogo": 0.5,
+        "grama": 0.5,
+        "gelo": 0.5,
+        "inseto": 0.5,
+        "aço": 0.5,
+        "fada": 0.5
+    },
+    "água": {
+        "elétrico": 2,
+        "grama": 2,
+        "fogo": 0.5,
+        "água": 0.5,
+        "gelo": 0.5,
+        "aço": 0.5
+    },
+    "grama": {
+        "fogo": 2,
+        "gelo": 2,
+        "veneno": 2,
+        "voador": 2,
+        "inseto": 2,
+        "água": 0.5,
+        "elétrico": 0.5,
+        "grama": 0.5,
+        "terra": 0.5
+    },
+    "elétrico": {
+        "terra": 2,
+        "elétrico": 0.5,
+        "voador": 0.5,
+        "aço": 0.5
+    },
+    "gelo": {
+        "fogo": 2,
+        "lutador": 2,
+        "pedra": 2,
+        "aço": 2,
+        "gelo": 0.5
+    },
+    "lutador": {
+        "voador": 2,
+        "psíquico": 2,
+        "fada": 2,
+        "pedra": 0.5,
+        "inseto": 0.5,
+        "sinistro": 0.5
+    },
+    "veneno": {
+        "terra": 2,
+        "psíquico": 2,
+        "grama": 0.5,
+        "lutador": 0.5,
+        "veneno": 0.5,
+        "inseto": 0.5,
+        "fada": 0.5
+    },
+    "terra": {
+        "água": 2,
+        "grama": 2,
+        "gelo": 2,
+        "veneno": 0.5,
+        "pedra": 0.5,
+        "elétrico": 0
+    },
+    "voador": {
+        "elétrico": 2,
+        "gelo": 2,
+        "pedra": 2,
+        "grama": 0.5,
+        "lutador": 0.5,
+        "inseto": 0.5,
+        "terra": 0
+    },
+    "psíquico": {
+        "inseto": 2,
+        "fantasma": 2,
+        "sinistro": 2,
+        "lutador": 0.5,
+        "psíquico": 0.5
+    },
+    "inseto": {
+        "fogo": 2,
+        "voador": 2,
+        "pedra": 2,
+        "lutador": 0.5,
+        "terra": 0.5,
+        "grama": 0.5
+    },
+    "pedra": {
+        "água": 2,
+        "grama": 2,
+        "lutador": 2,
+        "terra": 2,
+        "aço": 2,
+        "normal": 0.5,
+        "fogo": 0.5,
+        "voador": 0.5,
+        "veneno": 0.5
+    },
+    "fantasma": {
+        "fantasma": 2,
+        "sinistro": 2,
+        "veneno": 0.5,
+        "inseto": 0.5,
+        "normal": 0,
+        "lutador": 0
+    },
+    "dragão": {
+        "gelo": 2,
+        "dragão": 2,
+        "fada": 2,
+        "fogo": 0.5,
+        "água": 0.5,
+        "elétrico": 0.5,
+        "grama": 0.5
+    },
+    "aço": {
+        "fogo": 2,
+        "lutador": 2,
+        "terra": 2,
+        "normal": 0.5,
+        "grama": 0.5,
+        "gelo": 0.5,
+        "voador": 0.5,
+        "psíquico": 0.5,
+        "inseto": 0.5,
+        "pedra": 0.5,
+        "dragão": 0.5,
+        "aço": 0.5,
+        "fada": 0.5,
+        "veneno": 0
+    },
+    "sinistro": {
+        "lutador": 2,
+        "inseto": 2,
+        "fada": 2,
+        "fantasma": 0.5,
+        "sinistro": 0.5,
+        "psíquico": 0
+    },
+    "fada": {
+        "veneno": 2,
+        "aço": 2,
+        "lutador": 0.5,
+        "inseto": 0.5,
+        "sinistro": 0.5,
+        "dragão": 0
+    }
+};
 
 export type Pokemon = {
     baseHP: number;
@@ -210,7 +369,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "wartortle": {
         "baseHP": 4,
@@ -225,7 +384,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "blastoise": {
         "baseHP": 5,
@@ -240,7 +399,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "caterpie": {
         "baseHP": 3,
@@ -510,7 +669,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "raichu": {
         "baseHP": 5,
@@ -525,7 +684,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "raichu-alola": {
         "baseHP": 5,
@@ -540,7 +699,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Psiquico"]
+        "types": ["Elétrico", "Psíquico"]
     },
     "sandshrew": {
         "baseHP": 3,
@@ -570,7 +729,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Gelo", "Aco"]
+        "types": ["Gelo", "Aço"]
     },
     "sandslash": {
         "baseHP": 4,
@@ -600,7 +759,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Gelo", "Aco"]
+        "types": ["Gelo", "Aço"]
     },
     "nidoran♀": {
         "baseHP": 3,
@@ -975,7 +1134,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Solo", "Aco"]
+        "types": ["Solo", "Aço"]
     },
     "dugtrio": {
         "baseHP": 4,
@@ -1005,7 +1164,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Solo", "Aco"]
+        "types": ["Solo", "Aço"]
     },
     "meowth": {
         "baseHP": 3,
@@ -1050,7 +1209,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "persian": {
         "baseHP": 4,
@@ -1095,7 +1254,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "golduck": {
         "baseHP": 4,
@@ -1110,7 +1269,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "mankey": {
         "baseHP": 3,
@@ -1185,7 +1344,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "poliwhirl": {
         "baseHP": 4,
@@ -1200,7 +1359,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Muitos",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "poliwrath": {
         "baseHP": 5,
@@ -1215,7 +1374,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Lutador"]
+        "types": ["Água", "Lutador"]
     },
     "abra": {
         "baseHP": 3,
@@ -1230,7 +1389,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "kadabra": {
         "baseHP": 4,
@@ -1245,7 +1404,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Troca",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "alakazam": {
         "baseHP": 5,
@@ -1260,7 +1419,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "machop": {
         "baseHP": 3,
@@ -1352,7 +1511,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Final",
         "types": ["Grama", "Veneno"]
     },
-    "tentacool": {
+    "tentAçool": {
         "baseHP": 3,
         "baseSTR": 1,
         "maxSTR": 3,
@@ -1365,7 +1524,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Devagar",
-        "types": ["Agua", "Veneno"]
+        "types": ["Água", "Veneno"]
     },
     "tentacruel": {
         "baseHP": 4,
@@ -1380,7 +1539,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Agua", "Veneno"]
+        "types": ["Água", "Veneno"]
     },
     "geodude": {
         "baseHP": 3,
@@ -1410,7 +1569,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Pedra", "Eletrico"]
+        "types": ["Pedra", "Elétrico"]
     },
     "graveler": {
         "baseHP": 4,
@@ -1440,7 +1599,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Troca",
-        "types": ["Pedra", "Eletrico"]
+        "types": ["Pedra", "Elétrico"]
     },
     "golem": {
         "baseHP": 5,
@@ -1470,7 +1629,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Pedra", "Eletrico"]
+        "types": ["Pedra", "Elétrico"]
     },
     "ponyta": {
         "baseHP": 3,
@@ -1500,7 +1659,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "rapidash": {
         "baseHP": 4,
@@ -1530,7 +1689,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "slowpoke": {
         "baseHP": 3,
@@ -1545,7 +1704,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Agua", "Psiquico"]
+        "types": ["Água", "Psíquico"]
     },
     "slowbro": {
         "baseHP": 4,
@@ -1560,7 +1719,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Psiquico"]
+        "types": ["Água", "Psíquico"]
     },
     "magnemite": {
         "baseHP": 3,
@@ -1575,7 +1734,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Eletrico", "Aco"]
+        "types": ["Elétrico", "Aço"]
     },
     "magneton": {
         "baseHP": 4,
@@ -1590,7 +1749,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Aco"]
+        "types": ["Elétrico", "Aço"]
     },
     "farfetch'd": {
         "baseHP": 4,
@@ -1665,7 +1824,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Devagar",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "dewgong": {
         "baseHP": 4,
@@ -1680,7 +1839,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Gelo"]
+        "types": ["Água", "Gelo"]
     },
     "grimer": {
         "baseHP": 3,
@@ -1755,7 +1914,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Item",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "cloyster": {
         "baseHP": 4,
@@ -1770,7 +1929,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Gelo"]
+        "types": ["Água", "Gelo"]
     },
     "gastly": {
         "baseHP": 4,
@@ -1845,7 +2004,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Devagar",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "hypno": {
         "baseHP": 4,
@@ -1860,7 +2019,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "krabby": {
         "baseHP": 3,
@@ -1875,7 +2034,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "kingler": {
         "baseHP": 4,
@@ -1890,7 +2049,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "voltorb": {
         "baseHP": 3,
@@ -1905,7 +2064,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "electrode": {
         "baseHP": 4,
@@ -1920,7 +2079,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "exeggcute": {
         "baseHP": 3,
@@ -1935,7 +2094,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Grama", "Psiquico"]
+        "types": ["Grama", "Psíquico"]
     },
     "exeggutor": {
         "baseHP": 5,
@@ -1950,7 +2109,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Grama", "Psiquico"]
+        "types": ["Grama", "Psíquico"]
     },
     "exeggutor-alola": {
         "baseHP": 5,
@@ -1965,7 +2124,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Grama", "Dragao"]
+        "types": ["Grama", "Dragão"]
     },
     "cubone": {
         "baseHP": 3,
@@ -2190,7 +2349,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "seadra": {
         "baseHP": 4,
@@ -2205,7 +2364,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Troca",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "goldeen": {
         "baseHP": 3,
@@ -2220,7 +2379,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "seaking": {
         "baseHP": 4,
@@ -2235,7 +2394,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "staryu": {
         "baseHP": 3,
@@ -2250,7 +2409,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "starmie": {
         "baseHP": 4,
@@ -2265,7 +2424,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Psiquico"]
+        "types": ["Água", "Psíquico"]
     },
     "mr. mime": {
         "baseHP": 4,
@@ -2280,7 +2439,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "mr. mime-galar": {
         "baseHP": 4,
@@ -2295,7 +2454,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Gelo", "Psiquico"]
+        "types": ["Gelo", "Psíquico"]
     },
     "scyther": {
         "baseHP": 3,
@@ -2325,7 +2484,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Gelo", "Psiquico"]
+        "types": ["Gelo", "Psíquico"]
     },
     "electabuzz": {
         "baseHP": 4,
@@ -2340,7 +2499,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Troca",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "magmar": {
         "baseHP": 4,
@@ -2400,7 +2559,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "gyarados": {
         "baseHP": 7,
@@ -2415,7 +2574,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Voador"]
+        "types": ["Água", "Voador"]
     },
     "lapras": {
         "baseHP": 6,
@@ -2430,7 +2589,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Gelo"]
+        "types": ["Água", "Gelo"]
     },
     "ditto": {
         "baseHP": 4,
@@ -2475,7 +2634,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "jolteon": {
         "baseHP": 4,
@@ -2490,7 +2649,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "flareon": {
         "baseHP": 4,
@@ -2535,7 +2694,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Pedra", "Agua"]
+        "types": ["Pedra", "Água"]
     },
     "omastar": {
         "baseHP": 4,
@@ -2550,7 +2709,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Pedra", "Agua"]
+        "types": ["Pedra", "Água"]
     },
     "kabuto": {
         "baseHP": 3,
@@ -2565,7 +2724,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Pedra", "Agua"]
+        "types": ["Pedra", "Água"]
     },
     "kabutops": {
         "baseHP": 4,
@@ -2580,7 +2739,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Pedra", "Agua"]
+        "types": ["Pedra", "Água"]
     },
     "aerodactyl": {
         "baseHP": 4,
@@ -2640,7 +2799,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Eletrico", "Voador"]
+        "types": ["Elétrico", "Voador"]
     },
     "moltres": {
         "baseHP": 4,
@@ -2670,7 +2829,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "dragonair": {
         "baseHP": 6,
@@ -2685,7 +2844,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Devagar",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "dragonite": {
         "baseHP": 6,
@@ -2700,7 +2859,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Dragao", "Voador"]
+        "types": ["Dragão", "Voador"]
     },
     "mewtwo": {
         "baseHP": 5,
@@ -2715,7 +2874,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "mew": {
         "baseHP": 5,
@@ -2730,7 +2889,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "chikorita": {
         "baseHP": 3,
@@ -2835,7 +2994,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "croconaw": {
         "baseHP": 4,
@@ -2850,7 +3009,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "feraligatr": {
         "baseHP": 5,
@@ -2865,7 +3024,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "sentret": {
         "baseHP": 3,
@@ -3015,7 +3174,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", "Eletrico"]
+        "types": ["Água", "Elétrico"]
     },
     "lanturn": {
         "baseHP": 6,
@@ -3030,7 +3189,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Eletrico"]
+        "types": ["Água", "Elétrico"]
     },
     "pichu": {
         "baseHP": 3,
@@ -3045,7 +3204,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Felicidade 4",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "cleffa": {
         "baseHP": 3,
@@ -3120,7 +3279,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "xatu": {
         "baseHP": 4,
@@ -3135,7 +3294,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "mareep": {
         "baseHP": 3,
@@ -3150,7 +3309,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "flaaffy": {
         "baseHP": 4,
@@ -3165,7 +3324,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "ampharos": {
         "baseHP": 5,
@@ -3180,7 +3339,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "bellossom": {
         "baseHP": 5,
@@ -3210,7 +3369,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", "Fada"]
+        "types": ["Água", "Fada"]
     },
     "azumarill": {
         "baseHP": 5,
@@ -3225,7 +3384,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Fada"]
+        "types": ["Água", "Fada"]
     },
     "sudowoodo": {
         "baseHP": 4,
@@ -3255,7 +3414,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "hoppip": {
         "baseHP": 3,
@@ -3375,7 +3534,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "quagsire": {
         "baseHP": 4,
@@ -3390,7 +3549,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "espeon": {
         "baseHP": 4,
@@ -3405,7 +3564,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "umbreon": {
         "baseHP": 4,
@@ -3450,7 +3609,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Psiquico"]
+        "types": ["Água", "Psíquico"]
     },
     "misdreavus": {
         "baseHP": 3,
@@ -3480,7 +3639,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "wobbuffet": {
         "baseHP": 9,
@@ -3495,7 +3654,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "girafarig": {
         "baseHP": 4,
@@ -3510,7 +3669,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Normal", "Psiquico"]
+        "types": ["Normal", "Psíquico"]
     },
     "pineco": {
         "baseHP": 3,
@@ -3540,7 +3699,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Inseto", "Aco"]
+        "types": ["Inseto", "Aço"]
     },
     "dunsparce": {
         "baseHP": 5,
@@ -3585,7 +3744,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Aco", "Solo"]
+        "types": ["Aço", "Solo"]
     },
     "snubbull": {
         "baseHP": 3,
@@ -3630,7 +3789,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Veneno"]
+        "types": ["Água", "Veneno"]
     },
     "scizor": {
         "baseHP": 4,
@@ -3645,7 +3804,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Inseto", "Aco"]
+        "types": ["Inseto", "Aço"]
     },
     "shuckle": {
         "baseHP": 4,
@@ -3795,7 +3954,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Pedra"]
+        "types": ["Água", "Pedra"]
     },
     "corsola-galar": {
         "baseHP": 3,
@@ -3825,7 +3984,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "octillery": {
         "baseHP": 4,
@@ -3840,7 +3999,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "delibird": {
         "baseHP": 4,
@@ -3870,7 +4029,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Agua", "Voador"]
+        "types": ["Água", "Voador"]
     },
     "skarmory": {
         "baseHP": 4,
@@ -3885,7 +4044,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Aco", "Voador"]
+        "types": ["Aço", "Voador"]
     },
     "houndour": {
         "baseHP": 3,
@@ -3930,7 +4089,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Dragao"]
+        "types": ["Água", "Dragão"]
     },
     "phanpy": {
         "baseHP": 3,
@@ -4050,7 +4209,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Gelo", "Psiquico"]
+        "types": ["Gelo", "Psíquico"]
     },
     "elekid": {
         "baseHP": 3,
@@ -4065,7 +4224,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "magby": {
         "baseHP": 3,
@@ -4125,7 +4284,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "entei": {
         "baseHP": 5,
@@ -4155,7 +4314,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "larvitar": {
         "baseHP": 3,
@@ -4215,7 +4374,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "ho-oh": {
         "baseHP": 5,
@@ -4245,7 +4404,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Grama"]
+        "types": ["Psíquico", "Grama"]
     },
     "treecko": {
         "baseHP": 3,
@@ -4350,7 +4509,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "marshtomp": {
         "baseHP": 4,
@@ -4365,7 +4524,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "swampert": {
         "baseHP": 6,
@@ -4380,7 +4539,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "poochyena": {
         "baseHP": 3,
@@ -4560,7 +4719,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", "Grama"]
+        "types": ["Água", "Grama"]
     },
     "lombre": {
         "baseHP": 4,
@@ -4575,7 +4734,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Item",
-        "types": ["Agua", "Grama"]
+        "types": ["Água", "Grama"]
     },
     "ludicolo": {
         "baseHP": 5,
@@ -4590,7 +4749,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Grama"]
+        "types": ["Água", "Grama"]
     },
     "seedot": {
         "baseHP": 3,
@@ -4680,7 +4839,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", "Voador"]
+        "types": ["Água", "Voador"]
     },
     "pelipper": {
         "baseHP": 4,
@@ -4695,7 +4854,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Voador"]
+        "types": ["Água", "Voador"]
     },
     "ralts": {
         "baseHP": 3,
@@ -4710,7 +4869,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "kirlia": {
         "baseHP": 4,
@@ -4725,7 +4884,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "gardevoir": {
         "baseHP": 5,
@@ -4740,7 +4899,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "surskit": {
         "baseHP": 3,
@@ -4755,7 +4914,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Rápido",
-        "types": ["Inseto", "Agua"]
+        "types": ["Inseto", "Água"]
     },
     "masquerain": {
         "baseHP": 4,
@@ -5055,7 +5214,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Aco", "Fada"]
+        "types": ["Aço", "Fada"]
     },
     "aron": {
         "baseHP": 3,
@@ -5070,7 +5229,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Aco", "Pedra"]
+        "types": ["Aço", "Pedra"]
     },
     "lairon": {
         "baseHP": 4,
@@ -5085,7 +5244,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Aco", "Pedra"]
+        "types": ["Aço", "Pedra"]
     },
     "aggron": {
         "baseHP": 5,
@@ -5100,7 +5259,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Aco", "Pedra"]
+        "types": ["Aço", "Pedra"]
     },
     "meditite": {
         "baseHP": 3,
@@ -5115,7 +5274,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Lutador", "Psiquico"]
+        "types": ["Lutador", "Psíquico"]
     },
     "medicham": {
         "baseHP": 4,
@@ -5130,7 +5289,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Lutador", "Psiquico"]
+        "types": ["Lutador", "Psíquico"]
     },
     "electrike": {
         "baseHP": 3,
@@ -5145,7 +5304,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "manectric": {
         "baseHP": 4,
@@ -5160,7 +5319,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "plusle": {
         "baseHP": 4,
@@ -5175,7 +5334,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "minun": {
         "baseHP": 4,
@@ -5190,7 +5349,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "volbeat": {
         "baseHP": 4,
@@ -5280,7 +5439,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "sharpedo": {
         "baseHP": 4,
@@ -5295,7 +5454,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Final",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "wailmer": {
         "baseHP": 5,
@@ -5310,7 +5469,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "wailord": {
         "baseHP": 11,
@@ -5325,7 +5484,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "numel": {
         "baseHP": 3,
@@ -5385,7 +5544,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "grumpig": {
         "baseHP": 4,
@@ -5400,7 +5559,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "spinda": {
         "baseHP": 4,
@@ -5445,7 +5604,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Solo", "Dragao"]
+        "types": ["Solo", "Dragão"]
     },
     "flygon": {
         "baseHP": 5,
@@ -5460,7 +5619,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Solo", "Dragao"]
+        "types": ["Solo", "Dragão"]
     },
     "cacnea": {
         "baseHP": 3,
@@ -5520,7 +5679,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Dragao", "Voador"]
+        "types": ["Dragão", "Voador"]
     },
     "zangoose": {
         "baseHP": 4,
@@ -5565,7 +5724,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Pedra", "Psiquico"]
+        "types": ["Pedra", "Psíquico"]
     },
     "solrock": {
         "baseHP": 4,
@@ -5580,7 +5739,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Pedra", "Psiquico"]
+        "types": ["Pedra", "Psíquico"]
     },
     "barboach": {
         "baseHP": 3,
@@ -5595,7 +5754,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "whiscash": {
         "baseHP": 5,
@@ -5610,7 +5769,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "corphish": {
         "baseHP": 3,
@@ -5625,7 +5784,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "crawdaunt": {
         "baseHP": 4,
@@ -5640,7 +5799,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "baltoy": {
         "baseHP": 3,
@@ -5655,7 +5814,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Solo", "Psiquico"]
+        "types": ["Solo", "Psíquico"]
     },
     "claydol": {
         "baseHP": 4,
@@ -5670,7 +5829,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Solo", "Psiquico"]
+        "types": ["Solo", "Psíquico"]
     },
     "lileep": {
         "baseHP": 3,
@@ -5745,7 +5904,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Esotérico",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "milotic": {
         "baseHP": 7,
@@ -5760,7 +5919,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "castform": {
         "baseHP": 4,
@@ -5880,7 +6039,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "absol": {
         "baseHP": 4,
@@ -5910,7 +6069,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "snorunt": {
         "baseHP": 3,
@@ -5955,7 +6114,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Gelo", "Agua"]
+        "types": ["Gelo", "Água"]
     },
     "sealeo": {
         "baseHP": 4,
@@ -5970,7 +6129,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Gelo", "Agua"]
+        "types": ["Gelo", "Água"]
     },
     "walrein": {
         "baseHP": 6,
@@ -5985,7 +6144,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Gelo", "Agua"]
+        "types": ["Gelo", "Água"]
     },
     "clamperl": {
         "baseHP": 3,
@@ -6000,7 +6159,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Troca",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "huntail": {
         "baseHP": 4,
@@ -6015,7 +6174,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "gorebyss": {
         "baseHP": 4,
@@ -6030,7 +6189,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "relicanth": {
         "baseHP": 5,
@@ -6045,7 +6204,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Pedra"]
+        "types": ["Água", "Pedra"]
     },
     "luvdisc": {
         "baseHP": 4,
@@ -6060,7 +6219,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "bagon": {
         "baseHP": 3,
@@ -6075,7 +6234,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "shelgon": {
         "baseHP": 4,
@@ -6090,7 +6249,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "salamence": {
         "baseHP": 5,
@@ -6105,7 +6264,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Dragao", "Voador"]
+        "types": ["Dragão", "Voador"]
     },
     "beldum": {
         "baseHP": 3,
@@ -6120,7 +6279,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Aco", "Psiquico"]
+        "types": ["Aço", "Psíquico"]
     },
     "metang": {
         "baseHP": 4,
@@ -6135,7 +6294,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Devagar",
-        "types": ["Aco", "Psiquico"]
+        "types": ["Aço", "Psíquico"]
     },
     "metagross": {
         "baseHP": 5,
@@ -6150,7 +6309,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Aco", "Psiquico"]
+        "types": ["Aço", "Psíquico"]
     },
     "regirock": {
         "baseHP": 4,
@@ -6195,7 +6354,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 8,
         "maxINS": 8,
         "evoTime": "???",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "latias": {
         "baseHP": 4,
@@ -6210,7 +6369,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Dragao", "Psiquico"]
+        "types": ["Dragão", "Psíquico"]
     },
     "latios": {
         "baseHP": 4,
@@ -6225,7 +6384,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Dragao", "Psiquico"]
+        "types": ["Dragão", "Psíquico"]
     },
     "kyogre": {
         "baseHP": 6,
@@ -6240,7 +6399,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "groudon": {
         "baseHP": 5,
@@ -6270,7 +6429,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Dragao", "Voador"]
+        "types": ["Dragão", "Voador"]
     },
     "jirachi": {
         "baseHP": 5,
@@ -6285,7 +6444,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Aco", "Psiquico"]
+        "types": ["Aço", "Psíquico"]
     },
     "deoxys-normal": {
         "baseHP": 4,
@@ -6300,7 +6459,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 4,
         "maxINS": 4,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "deoxys-attack": {
         "baseHP": 4,
@@ -6315,7 +6474,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 2,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "deoxys-defense": {
         "baseHP": 4,
@@ -6330,7 +6489,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 9,
         "maxINS": 9,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "deoxys-speed": {
         "baseHP": 4,
@@ -6345,7 +6504,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "turtwig": {
         "baseHP": 3,
@@ -6450,7 +6609,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "prinplup": {
         "baseHP": 4,
@@ -6465,7 +6624,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "empoleon": {
         "baseHP": 5,
@@ -6480,7 +6639,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Aco"]
+        "types": ["Água", "Aço"]
     },
     "starly": {
         "baseHP": 3,
@@ -6555,7 +6714,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Normal", "Agua"]
+        "types": ["Normal", "Água"]
     },
     "kricketot": {
         "baseHP": 3,
@@ -6600,7 +6759,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "luxio": {
         "baseHP": 4,
@@ -6615,7 +6774,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "luxray": {
         "baseHP": 5,
@@ -6630,7 +6789,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "budew": {
         "baseHP": 3,
@@ -6705,7 +6864,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Pedra", "Aco"]
+        "types": ["Pedra", "Aço"]
     },
     "bastiodon": {
         "baseHP": 4,
@@ -6720,7 +6879,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Pedra", "Aco"]
+        "types": ["Pedra", "Aço"]
     },
     "burmy": {
         "baseHP": 3,
@@ -6780,7 +6939,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Inseto", "Aco"]
+        "types": ["Inseto", "Aço"]
     },
     "mothim": {
         "baseHP": 4,
@@ -6840,7 +6999,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "buizel": {
         "baseHP": 3,
@@ -6855,7 +7014,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "floatzel": {
         "baseHP": 4,
@@ -6870,7 +7029,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "cherubi": {
         "baseHP": 3,
@@ -6915,7 +7074,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "gastrodon": {
         "baseHP": 6,
@@ -6930,7 +7089,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "ambipom": {
         "baseHP": 4,
@@ -7080,7 +7239,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Felicidade 4",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "stunky": {
         "baseHP": 3,
@@ -7125,7 +7284,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Aco", "Psiquico"]
+        "types": ["Aço", "Psíquico"]
     },
     "bronzong": {
         "baseHP": 4,
@@ -7140,7 +7299,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Aco", "Psiquico"]
+        "types": ["Aço", "Psíquico"]
     },
     "bonsly": {
         "baseHP": 3,
@@ -7170,7 +7329,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Esotérico",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "happiny": {
         "baseHP": 4,
@@ -7230,7 +7389,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "gabite": {
         "baseHP": 4,
@@ -7245,7 +7404,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "garchomp": {
         "baseHP": 6,
@@ -7260,7 +7419,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "munchlax": {
         "baseHP": 5,
@@ -7305,7 +7464,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Lutador", "Aco"]
+        "types": ["Lutador", "Aço"]
     },
     "hippopotas": {
         "baseHP": 3,
@@ -7425,7 +7584,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "lumineon": {
         "baseHP": 4,
@@ -7440,7 +7599,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "mantyke": {
         "baseHP": 3,
@@ -7455,7 +7614,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Esotérico",
-        "types": ["Agua", "Voador"]
+        "types": ["Água", "Voador"]
     },
     "snover": {
         "baseHP": 3,
@@ -7515,7 +7674,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Aco"]
+        "types": ["Elétrico", "Aço"]
     },
     "lickilicky": {
         "baseHP": 5,
@@ -7575,7 +7734,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "magmortar": {
         "baseHP": 5,
@@ -7710,7 +7869,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", "Lutador"]
+        "types": ["Psíquico", "Lutador"]
     },
     "probopass": {
         "baseHP": 4,
@@ -7725,7 +7884,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 4,
         "maxINS": 8,
         "evoTime": "Final",
-        "types": ["Pedra", "Aco"]
+        "types": ["Pedra", "Aço"]
     },
     "dusknoir": {
         "baseHP": 4,
@@ -7770,7 +7929,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Fantasma"]
+        "types": ["Elétrico", "Fantasma"]
     },
     "rotom-heat": {
         "baseHP": 4,
@@ -7785,7 +7944,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Eletrico", "Fogo"]
+        "types": ["Elétrico", "Fogo"]
     },
     "rotom-wash": {
         "baseHP": 4,
@@ -7800,7 +7959,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Eletrico", "Agua"]
+        "types": ["Elétrico", "Água"]
     },
     "rotom-frost": {
         "baseHP": 4,
@@ -7815,7 +7974,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Eletrico", "Gelo"]
+        "types": ["Elétrico", "Gelo"]
     },
     "rotom-fan": {
         "baseHP": 4,
@@ -7830,7 +7989,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Eletrico", "Voador"]
+        "types": ["Elétrico", "Voador"]
     },
     "rotom-mow": {
         "baseHP": 4,
@@ -7845,7 +8004,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Eletrico", "Grama"]
+        "types": ["Elétrico", "Grama"]
     },
     "uxie": {
         "baseHP": 4,
@@ -7860,7 +8019,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "mesprit": {
         "baseHP": 4,
@@ -7875,7 +8034,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "azelf": {
         "baseHP": 4,
@@ -7890,7 +8049,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "dialga": {
         "baseHP": 7,
@@ -7905,7 +8064,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Aco", "Dragao"]
+        "types": ["Aço", "Dragão"]
     },
     "palkia": {
         "baseHP": 5,
@@ -7920,7 +8079,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Agua", "Dragao"]
+        "types": ["Água", "Dragão"]
     },
     "heatran": {
         "baseHP": 4,
@@ -7935,7 +8094,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Fogo", "Aco"]
+        "types": ["Fogo", "Aço"]
     },
     "regigigas": {
         "baseHP": 6,
@@ -7965,7 +8124,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Fantasma", "Dragao"]
+        "types": ["Fantasma", "Dragão"]
     },
     "giratina-origin": {
         "baseHP": 8,
@@ -7980,7 +8139,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Fantasma", "Dragao"]
+        "types": ["Fantasma", "Dragão"]
     },
     "cresselia": {
         "baseHP": 6,
@@ -7995,7 +8154,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "phione": {
         "baseHP": 4,
@@ -8010,7 +8169,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "manaphy": {
         "baseHP": 5,
@@ -8025,7 +8184,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "darkrai": {
         "baseHP": 4,
@@ -8100,7 +8259,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Fogo"]
+        "types": ["Psíquico", "Fogo"]
     },
     "snivy": {
         "baseHP": 3,
@@ -8205,7 +8364,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "dewott": {
         "baseHP": 4,
@@ -8220,7 +8379,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "samurott": {
         "baseHP": 5,
@@ -8235,7 +8394,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "patrat": {
         "baseHP": 3,
@@ -8415,7 +8574,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "simipour": {
         "baseHP": 4,
@@ -8430,7 +8589,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "munna": {
         "baseHP": 3,
@@ -8445,7 +8604,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "musharna": {
         "baseHP": 6,
@@ -8460,7 +8619,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "pidove": {
         "baseHP": 3,
@@ -8520,7 +8679,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "zebstrika": {
         "baseHP": 4,
@@ -8535,7 +8694,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "roggenrola": {
         "baseHP": 3,
@@ -8595,7 +8754,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Felicidade 4",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "swoobat": {
         "baseHP": 4,
@@ -8610,7 +8769,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "drilbur": {
         "baseHP": 3,
@@ -8640,7 +8799,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Solo", "Aco"]
+        "types": ["Solo", "Aço"]
     },
     "audino": {
         "baseHP": 5,
@@ -8715,7 +8874,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "palpitoad": {
         "baseHP": 4,
@@ -8730,7 +8889,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "seismitoad": {
         "baseHP": 6,
@@ -8745,7 +8904,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "throh": {
         "baseHP": 6,
@@ -8940,7 +9099,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "sandile": {
         "baseHP": 3,
@@ -9060,7 +9219,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Fogo", "Psiquico"]
+        "types": ["Fogo", "Psíquico"]
     },
     "darmanitan-galarzen": {
         "baseHP": 4,
@@ -9165,7 +9324,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "yamask": {
         "baseHP": 3,
@@ -9225,9 +9384,9 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", "Pedra"]
+        "types": ["Água", "Pedra"]
     },
-    "carracosta": {
+    "carrAçosta": {
         "baseHP": 4,
         "baseSTR": 3,
         "maxSTR": 6,
@@ -9240,7 +9399,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Pedra"]
+        "types": ["Água", "Pedra"]
     },
     "archen": {
         "baseHP": 3,
@@ -9375,7 +9534,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "gothorita": {
         "baseHP": 4,
@@ -9390,7 +9549,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "gothitelle": {
         "baseHP": 5,
@@ -9405,7 +9564,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "solosis": {
         "baseHP": 3,
@@ -9420,7 +9579,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "duosion": {
         "baseHP": 4,
@@ -9435,7 +9594,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "reuniclus": {
         "baseHP": 6,
@@ -9450,7 +9609,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "ducklett": {
         "baseHP": 3,
@@ -9465,7 +9624,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", "Voador"]
+        "types": ["Água", "Voador"]
     },
     "swanna": {
         "baseHP": 4,
@@ -9480,7 +9639,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Voador"]
+        "types": ["Água", "Voador"]
     },
     "vanillite": {
         "baseHP": 3,
@@ -9570,7 +9729,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Eletrico", "Voador"]
+        "types": ["Elétrico", "Voador"]
     },
     "karrablast": {
         "baseHP": 3,
@@ -9600,7 +9759,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Inseto", "Aco"]
+        "types": ["Inseto", "Aço"]
     },
     "foongus": {
         "baseHP": 3,
@@ -9645,7 +9804,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Agua", "Fantasma"]
+        "types": ["Água", "Fantasma"]
     },
     "jellicent": {
         "baseHP": 5,
@@ -9660,7 +9819,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Fantasma"]
+        "types": ["Água", "Fantasma"]
     },
     "alomomola": {
         "baseHP": 8,
@@ -9675,7 +9834,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "joltik": {
         "baseHP": 3,
@@ -9690,7 +9849,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Inseto", "Eletrico"]
+        "types": ["Inseto", "Elétrico"]
     },
     "galvantula": {
         "baseHP": 4,
@@ -9705,7 +9864,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Inseto", "Eletrico"]
+        "types": ["Inseto", "Elétrico"]
     },
     "ferroseed": {
         "baseHP": 3,
@@ -9720,7 +9879,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Grama", "Aco"]
+        "types": ["Grama", "Aço"]
     },
     "ferrothorn": {
         "baseHP": 4,
@@ -9735,7 +9894,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Grama", "Aco"]
+        "types": ["Grama", "Aço"]
     },
     "klink": {
         "baseHP": 3,
@@ -9750,7 +9909,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "klang": {
         "baseHP": 4,
@@ -9765,7 +9924,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "klinklang": {
         "baseHP": 5,
@@ -9780,7 +9939,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "tynamo": {
         "baseHP": 3,
@@ -9795,7 +9954,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "eelektrik": {
         "baseHP": 4,
@@ -9810,7 +9969,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Item",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "eelektross": {
         "baseHP": 5,
@@ -9825,7 +9984,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "elgyem": {
         "baseHP": 3,
@@ -9840,7 +9999,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "beheeyem": {
         "baseHP": 4,
@@ -9855,7 +10014,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "litwick": {
         "baseHP": 3,
@@ -9915,7 +10074,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "fraxure": {
         "baseHP": 4,
@@ -9930,7 +10089,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "haxorus": {
         "baseHP": 5,
@@ -9945,7 +10104,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "cubchoo": {
         "baseHP": 3,
@@ -10035,7 +10194,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Solo", "Eletrico"]
+        "types": ["Solo", "Elétrico"]
     },
     "stunfisk-galar": {
         "baseHP": 4,
@@ -10050,7 +10209,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Solo", "Aco"]
+        "types": ["Solo", "Aço"]
     },
     "mienfoo": {
         "baseHP": 3,
@@ -10095,7 +10254,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "golett": {
         "baseHP": 3,
@@ -10140,7 +10299,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Sinistro", "Aco"]
+        "types": ["Sinistro", "Aço"]
     },
     "bisharp": {
         "baseHP": 4,
@@ -10155,7 +10314,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Sinistro", "Aco"]
+        "types": ["Sinistro", "Aço"]
     },
     "bouffalant": {
         "baseHP": 4,
@@ -10260,7 +10419,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Inseto", "Aco"]
+        "types": ["Inseto", "Aço"]
     },
     "deino": {
         "baseHP": 3,
@@ -10275,7 +10434,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Sinistro", "Dragao"]
+        "types": ["Sinistro", "Dragão"]
     },
     "zweilous": {
         "baseHP": 4,
@@ -10290,7 +10449,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Devagar",
-        "types": ["Sinistro", "Dragao"]
+        "types": ["Sinistro", "Dragão"]
     },
     "hydreigon": {
         "baseHP": 5,
@@ -10305,7 +10464,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Sinistro", "Dragao"]
+        "types": ["Sinistro", "Dragão"]
     },
     "larvesta": {
         "baseHP": 3,
@@ -10350,7 +10509,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Aco", "Lutador"]
+        "types": ["Aço", "Lutador"]
     },
     "terrakion": {
         "baseHP": 4,
@@ -10425,7 +10584,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Eletrico", "Voador"]
+        "types": ["Elétrico", "Voador"]
     },
     "thundurus-therian": {
         "baseHP": 4,
@@ -10440,7 +10599,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Eletrico", "Voador"]
+        "types": ["Elétrico", "Voador"]
     },
     "reshiram": {
         "baseHP": 5,
@@ -10455,7 +10614,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Dragao", "Fogo"]
+        "types": ["Dragão", "Fogo"]
     },
     "zekrom": {
         "baseHP": 5,
@@ -10470,7 +10629,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Dragao", "Eletrico"]
+        "types": ["Dragão", "Elétrico"]
     },
     "landorus": {
         "baseHP": 4,
@@ -10515,7 +10674,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Dragao", "Gelo"]
+        "types": ["Dragão", "Gelo"]
     },
     "kyurem-white": {
         "baseHP": 6,
@@ -10530,7 +10689,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Dragao", "Gelo"]
+        "types": ["Dragão", "Gelo"]
     },
     "kyurem-black": {
         "baseHP": 6,
@@ -10545,7 +10704,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Dragao", "Gelo"]
+        "types": ["Dragão", "Gelo"]
     },
     "keldeo": {
         "baseHP": 4,
@@ -10560,7 +10719,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Agua", "Lutador"]
+        "types": ["Água", "Lutador"]
     },
     "keldeo-resolute": {
         "baseHP": 4,
@@ -10575,7 +10734,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Agua", "Lutador"]
+        "types": ["Água", "Lutador"]
     },
     "meloetta": {
         "baseHP": 5,
@@ -10590,7 +10749,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Normal", "Psiquico"]
+        "types": ["Normal", "Psíquico"]
     },
     "meloetta-pirouette": {
         "baseHP": 5,
@@ -10620,7 +10779,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Inseto", "Aco"]
+        "types": ["Inseto", "Aço"]
     },
     "chespin": {
         "baseHP": 3,
@@ -10710,7 +10869,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Fogo", "Psiquico"]
+        "types": ["Fogo", "Psíquico"]
     },
     "froakie": {
         "baseHP": 3,
@@ -10725,7 +10884,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "frogadier": {
         "baseHP": 4,
@@ -10740,7 +10899,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "greninja": {
         "baseHP": 5,
@@ -10755,7 +10914,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "greninja-ash": {
         "baseHP": 5,
@@ -10770,7 +10929,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "bunnelby": {
         "baseHP": 3,
@@ -11055,7 +11214,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "meowstic": {
         "baseHP": 4,
@@ -11070,7 +11229,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "honedge": {
         "baseHP": 3,
@@ -11085,7 +11244,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Aco", "Fantasma"]
+        "types": ["Aço", "Fantasma"]
     },
     "doublade": {
         "baseHP": 4,
@@ -11100,7 +11259,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Aco", "Fantasma"]
+        "types": ["Aço", "Fantasma"]
     },
     "aegislash-shield": {
         "baseHP": 5,
@@ -11115,7 +11274,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 4,
         "maxINS": 8,
         "evoTime": "Final",
-        "types": ["Aco", "Fantasma"]
+        "types": ["Aço", "Fantasma"]
     },
     "aegislash-blade": {
         "baseHP": 5,
@@ -11130,7 +11289,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Aco", "Fantasma"]
+        "types": ["Aço", "Fantasma"]
     },
     "spritzee": {
         "baseHP": 3,
@@ -11205,7 +11364,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Sinistro", "Psiquico"]
+        "types": ["Sinistro", "Psíquico"]
     },
     "malamar": {
         "baseHP": 4,
@@ -11220,7 +11379,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Sinistro", "Psiquico"]
+        "types": ["Sinistro", "Psíquico"]
     },
     "binacle": {
         "baseHP": 3,
@@ -11235,7 +11394,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Pedra", "Agua"]
+        "types": ["Pedra", "Água"]
     },
     "barbaracle": {
         "baseHP": 4,
@@ -11250,7 +11409,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Pedra", "Agua"]
+        "types": ["Pedra", "Água"]
     },
     "skrelp": {
         "baseHP": 3,
@@ -11265,7 +11424,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Veneno", "Agua"]
+        "types": ["Veneno", "Água"]
     },
     "dragalge": {
         "baseHP": 4,
@@ -11280,7 +11439,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Veneno", "Dragao"]
+        "types": ["Veneno", "Dragão"]
     },
     "clauncher": {
         "baseHP": 3,
@@ -11295,7 +11454,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "clawitzer": {
         "baseHP": 4,
@@ -11310,7 +11469,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "helioptile": {
         "baseHP": 3,
@@ -11325,7 +11484,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Item",
-        "types": ["Eletrico", "Normal"]
+        "types": ["Elétrico", "Normal"]
     },
     "heliolisk": {
         "baseHP": 4,
@@ -11340,7 +11499,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Normal"]
+        "types": ["Elétrico", "Normal"]
     },
     "tyrunt": {
         "baseHP": 3,
@@ -11355,7 +11514,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Pedra", "Dragao"]
+        "types": ["Pedra", "Dragão"]
     },
     "tyrantrum": {
         "baseHP": 4,
@@ -11370,7 +11529,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Pedra", "Dragao"]
+        "types": ["Pedra", "Dragão"]
     },
     "amaura": {
         "baseHP": 3,
@@ -11445,7 +11604,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Eletrico", "Fada"]
+        "types": ["Elétrico", "Fada"]
     },
     "carbink": {
         "baseHP": 4,
@@ -11475,7 +11634,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "sliggoo": {
         "baseHP": 4,
@@ -11490,7 +11649,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Médio",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "goodra": {
         "baseHP": 5,
@@ -11505,7 +11664,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "klefki": {
         "baseHP": 4,
@@ -11520,7 +11679,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Aco", "Fada"]
+        "types": ["Aço", "Fada"]
     },
     "phantump": {
         "baseHP": 3,
@@ -11625,7 +11784,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Voador", "Dragao"]
+        "types": ["Voador", "Dragão"]
     },
     "noivern": {
         "baseHP": 4,
@@ -11640,7 +11799,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Voador", "Dragao"]
+        "types": ["Voador", "Dragão"]
     },
     "xerneas": {
         "baseHP": 6,
@@ -11685,7 +11844,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 1,
         "evoTime": "???",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "zygarde-10%": {
         "baseHP": 4,
@@ -11700,7 +11859,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "zygarde-50%": {
         "baseHP": 5,
@@ -11715,7 +11874,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "zygarde-100%": {
         "baseHP": 11,
@@ -11730,7 +11889,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "diancie": {
         "baseHP": 4,
@@ -11760,7 +11919,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Psiquico", "Fantasma"]
+        "types": ["Psíquico", "Fantasma"]
     },
     "hoopa-unbound": {
         "baseHP": 7,
@@ -11775,7 +11934,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Psiquico", "Sinistro"]
+        "types": ["Psíquico", "Sinistro"]
     },
     "volcanion": {
         "baseHP": 4,
@@ -11790,7 +11949,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Fogo", "Agua"]
+        "types": ["Fogo", "Água"]
     },
     "rowlet": {
         "baseHP": 3,
@@ -11895,7 +12054,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "brionne": {
         "baseHP": 4,
@@ -11910,7 +12069,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "primarina": {
         "baseHP": 5,
@@ -11925,7 +12084,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Agua", "Fada"]
+        "types": ["Água", "Fada"]
     },
     "pikipek": {
         "baseHP": 3,
@@ -12030,7 +12189,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Inseto", "Eletrico"]
+        "types": ["Inseto", "Elétrico"]
     },
     "vikavolt": {
         "baseHP": 5,
@@ -12045,7 +12204,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Inseto", "Eletrico"]
+        "types": ["Inseto", "Elétrico"]
     },
     "crabrawler": {
         "baseHP": 3,
@@ -12105,7 +12264,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Voador"]
+        "types": ["Elétrico", "Voador"]
     },
     "oricorio-pau": {
         "baseHP": 4,
@@ -12120,7 +12279,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "oricorio-sensu": {
         "baseHP": 4,
@@ -12240,7 +12399,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "wishiwashi-school": {
         "baseHP": 8,
@@ -12255,7 +12414,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "mareanie": {
         "baseHP": 3,
@@ -12270,7 +12429,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Veneno", "Agua"]
+        "types": ["Veneno", "Água"]
     },
     "toxapex": {
         "baseHP": 4,
@@ -12285,7 +12444,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Veneno", "Agua"]
+        "types": ["Veneno", "Água"]
     },
     "mudbray": {
         "baseHP": 3,
@@ -12330,7 +12489,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Agua", "Inseto"]
+        "types": ["Água", "Inseto"]
     },
     "araquanid": {
         "baseHP": 4,
@@ -12345,7 +12504,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Agua", "Inseto"]
+        "types": ["Água", "Inseto"]
     },
     "fomantis": {
         "baseHP": 3,
@@ -12540,7 +12699,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Normal", "Psiquico"]
+        "types": ["Normal", "Psíquico"]
     },
     "passimian": {
         "baseHP": 5,
@@ -12570,7 +12729,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Inseto", "Agua"]
+        "types": ["Inseto", "Água"]
     },
     "golisopod": {
         "baseHP": 4,
@@ -12585,7 +12744,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Inseto", "Agua"]
+        "types": ["Inseto", "Água"]
     },
     "sandygast": {
         "baseHP": 3,
@@ -12630,7 +12789,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "type: null": {
         "baseHP": 3,
@@ -12720,7 +12879,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Fogo", "Dragao"]
+        "types": ["Fogo", "Dragão"]
     },
     "togedemaru": {
         "baseHP": 4,
@@ -12735,7 +12894,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Aco"]
+        "types": ["Elétrico", "Aço"]
     },
     "mimikyu": {
         "baseHP": 4,
@@ -12765,7 +12924,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Psiquico"]
+        "types": ["Água", "Psíquico"]
     },
     "drampa": {
         "baseHP": 4,
@@ -12780,7 +12939,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Normal", "Dragao"]
+        "types": ["Normal", "Dragão"]
     },
     "dhelmise": {
         "baseHP": 5,
@@ -12810,7 +12969,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "hakamo-o": {
         "baseHP": 4,
@@ -12825,7 +12984,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Devagar",
-        "types": ["Dragao", "Lutador"]
+        "types": ["Dragão", "Lutador"]
     },
     "kommo-o": {
         "baseHP": 5,
@@ -12840,7 +12999,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Dragao", "Lutador"]
+        "types": ["Dragão", "Lutador"]
     },
     "tapu koko": {
         "baseHP": 4,
@@ -12855,7 +13014,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Eletrico", "Fada"]
+        "types": ["Elétrico", "Fada"]
     },
     "tapu lele": {
         "baseHP": 4,
@@ -12870,7 +13029,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "tapu bulu": {
         "baseHP": 4,
@@ -12900,7 +13059,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Agua", "Fada"]
+        "types": ["Água", "Fada"]
     },
     "cosmog": {
         "baseHP": 3,
@@ -12915,7 +13074,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "cosmoem": {
         "baseHP": 4,
@@ -12930,7 +13089,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "solgaleo": {
         "baseHP": 7,
@@ -12945,7 +13104,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Psiquico", "Aco"]
+        "types": ["Psíquico", "Aço"]
     },
     "lunala": {
         "baseHP": 7,
@@ -12960,7 +13119,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Fantasma"]
+        "types": ["Psíquico", "Fantasma"]
     },
     "nihilego": {
         "baseHP": 5,
@@ -13020,7 +13179,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "celesteela": {
         "baseHP": 9,
@@ -13035,7 +13194,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Aco", "Voador"]
+        "types": ["Aço", "Voador"]
     },
     "kartana": {
         "baseHP": 4,
@@ -13050,7 +13209,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 3,
         "evoTime": "???",
-        "types": ["Grama", "Aco"]
+        "types": ["Grama", "Aço"]
     },
     "guzzlord": {
         "baseHP": 11,
@@ -13065,7 +13224,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 4,
         "maxINS": 4,
         "evoTime": "???",
-        "types": ["Sinistro", "Dragao"]
+        "types": ["Sinistro", "Dragão"]
     },
     "necrozma": {
         "baseHP": 3,
@@ -13080,7 +13239,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "necrozma-dusk": {
         "baseHP": 4,
@@ -13095,7 +13254,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Aco"]
+        "types": ["Psíquico", "Aço"]
     },
     "necrozma-dawn": {
         "baseHP": 4,
@@ -13110,7 +13269,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "???",
-        "types": ["Psiquico", "Fantasma"]
+        "types": ["Psíquico", "Fantasma"]
     },
     "necrozma-ultra": {
         "baseHP": 5,
@@ -13125,7 +13284,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Dragao"]
+        "types": ["Psíquico", "Dragão"]
     },
     "magearna": {
         "baseHP": 4,
@@ -13140,7 +13299,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Aco", "Fada"]
+        "types": ["Aço", "Fada"]
     },
     "marshadow": {
         "baseHP": 4,
@@ -13185,7 +13344,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Veneno", "Dragao"]
+        "types": ["Veneno", "Dragão"]
     },
     "stakataka": {
         "baseHP": 6,
@@ -13200,7 +13359,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Pedra", "Aco"]
+        "types": ["Pedra", "Aço"]
     },
     "blacephalon": {
         "baseHP": 4,
@@ -13230,7 +13389,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "meltan": {
         "baseHP": 3,
@@ -13245,7 +13404,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "???",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "melmetal": {
         "baseHP": 6,
@@ -13260,7 +13419,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "???",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "grookey": {
         "baseHP": 3,
@@ -13365,7 +13524,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "drizzile": {
         "baseHP": 4,
@@ -13380,7 +13539,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "inteleon": {
         "baseHP": 5,
@@ -13395,7 +13554,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "skwovet": {
         "baseHP": 3,
@@ -13470,7 +13629,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Voador", "Aco"]
+        "types": ["Voador", "Aço"]
     },
     "blipbug": {
         "baseHP": 3,
@@ -13500,7 +13659,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Inseto", "Psiquico"]
+        "types": ["Inseto", "Psíquico"]
     },
     "orbeetle": {
         "baseHP": 5,
@@ -13515,7 +13674,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Final",
-        "types": ["Inseto", "Psiquico"]
+        "types": ["Inseto", "Psíquico"]
     },
     "nickit": {
         "baseHP": 3,
@@ -13620,7 +13779,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "drednaw": {
         "baseHP": 4,
@@ -13635,7 +13794,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Pedra"]
+        "types": ["Água", "Pedra"]
     },
     "yamper": {
         "baseHP": 3,
@@ -13650,7 +13809,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "boltund": {
         "baseHP": 4,
@@ -13665,7 +13824,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "rolycoly": {
         "baseHP": 3,
@@ -13725,7 +13884,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Grama", "Dragao"]
+        "types": ["Grama", "Dragão"]
     },
     "flapple": {
         "baseHP": 4,
@@ -13740,7 +13899,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Grama", "Dragao"]
+        "types": ["Grama", "Dragão"]
     },
     "appletun": {
         "baseHP": 5,
@@ -13755,7 +13914,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Grama", "Dragao"]
+        "types": ["Grama", "Dragão"]
     },
     "silicobra": {
         "baseHP": 4,
@@ -13772,7 +13931,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Devagar",
         "types": ["Solo", ""]
     },
-    "sandaconda": {
+    "sandAçonda": {
         "baseHP": 6,
         "baseSTR": 3,
         "maxSTR": 6,
@@ -13800,7 +13959,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Voador", "Agua"]
+        "types": ["Voador", "Água"]
     },
     "arrokuda": {
         "baseHP": 3,
@@ -13815,7 +13974,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Médio",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "barraskewda": {
         "baseHP": 4,
@@ -13830,7 +13989,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "toxel": {
         "baseHP": 3,
@@ -13845,7 +14004,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Eletrico", "Veneno"]
+        "types": ["Elétrico", "Veneno"]
     },
     "toxtricity": {
         "baseHP": 4,
@@ -13860,7 +14019,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Veneno"]
+        "types": ["Elétrico", "Veneno"]
     },
     "sizzlipede": {
         "baseHP": 3,
@@ -13965,7 +14124,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "hattrem": {
         "baseHP": 4,
@@ -13980,7 +14139,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Médio",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "hatterene": {
         "baseHP": 5,
@@ -13995,7 +14154,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "impidimp": {
         "baseHP": 3,
@@ -14070,7 +14229,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "cursola": {
         "baseHP": 4,
@@ -14115,7 +14274,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Gelo", "Psiquico"]
+        "types": ["Gelo", "Psíquico"]
     },
     "runerigus": {
         "baseHP": 4,
@@ -14190,7 +14349,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "snom": {
         "baseHP": 3,
@@ -14280,7 +14439,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Psiquico", "Normal"]
+        "types": ["Psíquico", "Normal"]
     },
     "morpeko": {
         "baseHP": 4,
@@ -14295,7 +14454,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Eletrico", "Sinistro"]
+        "types": ["Elétrico", "Sinistro"]
     },
     "cufant": {
         "baseHP": 3,
@@ -14310,7 +14469,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Médio",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "copperajah": {
         "baseHP": 6,
@@ -14325,9 +14484,9 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
-    "dracozolt": {
+    "drAçozolt": {
         "baseHP": 4,
         "baseSTR": 3,
         "maxSTR": 6,
@@ -14340,7 +14499,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Dragao"]
+        "types": ["Elétrico", "Dragão"]
     },
     "arctozolt": {
         "baseHP": 5,
@@ -14355,9 +14514,9 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Gelo"]
+        "types": ["Elétrico", "Gelo"]
     },
-    "dracovish": {
+    "drAçovish": {
         "baseHP": 5,
         "baseSTR": 2,
         "maxSTR": 5,
@@ -14370,7 +14529,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Dragao"]
+        "types": ["Água", "Dragão"]
     },
     "arctovish": {
         "baseHP": 4,
@@ -14385,7 +14544,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Gelo"]
+        "types": ["Água", "Gelo"]
     },
     "duraludon": {
         "baseHP": 4,
@@ -14400,7 +14559,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Aco", "Dragao"]
+        "types": ["Aço", "Dragão"]
     },
     "dreepy": {
         "baseHP": 3,
@@ -14415,7 +14574,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Devagar",
-        "types": ["Dragao", "Fantasma"]
+        "types": ["Dragão", "Fantasma"]
     },
     "drakloak": {
         "baseHP": 4,
@@ -14430,7 +14589,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar",
-        "types": ["Dragao", "Fantasma"]
+        "types": ["Dragão", "Fantasma"]
     },
     "dragapult": {
         "baseHP": 6,
@@ -14445,7 +14604,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Dragao", "Fantasma"]
+        "types": ["Dragão", "Fantasma"]
     },
     "zacian": {
         "baseHP": 5,
@@ -14475,7 +14634,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Fada", "Aco"]
+        "types": ["Fada", "Aço"]
     },
     "zamazenta": {
         "baseHP": 5,
@@ -14505,7 +14664,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 8,
         "maxINS": 8,
         "evoTime": "???",
-        "types": ["Lutador", "Aco"]
+        "types": ["Lutador", "Aço"]
     },
     "eternatus": {
         "baseHP": 10,
@@ -14520,7 +14679,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Veneno", "Dragao"]
+        "types": ["Veneno", "Dragão"]
     },
     "venusaur-mega": {
         "baseHP": 6,
@@ -14550,7 +14709,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Mega",
-        "types": ["Fogo", "Dragao"]
+        "types": ["Fogo", "Dragão"]
     },
     "charizard-y": {
         "baseHP": 6,
@@ -14580,7 +14739,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "alakazam-mega": {
         "baseHP": 6,
@@ -14595,7 +14754,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "gengar-mega": {
         "baseHP": 6,
@@ -14655,7 +14814,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Mega",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "aerodactyl-mega": {
         "baseHP": 5,
@@ -14685,7 +14844,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Psiquico", "Lutador"]
+        "types": ["Psíquico", "Lutador"]
     },
     "mewtwo-y": {
         "baseHP": 6,
@@ -14700,7 +14859,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "Mega",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "ampharos-mega": {
         "baseHP": 6,
@@ -14715,7 +14874,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Eletrico", "Dragao"]
+        "types": ["Elétrico", "Dragão"]
     },
     "scizor-mega": {
         "baseHP": 5,
@@ -14730,7 +14889,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Inseto", "Aco"]
+        "types": ["Inseto", "Aço"]
     },
     "heracross-mega": {
         "baseHP": 5,
@@ -14805,7 +14964,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 7,
         "evoTime": "Mega",
-        "types": ["Psiquico", "Fada"]
+        "types": ["Psíquico", "Fada"]
     },
     "mawile-mega": {
         "baseHP": 5,
@@ -14820,7 +14979,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Aco", "Fada"]
+        "types": ["Aço", "Fada"]
     },
     "aggron-mega": {
         "baseHP": 6,
@@ -14835,7 +14994,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Mega",
-        "types": ["Aco", ""]
+        "types": ["Aço", ""]
     },
     "medicham-mega": {
         "baseHP": 5,
@@ -14850,7 +15009,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Lutador", "Psiquico"]
+        "types": ["Lutador", "Psíquico"]
     },
     "manectric-mega": {
         "baseHP": 5,
@@ -14865,7 +15024,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Mega",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "banette-mega": {
         "baseHP": 5,
@@ -14910,7 +15069,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 8,
         "maxINS": 8,
         "evoTime": "Mega",
-        "types": ["Dragao", "Psiquico"]
+        "types": ["Dragão", "Psíquico"]
     },
     "latios-mega": {
         "baseHP": 5,
@@ -14925,7 +15084,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 7,
         "maxINS": 7,
         "evoTime": "Mega",
-        "types": ["Dragao", "Psiquico"]
+        "types": ["Dragão", "Psíquico"]
     },
     "garchomp-mega": {
         "baseHP": 7,
@@ -14940,7 +15099,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Dragao", "Solo"]
+        "types": ["Dragão", "Solo"]
     },
     "lucario-mega": {
         "baseHP": 5,
@@ -14955,7 +15114,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Mega",
-        "types": ["Lutador", "Aco"]
+        "types": ["Lutador", "Aço"]
     },
     "abomasnow-mega": {
         "baseHP": 5,
@@ -15015,7 +15174,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Mega",
-        "types": ["Agua", "Psiquico"]
+        "types": ["Água", "Psíquico"]
     },
     "steelix-mega": {
         "baseHP": 10,
@@ -15030,7 +15189,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Aco", "Solo"]
+        "types": ["Aço", "Solo"]
     },
     "sceptile-mega": {
         "baseHP": 6,
@@ -15045,7 +15204,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Mega",
-        "types": ["Grama", "Dragao"]
+        "types": ["Grama", "Dragão"]
     },
     "swampert-mega": {
         "baseHP": 7,
@@ -15060,7 +15219,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Agua", "Solo"]
+        "types": ["Água", "Solo"]
     },
     "sableye-mega": {
         "baseHP": 5,
@@ -15090,7 +15249,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Mega",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "camerupt-mega": {
         "baseHP": 5,
@@ -15120,7 +15279,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Dragao", "Fada"]
+        "types": ["Dragão", "Fada"]
     },
     "glalie-mega": {
         "baseHP": 5,
@@ -15150,7 +15309,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Mega",
-        "types": ["Dragao", "Voador"]
+        "types": ["Dragão", "Voador"]
     },
     "metagross-mega": {
         "baseHP": 6,
@@ -15165,7 +15324,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Aco", "Psiquico"]
+        "types": ["Aço", "Psíquico"]
     },
     "rayquaza-mega": {
         "baseHP": 11,
@@ -15180,7 +15339,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Dragao", "Voador"]
+        "types": ["Dragão", "Voador"]
     },
     "lopunny-mega": {
         "baseHP": 5,
@@ -15210,7 +15369,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Mega",
-        "types": ["Psiquico", "Lutador"]
+        "types": ["Psíquico", "Lutador"]
     },
     "audino-mega": {
         "baseHP": 6,
@@ -15255,7 +15414,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 8,
         "maxINS": 8,
         "evoTime": "Mega",
-        "types": ["Agua", ""]
+        "types": ["Água", ""]
     },
     "groudon-primal": {
         "baseHP": 7,
@@ -15285,7 +15444,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 1,
         "maxINS": 3,
         "evoTime": "Item",
-        "types": ["Psiquico", ""]
+        "types": ["Psíquico", ""]
     },
     "slowbro-galar": {
         "baseHP": 4,
@@ -15300,7 +15459,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Veneno", "Psiquico"]
+        "types": ["Veneno", "Psíquico"]
     },
     "kubfu": {
         "baseHP": 4,
@@ -15345,7 +15504,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Lutador", "Agua"]
+        "types": ["Lutador", "Água"]
     },
     "zarude": {
         "baseHP": 6,
@@ -15375,7 +15534,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 3,
         "evoTime": "???",
-        "types": ["Eletrico", ""]
+        "types": ["Elétrico", ""]
     },
     "regidrago": {
         "baseHP": 11,
@@ -15390,7 +15549,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 3,
         "evoTime": "???",
-        "types": ["Dragao", ""]
+        "types": ["Dragão", ""]
     },
     "glastrier": {
         "baseHP": 5,
@@ -15435,7 +15594,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Grama"]
+        "types": ["Psíquico", "Grama"]
     },
     "calyrex-ice": {
         "baseHP": 5,
@@ -15450,7 +15609,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Gelo"]
+        "types": ["Psíquico", "Gelo"]
     },
     "calyrex-shadow": {
         "baseHP": 5,
@@ -15465,7 +15624,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 6,
         "maxINS": 6,
         "evoTime": "???",
-        "types": ["Psiquico", "Fantasma"]
+        "types": ["Psíquico", "Fantasma"]
     },
     "slowking-galar": {
         "baseHP": 4,
@@ -15480,7 +15639,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Final",
-        "types": ["Veneno", "Psiquico"]
+        "types": ["Veneno", "Psíquico"]
     },
     "articuno-galar": {
         "baseHP": 4,
@@ -15495,7 +15654,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 5,
         "maxINS": 5,
         "evoTime": "???",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "zapdos-galar": {
         "baseHP": 4,
@@ -15555,7 +15714,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Item",
-        "types": ["Eletrico", "Grama"]
+        "types": ["Elétrico", "Grama"]
     },
     "typhlosion-hisui": {
         "baseHP": 5,
@@ -15630,7 +15789,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 3,
         "maxINS": 6,
         "evoTime": "Devagar",
-        "types": ["Aco", "Dragao"]
+        "types": ["Aço", "Dragão"]
     },
     "avalugg-hisui": {
         "baseHP": 4,
@@ -15660,7 +15819,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Normal", "Psiquico"]
+        "types": ["Normal", "Psíquico"]
     },
     "ursaluna": {
         "baseHP": 6,
@@ -15735,7 +15894,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Eletrico", "Grama"]
+        "types": ["Elétrico", "Grama"]
     },
     "qwilfish-hisui": {
         "baseHP": 4,
@@ -15765,7 +15924,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 5,
         "evoTime": "Final",
-        "types": ["Agua", "Sinistro"]
+        "types": ["Água", "Sinistro"]
     },
     "zorua-hisui": {
         "baseHP": 3,
@@ -15795,7 +15954,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Psiquico", "Voador"]
+        "types": ["Psíquico", "Voador"]
     },
     "goodra-hisui": {
         "baseHP": 5,
@@ -15810,7 +15969,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 4,
         "maxINS": 8,
         "evoTime": "Final",
-        "types": ["Aco", "Dragao"]
+        "types": ["Aço", "Dragão"]
     },
     "decidueye-hisui": {
         "baseHP": 5,
@@ -15855,7 +16014,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Fantasma"]
+        "types": ["Água", "Fantasma"]
     },
     "basculegion-female": {
         "baseHP": 6,
@@ -15870,7 +16029,7 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Final",
-        "types": ["Agua", "Fantasma"]
+        "types": ["Água", "Fantasma"]
     },
     "overqwil": {
         "baseHP": 5,
