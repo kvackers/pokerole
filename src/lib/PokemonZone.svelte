@@ -55,6 +55,7 @@
 		bind:confidence={pokemon.confidence}
 		bind:willPoints={pokemon.willPoints}
 		bind:types={pokemon.types}
+		bind:teratype={pokemon.teratype}
 		bind:evoTime={pokemon.evoTime}
 		bind:wins={pokemon.wins}
 		bind:training={pokemon.training}

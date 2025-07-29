@@ -32,6 +32,7 @@ export const DEFAULT_POKEMON = {
     willPoints: 0,
 
     types: ['Normal', '-'],
+    teratype: '-',
     evoTime: '',
     wins: 0,
     training: 0,

@@ -16,6 +16,7 @@
 		willPoints = $bindable(),
 
 		types = $bindable(),
+		teratype = $bindable(),
 		evoTime = $bindable(),
 		wins = $bindable(),
 		training = $bindable(),
@@ -177,6 +178,20 @@
 			<select
 				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
 				bind:value={types[1]}
+			>
+				{#each TYPES as type}
+					<option value={type}>{type}</option>
+				{/each}
+			</select>
+		</div>
+		<div class="flex">
+			<span
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
+				>Teratipo</span
+			>
+			<select
+				class="w-full rounded-r-lg border-zinc-950 dark:border-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
+				bind:value={teratype}
 			>
 				{#each TYPES as type}
 					<option value={type}>{type}</option>
