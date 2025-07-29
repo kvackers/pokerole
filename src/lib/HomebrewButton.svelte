@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { Button, Modal } from 'flowbite-svelte';
 
-	const { mode } = $props();
+	const { mode, full = false } = $props();
 	let open = $state(false);
 </script>
 
-<Button color="dark" onclick={() => (open = true)}>Regras Extras</Button>
+<Button color="dark" class={full ? 'w-full' : ''} onclick={() => (open = true)}
+	>Regras Extras</Button
+>
 <Modal title="Regras Extras" bind:open size={mode}>
 	<p>
 		<b>Naturezas</b>: Confiança é definida como INT + 4. Treinadores não tem Naturezas, e em

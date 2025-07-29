@@ -1,8 +1,11 @@
 <script lang="ts">
+	import DeleteButton from './DeleteButton.svelte';
+	import ExportButton from './ExportButton.svelte';
 	import HomebrewButton from './HomebrewButton.svelte';
+	import ImportButton from './ImportButton.svelte';
 	import { getWidth } from './utils';
 
-	const { mode, trainer = $bindable() } = $props();
+	let { mode, trainer = $bindable() } = $props();
 
 	const width = $derived(getWidth(mode));
 </script>
@@ -12,8 +15,9 @@
 	{#if mode !== 'sm'}
 		<div>
 			<HomebrewButton {mode}></HomebrewButton>
-			<button>Exportar Save</button>
-			<button>Importar Save</button>
+			<ExportButton {mode} {trainer}></ExportButton>
+			<ImportButton {mode} {trainer}></ImportButton>
+			<DeleteButton bind:trainer></DeleteButton>
 		</div>
 	{/if}
 </nav>

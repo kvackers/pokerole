@@ -6,6 +6,7 @@
 
 	import TrainerZone from '$lib/TrainerZone.svelte';
 	import Navbar from '$lib/Navbar.svelte';
+	import Footer from '$lib/Footer.svelte';
 
 	let trainer = $state({ ...DEFAULT_TRAINER });
 	$effect(() => {
@@ -19,6 +20,9 @@
 	class="min-h-screen p-2 dark:bg-zinc-800 dark:text-zinc-100"
 	style:font-family="'Roboto Condensed', sans-serif;"
 >
-	<Navbar {mode} {trainer}></Navbar>
+	<Navbar {mode} bind:trainer></Navbar>
 	<TrainerZone bind:trainer {mode}></TrainerZone>
+	{#if mode === 'sm'}
+		<Footer bind:trainer></Footer>
+	{/if}
 </div>
