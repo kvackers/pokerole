@@ -6,6 +6,7 @@
 	import PokemonSelect from './PokemonSelect.svelte';
 	import PokemonSkills from './PokemonSkills.svelte';
 	import PokemonStats from './PokemonStats.svelte';
+	import { getWidth } from './utils';
 
 	let { mode, currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
 
@@ -44,10 +45,137 @@
 		`${pokemon.stats[0] + pokemon.skills[2]} / ${pokemon.stats[4] + pokemon.skills[2]}`
 	);
 	const defenses = $derived(`${pokemon.stats[2]} / ${pokemon.stats[3]}`);
+
+	const width = $derived(getWidth(mode));
 </script>
 
 <PokemonSelect {mode} bind:currentPokemon bind:pokemonList></PokemonSelect>
-<div class="flex" style:margin="0 auto">
+{#if mode === 'xl'}
+	<div class="flex" style:width style:margin="0 auto">
+		<PokemonData
+			bind:image={pokemon.image}
+			bind:name={pokemon.name}
+			bind:ability={pokemon.ability}
+			bind:species={pokemon.species}
+			bind:health={pokemon.health}
+			bind:confidence={pokemon.confidence}
+			bind:willPoints={pokemon.willPoints}
+			bind:types={pokemon.types}
+			bind:teratype={pokemon.teratype}
+			bind:evoTime={pokemon.evoTime}
+			bind:wins={pokemon.wins}
+			bind:training={pokemon.training}
+			bind:happiness={pokemon.happiness}
+			bind:loyalty={pokemon.loyalty}
+			{maxHP}
+			{maxWill}
+			{maxConfidence}
+			{changeSpecies}
+		></PokemonData>
+		<div class="flex flex-col">
+			<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
+			<PokemonMisc
+				bind:item={pokemon.item}
+				bind:accessory={pokemon.accessory}
+				bind:ribbons={pokemon.ribbons}
+				bind:status={pokemon.status}
+				bind:notes={pokemon.notes}
+				{initiative}
+				{dodge}
+				{clash}
+				{defenses}
+				types={pokemon.types}
+			></PokemonMisc>
+		</div>
+		<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+		></PokemonSkills>
+		<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
+	</div>
+{:else if mode === 'lg'}
+	<div class="flex" style:width style:margin="0 auto">
+		<PokemonData
+			bind:image={pokemon.image}
+			bind:name={pokemon.name}
+			bind:ability={pokemon.ability}
+			bind:species={pokemon.species}
+			bind:health={pokemon.health}
+			bind:confidence={pokemon.confidence}
+			bind:willPoints={pokemon.willPoints}
+			bind:types={pokemon.types}
+			bind:teratype={pokemon.teratype}
+			bind:evoTime={pokemon.evoTime}
+			bind:wins={pokemon.wins}
+			bind:training={pokemon.training}
+			bind:happiness={pokemon.happiness}
+			bind:loyalty={pokemon.loyalty}
+			{maxHP}
+			{maxWill}
+			{maxConfidence}
+			{changeSpecies}
+		></PokemonData>
+		<div class="flex flex-col">
+			<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
+			<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+			></PokemonSkills>
+			<PokemonMisc
+				bind:item={pokemon.item}
+				bind:accessory={pokemon.accessory}
+				bind:ribbons={pokemon.ribbons}
+				bind:status={pokemon.status}
+				bind:notes={pokemon.notes}
+				{initiative}
+				{dodge}
+				{clash}
+				{defenses}
+				types={pokemon.types}
+			></PokemonMisc>
+		</div>
+		<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
+	</div>
+{:else if mode === 'md'}
+	<div class="flex" style:width style:margin="0 auto">
+		<div class="flex flex-col">
+			<PokemonData
+				bind:image={pokemon.image}
+				bind:name={pokemon.name}
+				bind:ability={pokemon.ability}
+				bind:species={pokemon.species}
+				bind:health={pokemon.health}
+				bind:confidence={pokemon.confidence}
+				bind:willPoints={pokemon.willPoints}
+				bind:types={pokemon.types}
+				bind:teratype={pokemon.teratype}
+				bind:evoTime={pokemon.evoTime}
+				bind:wins={pokemon.wins}
+				bind:training={pokemon.training}
+				bind:happiness={pokemon.happiness}
+				bind:loyalty={pokemon.loyalty}
+				{maxHP}
+				{maxWill}
+				{maxConfidence}
+				{changeSpecies}
+			></PokemonData>
+			<PokemonMisc
+				bind:item={pokemon.item}
+				bind:accessory={pokemon.accessory}
+				bind:ribbons={pokemon.ribbons}
+				bind:status={pokemon.status}
+				bind:notes={pokemon.notes}
+				{initiative}
+				{dodge}
+				{clash}
+				{defenses}
+				types={pokemon.types}
+			></PokemonMisc>
+			<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
+		</div>
+		<div class="flex flex-col">
+			<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
+			<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+			></PokemonSkills>
+		</div>
+	</div>
+{:else}
 	<PokemonData
 		bind:image={pokemon.image}
 		bind:name={pokemon.name}
@@ -68,38 +196,20 @@
 		{maxConfidence}
 		{changeSpecies}
 	></PokemonData>
-	<div class="flex flex-col">
-		<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
-		<PokemonMisc
-			bind:item={pokemon.item}
-			bind:accessory={pokemon.accessory}
-			bind:ribbons={pokemon.ribbons}
-			bind:status={pokemon.status}
-			bind:notes={pokemon.notes}
-			{initiative}
-			{dodge}
-			{clash}
-			{defenses}
-			types={pokemon.types}
-		></PokemonMisc>
-	</div>
+	<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
+	<PokemonMisc
+		bind:item={pokemon.item}
+		bind:accessory={pokemon.accessory}
+		bind:ribbons={pokemon.ribbons}
+		bind:status={pokemon.status}
+		bind:notes={pokemon.notes}
+		{initiative}
+		{dodge}
+		{clash}
+		{defenses}
+		types={pokemon.types}
+	></PokemonMisc>
 	<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
 	></PokemonSkills>
 	<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
-</div>
-
-<!-- {#if mode === 'xl'}
-	<div class="flex" style:width="1280px" style:margin="0 auto">
-		<PokemonData image={pokemon.image}></PokemonData>
-	</div>
-{:else if mode === 'lg'}
-	<div class="flex" style:width="960px" style:margin="0 auto">
-		<PokemonData image={pokemon.image}></PokemonData>
-	</div>
-{:else if mode === 'md'}
-	<div class="flex" style:width="640px" style:margin="0 auto">
-		<PokemonData image={pokemon.image}></PokemonData>
-	</div>
-{:else}
-	<PokemonData image={pokemon.image}></PokemonData>
-{/if} -->
+{/if}
