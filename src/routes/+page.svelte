@@ -23,7 +23,7 @@
 	});
 
 	let mode = $derived(getMode(innerWidth.current));
-	let displayTrainer = $state(false);
+	let displayTrainer = $state(true);
 </script>
 
 <div

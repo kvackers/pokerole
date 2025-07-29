@@ -9,5 +9,5 @@
 
 <HomebrewButton full mode="sm"></HomebrewButton>
 <ExportButton full {trainer} {currentPokemon} {pokemonList}></ExportButton>
-<ImportButton full mode="sm" {trainer}></ImportButton>
+<ImportButton full bind:trainer bind:currentPokemon bind:pokemonList></ImportButton>
 <DeleteButton full bind:trainer></DeleteButton>

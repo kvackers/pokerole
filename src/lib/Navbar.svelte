@@ -34,7 +34,7 @@
 		<div>
 			<HomebrewButton {mode}></HomebrewButton>
 			<ExportButton {trainer} {currentPokemon} {pokemonList}></ExportButton>
-			<ImportButton {mode} {trainer}></ImportButton>
+			<ImportButton bind:trainer bind:currentPokemon bind:pokemonList></ImportButton>
 			<DeleteButton bind:trainer></DeleteButton>
 		</div>
 	{/if}
