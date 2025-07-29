@@ -3,10 +3,11 @@
 	import PokemonAttacks from './PokemonAttacks.svelte';
 	import PokemonData from './PokemonData.svelte';
 	import PokemonMisc from './PokemonMisc.svelte';
+	import PokemonSelect from './PokemonSelect.svelte';
 	import PokemonSkills from './PokemonSkills.svelte';
 	import PokemonStats from './PokemonStats.svelte';
 
-	const { mode, currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
+	let { mode, currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
 
 	const pokemon = $derived(pokemonList[currentPokemon]);
 
@@ -45,6 +46,7 @@
 	const defenses = $derived(`${pokemon.stats[2]} / ${pokemon.stats[3]}`);
 </script>
 
+<PokemonSelect {mode} bind:currentPokemon bind:pokemonList></PokemonSelect>
 <div class="flex" style:margin="0 auto">
 	<PokemonData
 		bind:image={pokemon.image}

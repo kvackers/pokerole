@@ -31,8 +31,10 @@
 			}
 
 			for (const incoming of Object.keys(multipliers)) {
-				const mod = DEFENSIVE_TYPECHART[type][incoming];
-				multipliers[incoming] *= mod === undefined ? 1 : mod;
+				try {
+					const mod = DEFENSIVE_TYPECHART[type][incoming];
+					multipliers[incoming] *= mod === undefined ? 1 : mod;
+				} catch (TypeError) {}
 			}
 		}
 

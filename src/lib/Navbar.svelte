@@ -13,7 +13,11 @@
 	const width = $derived(getWidth(mode));
 </script>
 
-<nav class="flex justify-between px-4" style:width style:margin="0 auto;">
+<nav
+	class="flex justify-between px-4"
+	style:width={mode === 'sm' ? '100%' : width}
+	style:margin="0 auto;"
+>
 	<Button
 		class={mode === 'sm' ? 'w-full' : ''}
 		color="dark"
