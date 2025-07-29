@@ -20,7 +20,11 @@
 		wins = $bindable(),
 		training = $bindable(),
 		happiness = $bindable(),
-		loyalty = $bindable()
+		loyalty = $bindable(),
+
+		maxHP,
+		maxWill,
+		maxConfidence
 	} = $props();
 
 	const promptImageURL = () => {
@@ -119,7 +123,7 @@
 			/>
 			<span
 				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-				>/
+				>/ {maxHP}
 			</span>
 		</div>
 		<div class="flex">
@@ -134,7 +138,7 @@
 			/>
 			<span
 				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-				>/
+				>/ {maxConfidence}
 			</span>
 		</div>
 		<div class="flex">
@@ -149,7 +153,7 @@
 			/>
 			<span
 				class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-950 dark:border-zinc-50 dark:bg-zinc-700"
-				>/
+				>/ {maxWill}
 			</span>
 		</div>
 

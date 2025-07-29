@@ -41,6 +41,13 @@ export const DEFAULT_POKEMON = {
     stats: [2, 2, 2, 2, 2, 1, 1, 1, 1, 1],
     skills: Array.from({ length: 12 }, () => 0),
     extraSkills: [{ name: '???', value: 0 }],
+
+    item: '',
+    accessory: '',
+    ribbons: 0,
+
+    status: 'Saudável',
+    notes: '',
 };
 
 export const TYPES = [
@@ -63,6 +70,18 @@ export const TYPES = [
     "Solo",
     "Veneno",
     "Voador",
+];
+
+export const STATUS = [
+    'Saudável',
+    'Queimado 1',
+    'Queimado 2',
+    'Queimado 3',
+    'Parálise',
+    'Congelado',
+    'Veneno',
+    'Tóxico',
+    'Sono'
 ];
 
 export const DEX = {

@@ -1,11 +1,23 @@
 <script lang="ts">
 	import PokemonData from './PokemonData.svelte';
+	import PokemonMisc from './PokemonMisc.svelte';
 	import PokemonSkills from './PokemonSkills.svelte';
 	import PokemonStats from './PokemonStats.svelte';
 
 	const { mode, currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
 
 	const pokemon = $derived(pokemonList[currentPokemon]);
+
+	const maxHP = $derived(pokemon.stats[2] + 4);
+	const maxWill = $derived(pokemon.stats[3] + 2);
+	const maxConfidence = $derived(pokemon.stats[4] + 4);
+
+	const initiative = $derived(`1d6 + ${pokemon.stats[1]}`);
+	const dodge = $derived(pokemon.stats[1] + pokemon.skills[3]);
+	const clash = $derived(
+		`${pokemon.stats[0] + pokemon.skills[2]} / ${pokemon.stats[4] + pokemon.skills[2]}`
+	);
+	const defenses = $derived(`${pokemon.stats[2]} / ${pokemon.stats[3]}`);
 </script>
 
 <div class="flex" style:margin="0 auto">
@@ -23,8 +35,24 @@
 		bind:training={pokemon.training}
 		bind:happiness={pokemon.happiness}
 		bind:loyalty={pokemon.loyalty}
+		{maxHP}
+		{maxWill}
+		{maxConfidence}
 	></PokemonData>
-	<PokemonStats bind:stats={pokemon.stats}></PokemonStats>
+	<div class="flex flex-col">
+		<PokemonStats bind:stats={pokemon.stats}></PokemonStats>
+		<PokemonMisc
+			bind:item={pokemon.item}
+			bind:accessory={pokemon.accessory}
+			bind:ribbons={pokemon.ribbons}
+			bind:status={pokemon.status}
+			bind:notes={pokemon.notes}
+			{initiative}
+			{dodge}
+			{clash}
+			{defenses}
+		></PokemonMisc>
+	</div>
 	<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
 	></PokemonSkills>
 </div>
