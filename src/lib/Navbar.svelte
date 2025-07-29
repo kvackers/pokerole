@@ -1,17 +1,25 @@
 <script lang="ts">
+	import { Button } from 'flowbite-svelte';
+
 	import DeleteButton from './DeleteButton.svelte';
 	import ExportButton from './ExportButton.svelte';
 	import HomebrewButton from './HomebrewButton.svelte';
 	import ImportButton from './ImportButton.svelte';
+
 	import { getWidth } from './utils';
 
-	let { mode, trainer = $bindable() } = $props();
+	let { mode, displayTrainer = $bindable(), trainer = $bindable() } = $props();
 
 	const width = $derived(getWidth(mode));
 </script>
 
 <nav class="flex justify-between px-4" style:width style:margin="0 auto;">
-	<button>Pokémon</button>
+	<Button
+		class={mode === 'sm' ? 'w-full' : ''}
+		color="dark"
+		onclick={() => (displayTrainer = !displayTrainer)}
+		>{displayTrainer ? 'Pokémon' : 'Treinador'}</Button
+	>
 	{#if mode !== 'sm'}
 		<div>
 			<HomebrewButton {mode}></HomebrewButton>
