@@ -1,5 +1,6 @@
 <script lang="ts">
 	import PokemonData from './PokemonData.svelte';
+	import PokemonSkills from './PokemonSkills.svelte';
 
 	const { mode, currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
 
@@ -22,6 +23,7 @@
 		happiness={pokemon.happiness}
 		loyalty={pokemon.loyalty}
 	></PokemonData>
+	<PokemonSkills skills={pokemon.skills} extraSkills={pokemon.extraSkills}></PokemonSkills>
 </div>
 
 <!-- {#if mode === 'xl'}

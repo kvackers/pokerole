@@ -36,7 +36,10 @@ export const DEFAULT_POKEMON = {
     wins: 0,
     training: 0,
     happiness: 2,
-    loyalty: 2
+    loyalty: 2,
+
+    skills: Array.from({ length: 12 }, () => 0),
+    extraSkills: [{ name: '???', value: 0 }],
 };
 
 export const TYPES = [
