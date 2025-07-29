@@ -16,3 +16,7 @@ export const getWidth = (mode: Mode): string => {
         default: return '100%';
     }
 }
+
+export const capitalize = (s: string): string => {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}

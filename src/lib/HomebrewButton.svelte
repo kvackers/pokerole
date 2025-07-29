@@ -10,8 +10,9 @@
 >
 <Modal title="Regras Extras" bind:open size={mode}>
 	<p>
-		<b>Naturezas</b>: Confiança é definida como INT + 4. Treinadores não tem Naturezas, e em
-		Pokémon, Naturezas dão um buff de 1 em um atributo físico e debuff de 1 em outro (ou é neutro).
+		<b>Naturezas</b>: Confiança é definida como INT + 4. Treinadores e Pokémon não tem Naturezas,
+		mas Pokémon podem, opcionalmente, na hora da captura ou evolução, subir um atributo físico em 1
+		e diminuir outro em 1.
 	</p>
 	<p><b>Número de Golpes</b>: Pokémon podem saber, no máximo, 5 Golpes.</p>
 	<p>
@@ -26,8 +27,8 @@
 		<li>Trocar sua Natureza</li>
 	</ul>
 	<p>
-		A cada 3 vezes que um Pokémon faz uma dessas coisas, um Treinador pode fazer uma delas também,
-		se aplicável.
+		A cada 3 vezes que uma dessas coisas forem feitas, um Treinador pode fazer uma delas também, se
+		aplicável.
 	</p>
 	<p>
 		<b>Velocidade de Evolução</b>: Pokémon do grupo Devagar precisam de 30 vitórias para evoluir.

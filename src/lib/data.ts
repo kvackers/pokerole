@@ -20,3 +20,78 @@ export const DEFAULT_TRAINER = {
     bag: [{ item: '???', count: 0 }],
     notes: ''
 };
+
+export const DEFAULT_POKEMON = {
+    image: DEFAULT_IMAGE,
+    name: '',
+    species: 'ditto',
+    ability: '',
+
+    health: 0,
+    confidence: 0,
+    willPoints: 0,
+
+    types: ['Normal', '-'],
+    evoTime: '',
+    wins: 0,
+    training: 0,
+    happiness: 2,
+    loyalty: 2
+};
+
+export const TYPES = [
+    "-",
+    "Aço",
+    "Água",
+    "Dragão",
+    "Elétrico",
+    "Fada",
+    "Fantasma",
+    "Fogo",
+    "Gelo",
+    "Grama",
+    "Inseto",
+    "Lutador",
+    "Normal",
+    "Pedra",
+    "Psíquico",
+    "Sinistro",
+    "Solo",
+    "Veneno",
+    "Voador",
+];
+
+export const DEX = {
+    "bulbasaur": {
+        "baseHP": "3",
+        "baseSTR": "2",
+        "maxSTR": "4",
+        "baseDEX": "2",
+        "maxDEX": "4",
+        "baseVIT": "2",
+        "maxVIT": "4",
+        "baseSPC": "2",
+        "maxSPC": "4",
+        "baseINS": "2",
+        "maxINS": "4",
+        "evoTime": "Médio",
+        "type1": "Grama",
+        "type2": "Veneno"
+    },
+    "ditto": {
+        "baseHP": "4",
+        "baseSTR": "2",
+        "maxSTR": "4",
+        "baseDEX": "2",
+        "maxDEX": "4",
+        "baseVIT": "2",
+        "maxVIT": "4",
+        "baseSPC": "2",
+        "maxSPC": "4",
+        "baseINS": "2",
+        "maxINS": "4",
+        "evoTime": "Final",
+        "type1": "Normal",
+        "type2": ""
+    },
+};
