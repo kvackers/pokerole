@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PokemonData from './PokemonData.svelte';
 	import PokemonSkills from './PokemonSkills.svelte';
+	import PokemonStats from './PokemonStats.svelte';
 
 	const { mode, currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
 
@@ -9,21 +10,23 @@
 
 <div class="flex" style:margin="0 auto">
 	<PokemonData
-		image={pokemon.image}
-		name={pokemon.name}
-		ability={pokemon.ability}
-		species={pokemon.species}
-		health={pokemon.health}
-		confidence={pokemon.confidence}
-		willPoints={pokemon.willPoints}
-		types={pokemon.types}
-		evoTime={pokemon.evoTime}
-		wins={pokemon.wins}
-		training={pokemon.training}
-		happiness={pokemon.happiness}
-		loyalty={pokemon.loyalty}
+		bind:image={pokemon.image}
+		bind:name={pokemon.name}
+		bind:ability={pokemon.ability}
+		bind:species={pokemon.species}
+		bind:health={pokemon.health}
+		bind:confidence={pokemon.confidence}
+		bind:willPoints={pokemon.willPoints}
+		bind:types={pokemon.types}
+		bind:evoTime={pokemon.evoTime}
+		bind:wins={pokemon.wins}
+		bind:training={pokemon.training}
+		bind:happiness={pokemon.happiness}
+		bind:loyalty={pokemon.loyalty}
 	></PokemonData>
-	<PokemonSkills skills={pokemon.skills} extraSkills={pokemon.extraSkills}></PokemonSkills>
+	<PokemonStats bind:stats={pokemon.stats}></PokemonStats>
+	<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+	></PokemonSkills>
 </div>
 
 <!-- {#if mode === 'xl'}

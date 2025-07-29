@@ -38,6 +38,7 @@ export const DEFAULT_POKEMON = {
     happiness: 2,
     loyalty: 2,
 
+    stats: [2, 2, 2, 2, 2, 1, 1, 1, 1, 1],
     skills: Array.from({ length: 12 }, () => 0),
     extraSkills: [{ name: '???', value: 0 }],
 };
