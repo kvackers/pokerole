@@ -8,13 +8,7 @@
 
 	import { getWidth } from './utils';
 
-	let {
-		mode,
-		displayTrainer = $bindable(),
-		trainer = $bindable(),
-		currentPokemon = $bindable(),
-		pokemonList = $bindable()
-	} = $props();
+	let { mode, displayTrainer = $bindable(), save = $bindable() } = $props();
 
 	const width = $derived(getWidth(mode));
 </script>
@@ -33,9 +27,17 @@
 	{#if mode !== 'sm'}
 		<div>
 			<HomebrewButton {mode}></HomebrewButton>
-			<ExportButton {trainer} {currentPokemon} {pokemonList}></ExportButton>
-			<ImportButton bind:trainer bind:currentPokemon bind:pokemonList></ImportButton>
-			<DeleteButton bind:trainer></DeleteButton>
+			<ExportButton
+				trainer={save.trainer}
+				currentPokemon={save.currentPokemon}
+				pokemonList={save.pokemonList}
+			></ExportButton>
+			<ImportButton
+				bind:trainer={save.trainer}
+				bind:currentPokemon={save.currentPokemon}
+				bind:pokemonList={save.pokemonList}
+			></ImportButton>
+			<DeleteButton bind:save></DeleteButton>
 		</div>
 	{/if}
 </nav>

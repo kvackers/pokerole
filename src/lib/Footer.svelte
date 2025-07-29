@@ -4,10 +4,20 @@
 	import HomebrewButton from './HomebrewButton.svelte';
 	import ImportButton from './ImportButton.svelte';
 
-	let { trainer = $bindable(), currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
+	let { save = $bindable() } = $props();
 </script>
 
 <HomebrewButton full mode="sm"></HomebrewButton>
-<ExportButton full {trainer} {currentPokemon} {pokemonList}></ExportButton>
-<ImportButton full bind:trainer bind:currentPokemon bind:pokemonList></ImportButton>
-<DeleteButton full bind:trainer></DeleteButton>
+<ExportButton
+	full
+	trainer={save.trainer}
+	currentPokemon={save.currentPokemon}
+	pokemonList={save.pokemonList}
+></ExportButton>
+<ImportButton
+	full
+	bind:trainer={save.trainer}
+	bind:currentPokemon={save.currentPokemon}
+	bind:pokemonList={save.pokemonList}
+></ImportButton>
+<DeleteButton full bind:save></DeleteButton>

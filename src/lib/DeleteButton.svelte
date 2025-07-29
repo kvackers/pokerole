@@ -1,8 +1,8 @@
 <script>
 	import { Button } from 'flowbite-svelte';
-	import { DEFAULT_TRAINER } from './data';
+	import { DEFAULT_SAVE } from './data';
 
-	let { trainer = $bindable(), full = false } = $props();
+	let { save = $bindable(), full = false } = $props();
 
 	const deleteSheet = () => {
 		const confirmation = confirm('Deseja deletar a ficha? Essa ação não pode ser revertida.');
@@ -10,7 +10,7 @@
 			return;
 		}
 
-		trainer = { ...DEFAULT_TRAINER };
+		save = { ...DEFAULT_SAVE };
 	};
 </script>
 

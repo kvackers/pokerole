@@ -55,6 +55,13 @@ export const DEFAULT_POKEMON = {
     ))
 };
 
+export const DEFAULT_SAVE = {
+    version: 'hb-1',
+    trainer: { ...DEFAULT_TRAINER },
+    currentPokemon: 0,
+    pokemonList: [{ ...DEFAULT_POKEMON }]
+};
+
 export const TYPES = [
     "-",
     "Aço",
