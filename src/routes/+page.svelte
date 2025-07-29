@@ -30,13 +30,13 @@
 	class="min-h-screen bg-zinc-800 p-2 text-zinc-100"
 	style:font-family="'Roboto Condensed', sans-serif;"
 >
-	<Navbar {mode} bind:displayTrainer bind:trainer></Navbar>
+	<Navbar {mode} bind:displayTrainer bind:trainer bind:currentPokemon bind:pokemonList></Navbar>
 	{#if displayTrainer}
 		<TrainerZone bind:trainer {mode}></TrainerZone>
 	{:else}
 		<PokemonZone bind:currentPokemon bind:pokemonList {mode}></PokemonZone>
 	{/if}
 	{#if mode === 'sm'}
-		<Footer bind:trainer></Footer>
+		<Footer bind:trainer bind:currentPokemon bind:pokemonList></Footer>
 	{/if}
 </div>
