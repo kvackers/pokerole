@@ -67,11 +67,4 @@
 		margin-block-end: 1em;
 		padding-inline-start: 40px;
 	}
-
-	ol {
-		list-style-type: decimal;
-		margin-block-start: 1em;
-		margin-block-end: 1em;
-		padding-inline-start: 40px;
-	}
 </style>
