@@ -11,8 +11,8 @@
 <Modal title="Regras Extras" bind:open size={mode}>
 	<p>
 		<b>Naturezas</b>: Confiança é definida como INT + 4. Treinadores e Pokémon não tem Naturezas,
-		mas Pokémon podem, opcionalmente, na hora da captura ou evolução, subir um atributo <b>físico</b> em 1
-		e diminuir outro em 1.
+		mas Pokémon podem, opcionalmente, na hora da captura ou evolução, subir um atributo
+		<b>físico</b> em 1 e diminuir outro em 1.
 	</p>
 	<p><b>Número de Golpes</b>: Pokémon podem saber, no máximo, 5 Golpes.</p>
 	<p>
@@ -35,16 +35,17 @@
 	</p>
 	<p>
 		<b>Terastal</b>: Todo Pokémon tem um tipo Terastal que pode ser trocado com Teralitos de um dado
-		tipo. A cada batalha, o Treinador pode gastar 1 ponto de Vontade para ativar o efeito Terastal
-		em um de seus Pokémon em campo, antes do começo do turno.
+		tipo. Uma vez por batalha, o Treinador pode gastar 1 ponto de Vontade para ativar o efeito
+		Terastal em um de seus Pokémon em campo, antes do começo do turno.
 	</p>
 	<p>
-		Um Pokémon terastalizado é considerado somente do tipo Terastal para fins defensivos e de STAB,
-		e caso o tipo Terastal já seja um tipo que o Pokémon tem, o valor de STAB se torna 2 invés de 1.
+		Um Pokémon terastalizado é considerado somente do tipo Terastal para fins defensivos, e também
+		tem STAB em Golpes de seu teratipo. Se o teratipo for um tipo que o Pokémon já tem, o valor de
+		STAB em Golpes daquele tipo se torna 2 invés de 1.
 	</p>
 	<p>
-		Se um Pokémon terastalizado desmaiar em batalha e for revivido, ele deixa de estar Terastalizado
-		e o treinador não pode Terastalizar novamente naquela mesma batalha.
+		Se um Pokémon terastalizado desmaiar em batalha e for revivido, ele deixa de estar
+		Terastalizado.
 	</p>
 </Modal>
 
