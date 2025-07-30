@@ -36,6 +36,7 @@
 				.map(({ value }: { value: number }) => value)
 				.reduce((a: number, e: number) => a + e, 0)
 	);
+	const skillBase = 5;
 
 	let hidden = $state(false);
 </script>
@@ -53,7 +54,7 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
 		style:display={hidden ? 'none' : 'block'}
 	>
-		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {skillTotal} / 13</p>
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {skillTotal - skillBase} / 13</p>
 		{#each skillNames as skill, index}
 			<div class="flex">
 				<span

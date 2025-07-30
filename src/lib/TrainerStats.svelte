@@ -16,10 +16,10 @@
 	];
 
 	const physicalTotal = $derived((stats as Array<number>).slice(0, 4).reduce((a, e) => a + e));
-	const physicalBase = 4;
+	const physicalBase = 6;
 
 	const socialTotal = $derived((stats as Array<number>).slice(4).reduce((a, e) => a + e));
-	const socialBase = 5;
+	const socialBase = 7;
 
 	let hidden = $state(false);
 </script>
