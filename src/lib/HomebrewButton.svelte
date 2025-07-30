@@ -27,14 +27,15 @@
 		<li>6. O Pokémon usa um Golpe Aleatório</li>
 	</ul>
 	<p>
-		<b>Treinos invés de ranks</b>: Pokémon podem gastar 5 sucessos para fazer <b>uma</b> das seguintes
-		coisas:
+		<b>Treinos invés de ranks</b>: Além de Retreino, Pokémon podem gastar sucessos para fazer das
+		seguintes coisas:
 	</p>
 	<ul>
-		<li>Aumentar um atributo físico e um atributo social em 1, até um máximo de 8 vezes</li>
-		<li>Aumentar uma perícia em 1, até um máximo de 13 vezes</li>
-		<li>Aprender um Golpe listado no livro, substituindo um outro caso já esteja no limite</li>
-		<li>Trocar sua Natureza</li>
+		<li>2 Sucessos: Aprender um Golpe listado no livro, em ordem.</li>
+		<li>3 Sucessos: Aumentar uma perícia em 1, até um máximo de 13 vezes</li>
+		<li>
+			5 Sucessos: Aumentar um atributo físico e um atributo social em 1, até um máximo de 8 vezes
+		</li>
 	</ul>
 	<p>
 		A cada 2 vezes que uma dessas coisas forem feitas, um Treinador pode fazer uma delas também, se
