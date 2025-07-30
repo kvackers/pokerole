@@ -3,7 +3,7 @@
 	import { TrashBinSolid } from 'flowbite-svelte-icons';
 
 	import { DEFAULT_POKEMON } from './data';
-	import { capitalize } from './utils';
+	import { capitalize, clone } from './utils';
 
 	let { currentPokemon = $bindable(), pokemonList = $bindable(), full = false } = $props();
 
@@ -18,7 +18,7 @@
 		}
 
 		if (pokemonList.length === 1) {
-			pokemonList[0] = { ...DEFAULT_POKEMON };
+			pokemonList[0] = clone(DEFAULT_POKEMON);
 		} else {
 			const index = currentPokemon;
 			currentPokemon = 0;

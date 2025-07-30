@@ -27,3 +27,8 @@ export const sort = <T>(arr: Array<T>): Array<T> => {
 
     return copy;
 }
+
+export const clone = (dict: Record<any, any>): Record<any, any> => {
+    const data = JSON.stringify(dict);
+    return JSON.parse(data);
+}

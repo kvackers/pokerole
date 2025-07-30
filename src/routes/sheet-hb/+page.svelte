@@ -2,7 +2,7 @@
 	import { innerWidth } from 'svelte/reactivity/window';
 
 	import { DEFAULT_SAVE } from '$lib/data';
-	import { getMode } from '$lib/utils';
+	import { getMode, clone } from '$lib/utils';
 
 	import TrainerZone from '$lib/TrainerZone.svelte';
 	import Navbar from '$lib/Navbar.svelte';
@@ -10,7 +10,7 @@
 	import PokemonZone from '$lib/PokemonZone.svelte';
 	import { tryLoadSave } from '$lib/save';
 
-	let save = $state(tryLoadSave({ ...DEFAULT_SAVE }));
+	let save = $state(tryLoadSave(clone(DEFAULT_SAVE)));
 
 	let trainer = $derived(save.trainer);
 	let currentPokemon = $derived(save.currentPokemon);

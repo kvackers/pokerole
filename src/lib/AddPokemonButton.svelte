@@ -3,11 +3,12 @@
 	import { CirclePlusSolid } from 'flowbite-svelte-icons';
 
 	import { DEFAULT_POKEMON } from './data';
+	import { clone } from './utils';
 
 	let { pokemonList = $bindable(), currentPokemon = $bindable(), full = false } = $props();
 
 	const addPokemon = () => {
-		pokemonList.push({ ...DEFAULT_POKEMON });
+		pokemonList.push(clone(DEFAULT_POKEMON));
 		currentPokemon = pokemonList.length - 1;
 	};
 </script>

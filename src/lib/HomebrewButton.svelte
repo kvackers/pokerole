@@ -11,7 +11,7 @@
 <Modal title="Regras Extras" bind:open size={mode}>
 	<p>
 		<b>Naturezas</b>: Confiança é definida como INT + 4. Treinadores e Pokémon não tem Naturezas,
-		mas Pokémon podem, opcionalmente, na hora da captura ou evolução, subir um atributo físico em 1
+		mas Pokémon podem, opcionalmente, na hora da captura ou evolução, subir um atributo <b>físico</b> em 1
 		e diminuir outro em 1.
 	</p>
 	<p><b>Número de Golpes</b>: Pokémon podem saber, no máximo, 5 Golpes.</p>

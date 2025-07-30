@@ -1,6 +1,7 @@
 <script>
 	import { Button } from 'flowbite-svelte';
 	import { DEFAULT_SAVE } from './data';
+	import { clone } from './utils';
 
 	let { save = $bindable(), full = false } = $props();
 
@@ -10,7 +11,7 @@
 			return;
 		}
 
-		save = { ...DEFAULT_SAVE };
+		save = clone(DEFAULT_SAVE);
 	};
 </script>
 
