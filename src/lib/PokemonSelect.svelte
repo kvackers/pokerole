@@ -24,7 +24,7 @@
 		</div>
 	</div>
 {:else}
-	<div class="px-4 py-2">
+	<div class="w-[360px] px-4 py-2">
 		<select
 			class="w-xl rounded-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			style:width="100%"

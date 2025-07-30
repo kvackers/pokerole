@@ -52,7 +52,7 @@
 >
 	<div class="w-[360px]" style:margin="0 auto">
 		<div class="flex justify-between rounded-t-lg border border-solid border-zinc-50 px-4 py-2">
-			<span>Dados Pessoais</span>
+			<span>Aleatório</span>
 		</div>
 		<div
 			class="flex w-[360px] flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
