@@ -19,14 +19,13 @@
 		coisas:
 	</p>
 	<ul>
-		<li>Aumentar um atributo físico em 1, até um máximo de 8 vezes</li>
-		<li>Aumentar um atributo social em 1, até um máximo de 8 vezes</li>
+		<li>Aumentar um atributo físico e um atributo social em 1, até um máximo de 8 vezes</li>
 		<li>Aumentar uma perícia em 1, até um máximo de 13 vezes</li>
 		<li>Aprender um Golpe listado no livro, substituindo um outro caso já esteja no limite</li>
 		<li>Trocar sua Natureza</li>
 	</ul>
 	<p>
-		A cada 3 vezes que uma dessas coisas forem feitas, um Treinador pode fazer uma delas também, se
+		A cada 2 vezes que uma dessas coisas forem feitas, um Treinador pode fazer uma delas também, se
 		aplicável.
 	</p>
 	<p>
