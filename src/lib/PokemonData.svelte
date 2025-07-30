@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { DEFAULT_IMAGE, DEX, TYPES } from './data';
+	import { DEFAULT_IMAGE, DEX, TYPES, type Pokemon } from './data';
 
 	import { Alert } from 'flowbite-svelte';
 	import { AngleDownOutline, AngleUpOutline, InfoCircleSolid } from 'flowbite-svelte-icons';
-	import { capitalize } from './utils';
+	import { capitalize, sort } from './utils';
 
 	let {
 		image = $bindable(),
@@ -93,7 +93,7 @@
 				bind:value={species}
 				onchange={changeSpecies}
 			>
-				{#each Object.entries(DEX) as [species, _]}
+				{#each sort(Object.entries(DEX)) as [species, _]}
 					<option value={species}>{capitalize(species)}</option>
 				{/each}
 			</select>

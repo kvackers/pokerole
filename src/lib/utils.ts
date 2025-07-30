@@ -20,3 +20,10 @@ export const getWidth = (mode: Mode): string => {
 export const capitalize = (s: string): string => {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
+
+export const sort = <T>(arr: Array<T>): Array<T> => {
+    const copy = [...arr];
+    copy.sort();
+
+    return copy;
+}
