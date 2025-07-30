@@ -1,4 +1,4 @@
-export const DEFAULT_IMAGE: string = "./ditto_anon.png";
+export const DEFAULT_IMAGE: string = "../ditto_anon.png";
 
 export const DEFAULT_TRAINER = {
     image: DEFAULT_IMAGE,

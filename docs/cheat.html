@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/cheat.css">
+
+    <title>Cola</title>
+</head>
+
+<body>
+    <nav class="d-flex justify-content-between">
+        <button class="btn" id="light-mode-button">Light ☀️</button>
+        <button class="btn" id="dark-mode-button">Dark 🌙</button>
+    </nav>
+
+    <h1>Cola</h1>
+    <p>Essa página descreve alguns conceitos centrais mas realmente é recomendado ler o livro pra entender melhor o
+        sistema.</p>
+
+    <p>Em particular, as seguintes seções:</p>
+    <ul>
+        <li>Starting the Game (p. 18 - 31)</li>
+        <li>Natures (p. 38 - 41)</li>
+        <li>Pokémon Battles (p. 44 - 50)</li>
+        <li>Catching Pokémon (p. 68 - 71)</li>
+        <li>Training Pokémon (p. 72 - 75)</li>
+    </ul>
+
+    <h2>Testes e Dados</h2>
+    <p>Nesse sistema, quando um teste for necessário - quando for algo complexo e onde tanto sucesso ou falha forem
+        interessantes - você junta um grupo de <b>d6</b>s referentes ao <b>Atributo</b> e a <b>Perícia</b> relevante.
+    </p>
+    <p>Você rola todos os dados e conta quantos dados tiveram um valor de <b>4</b> ou mais: esses são os
+        <b>Sucessos</b>. Você passa no teste se tiver rolado a quantidade necessária ou maior de Sucessos.
+    </p>
+
+    <section class="sidenote">
+        Em bots que rolam dados, <b>Nd2 - N</b> já conta a quantidade de sucessos diretamente.
+    </section>
+
+    <h2>Falha Crítica</h2>
+    <p>Se rolar <b>3</b> Sucessos <b>a menos</b> que a quantidade necessária, acontece uma <b>Falha Crítica</b>: não só
+        você falha no seu objetivo, como algo ruim acontece.</p>
+
+    <h2>Ações Múltiplas</h2>
+    <p>Ocasionalmente você vai querer fazer várias coisas em um tempo muito curto - mais comumente em batalha - e para
+        isso temos <b>Ações Múltiplas</b>.</p>
+
+    <p>Cada <b>Ação</b> a mais que você faça, precisa de um <b>Sucesso a mais</b> para conseguir fazer o que você quer.
+        Se uma Ação não teria uma dificuldade estabelecida - talvez porque a única dificuldade seja de fazer aquilo ao
+        mesmo tempo que outra coisa - a dificuldade é só a quantidade de <b>Sucessos</b> extras necessários.</p>
+
+    <p>As <b>Ações</b> são roladas em sequência, e quando uma <b>Ação</b> falha, todas as outras em seguida falham
+        também.</p>
+
+    <section class="example">
+        <p>Exemplo:</p>
+
+        <p>Carlos quer <b>cavalgar em um Tauros</b> e <b>mandar um zap pro Professor Carvalho</b> sobre isso. Ele senta
+            nas costas do Pokémon e descobre que o Pokémon odeia isso. Do nada uma flecha voa no ar na direção dele. Ele
+            prefere priorizar tentar <b>desviar da flecha</b> pra se safar do que mandar a mensagem.</p>
+
+        <p>Ou seja, as <b>Ações</b> de Carlos são, em ordem:</p>
+        <ol>
+            <li>Continuar montado no Tauros</li>
+            <li>Desviar da flecha</li>
+            <li>Mandar a mensagem pro Professor</li>
+        </ol>
+
+        <p>Carlos então faz os Testes necessários, sabendo que <b>continuar montado</b> precisa de 1 Sucesso extra,
+            <b>desviar da flecha</b> precisa de 2 Sucessos extras e <b>mandar a mensagem</b> precissa de 3 Sucessos
+            extras.
+        </p>
+    </section>
+
+    <h2>Ranks</h2>
+    <p>Invés de níveis tradicionais e progressão com experiência, personagens tem <b>Ranks</b> que podem subir baseados
+        em <b>Conquistas</b>.</p>
+
+    <p>Todas as personagens começam com o Rank <b>Zero</b> e vão subindo conforme progredirem na ficção. Os benefícios
+        mecânicos (aumento de atributos e perícias, capacidade de usar Golpes mais fortes, etc.) estão listados no livro
+        na página 30, mas as <b>Conquistas</b> necessárias para subir de nível podem e dever ser discutidas com o
+        Mestre.</p>
+
+    <h2>Fluxo de Combate</h2>
+    <p>Toda vez que um Pokémon novo entra em combate, ele deve rolar sua <b>Iniciativa</b> que é <b>1d6 + DES +
+            ALERTA</b>. Os Pokémon vão agir em order decrescente de <b>Iniciativa</b>.</p>
+
+    <p>Os turnos tem a seguinte estrutura:</p>
+    <ol>
+        <li>Usar um Golpe</li>
+        <li>Evasão ou Revide</li>
+        <li>Processar Dano ou Efeitos</li>
+        <li>Ações Múltiplas</li>
+        <li>Fim de Rodada</li>
+    </ol>
+
+    <h3>Usar um Golpe</h3>
+    <p>Pokémon podem usar um Golpe de acordo com o determinado via Pokédex e seu Rank. Um Pokémon só pode usar um dado
+        <b>Golpe</b> uma vez por rodada.
+    </p>
+
+    <h3>Evasão ou Revide</h3>
+    <p>Um Pokémon pode tentar se <b>Esquivar</b> ou <b>Revidar</b> um ataque.</p>
+
+    <p>Para <b>Esquivar</b> role <b>Destreza + Evasão</b> e caso consiga a mesma quantidade de Sucessos ou mais que o
+        atacante, o Pokémon se esquiva do ataque. Isso conta como uma <b>Ação</b>.</p>
+
+    <p>Para <b>Revidar</b>, o Pokémon usa um Golpe que dá dano e rola <b>Força / Especial + Revidar</b> conforme
+        apropriado. Caso tenha a mesma quantidade de Sucessos ou mais que o atacante, dá um Revide com sucesso e ambos
+        os Pokémon tomam <b>1 ponto de dano</b>. Isso conta como uma <b>Ação</b>.</p>
+
+    <p>Tanto <b>Esquivar</b> quanto <b>Revidar</b> só podem ser usados 1 vez por rodada, cada um.</p>
+
+    <h3>Ações Múltiplas</h3>
+    <p>Depois de cada Pokémon usar seu Golpe, ele pode tentar fazer um outro (ainda seguindo ordem de Iniciativa) sem
+        acabar o turno.</p>
+
+    <p>Isso permite ter uma presença ofensiva maior ou terminar o preparo de estratégias mais cedo, mas ao mesmo tempo
+        se abre a possibilidade de <b>Falhas Críticas</b>.</p>
+
+    <h3>Fim de Rodada</h3>
+    <p>No fim de cada Rodada, o Treinador pode agir, fazendo coisas como:</p>
+    <ul>
+        <li>Trocar Pokémon</li>
+        <li>Tentar fugir</li>
+        <li>Usar um item</li>
+        <li>etc.</li>
+    </ul>
+
+    <h2>Penalizações de Dor</h2>
+    <p>Baseado na quantidade de PV que uma personagem ou Pokémon tem, vão haver penalizações baseadas na dor:</p>
+    <ul>
+        <li>50% de PV (arredondando pra baixo) - 1 Sucesso removido</li>
+        <li>1 PV - 2 Sucessos removidos</li>
+    </ul>
+
+    <p>Essas penalizações são aplicadas a todas as ações que não envolvam <b>Vitalidade</b> ou <b>Vontade</b>.</p>
+
+    <h2>Força de Vontade</h2>
+    <p>Uma personagem pode usar um ponto de <b>Vontade</b> para resistir a dor ou triunfar sobre adversidade.
+        Mecânicamente:</p>
+    <ul>
+        <li>Gastar <b>1 Ponto de Vontade</b> para ignorar <b>1</b> Penalização de Dor pelo <b>resto da cena</b>.</li>
+        <li>Gastar <b>1 Ponto de Vontade</b> para rerolar 1 dado sem sucesso de <b>todos os seus testes nessa
+                Rodada</b>.</li>
+    </ul>
+
+    <p>O mestre pode pedir para uma personagem fazer um teste de <b>Vontade</b> como um teste de consciência ou para
+        superar raiva, medo ou tristeza.</p>
+
+    <p>Uma personagem ou Pokémon sem pontos de Vontade <b>desmaia</b> no começo da próxima Rodada pelo esforço mental.
+    </p>
+
+    <p>Personagens <b>precisam</b> ensinar seus Pokémon a usar sua força interior para que possam usar <b>Vontade</b>.
+    </p>
+
+    <p>Personagens recuperam <b>Pontos de Vontade</b> das seguintes maneiras:</p>
+    <ul>
+        <li>Descansar por alguns dias</li>
+        <li>Se sentir bem sucedido por conseguir algo difícil</li>
+        <li>Seguir sua natureza</li>
+        <li>Ser recompensado por um bom roleplay</li>
+    </ul>
+
+    <script>
+        const darkModeButton = document.getElementById('dark-mode-button');
+        const lightModeButton = document.getElementById('light-mode-button');
+
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.querySelector('html').setAttribute("data-bs-theme", "dark");
+            darkModeButton.classList.add('d-none');
+        } else {
+            lightModeButton.classList.add('d-none');
+        }
+
+        darkModeButton.onclick = lightModeButton.onclick = () => {
+            const html = document.querySelector('html');
+
+            if (html.getAttribute('data-bs-theme') == 'dark') {
+                html.setAttribute('data-bs-theme', '');
+            } else {
+                html.setAttribute('data-bs-theme', 'dark');
+            }
+
+            darkModeButton.classList.toggle('d-none');
+            lightModeButton.classList.toggle('d-none');
+        }
+    </script>
+</body>
+
+</html>
