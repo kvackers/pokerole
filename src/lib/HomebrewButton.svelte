@@ -14,7 +14,6 @@
 		mas Pokémon podem, opcionalmente, na hora da captura ou evolução, subir um atributo
 		<b>físico</b> em 1 e diminuir outro em 1.
 	</p>
-	<p><b>Número de Golpes</b>: Pokémon podem saber, no máximo, 5 Golpes.</p>
 	<p>
 		<b>Treinos invés de ranks</b>: Pokémon podem gastar 5 sucessos para fazer <b>uma</b> das seguintes
 		coisas:
