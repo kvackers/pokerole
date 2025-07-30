@@ -1,0 +1,90 @@
+<script lang="ts">
+	import { A } from 'flowbite-svelte';
+	import { AngleDownOutline, AngleUpOutline } from 'flowbite-svelte-icons';
+
+	const { stats = $bindable(), dexEntry } = $props();
+
+	const statNames = [
+		'Força',
+		'Destreza',
+		'Vitalidade',
+		'Intuição',
+		'Especial',
+		'Durão',
+		'Maneiro',
+		'Lindo',
+		'Esperto',
+		'Fofo'
+	];
+
+	const physicalStatShorthand = ['STR', 'DEX', 'VIT', 'INS', 'SPC'];
+
+	const physicalTotal = $derived((stats as Array<number>).slice(0, 5).reduce((a, e) => a + e));
+	const physicalBase = $derived(
+		physicalStatShorthand
+			.map((stat) => {
+				return dexEntry['base' + stat];
+			})
+			.reduce((a, e) => a + e)
+	);
+
+	const socialTotal = $derived((stats as Array<number>).slice(5).reduce((a, e) => a + e));
+	const socialBase = 5;
+
+	let hidden = $state(false);
+</script>
+
+<div class="flex w-[360px] flex-col p-2">
+	<div class="flex justify-between rounded-t-lg border border-solid border-zinc-50 px-4 py-2">
+		<span>Atributos</span>
+		{#if hidden}
+			<button onclick={() => (hidden = false)}><AngleDownOutline></AngleDownOutline></button>
+		{:else}
+			<button onclick={() => (hidden = true)}><AngleUpOutline></AngleUpOutline></button>
+		{/if}
+	</div>
+	<div
+		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
+		style:display={hidden ? 'none' : 'block'}
+	>
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {physicalTotal - physicalBase} / 8</p>
+		{#each statNames.slice(0, 5) as stat, index}
+			<div class="flex">
+				<span
+					class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
+					>{stat}</span
+				>
+				<input
+					type="number"
+					bind:value={stats[index]}
+					class="w-full border-zinc-50 bg-zinc-800 text-zinc-100"
+				/>
+				<span
+					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
+					>/ {dexEntry['max' + physicalStatShorthand[index]]}
+				</span>
+			</div>
+		{/each}
+
+		<hr class="my-3" />
+
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {socialTotal - socialBase} / 8</p>
+		{#each statNames.slice(5) as stat, index}
+			<div class="flex">
+				<span
+					class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
+					>{stat}</span
+				>
+				<input
+					type="number"
+					bind:value={stats[5 + index]}
+					class="w-full border-zinc-50 bg-zinc-800 text-zinc-100"
+				/>
+				<span
+					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
+					>/ 5
+				</span>
+			</div>
+		{/each}
+	</div>
+</div>

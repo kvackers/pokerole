@@ -1,0 +1,47 @@
+body {
+    text-align: justify;
+}
+
+h2 {
+    padding-top: 10px;
+}
+
+b {
+    color: rgb(214, 59, 47);
+    font-weight: bold;
+}
+
+.example {
+    margin: 5px 0;
+    background-color: rgb(145, 217, 214);
+    padding: 5px;
+    border: 1px dashed rgb(42, 43, 66);
+}
+
+.sidenote {
+    margin: 5px 0;
+    background-color: rgb(109, 227, 154);
+    padding: 5px;
+    border: 1px dashed rgb(29, 99, 56);
+}
+
+[data-bs-theme="dark"] {
+    b {
+        color: rgb(214, 59, 47);
+        font-weight: bold;
+    }
+
+    .example {
+        margin: 5px 0;
+        background-color: rgb(56, 60, 181);
+        padding: 5px;
+        border: 1px dashed rgb(42, 43, 66);
+    }
+
+    .sidenote {
+        margin: 5px 0;
+        background-color: rgb(20, 59, 35);
+        padding: 5px;
+        border: 1px dashed rgb(29, 99, 56);
+    }
+}
