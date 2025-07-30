@@ -11,9 +11,21 @@
 <Modal title="Regras Extras" bind:open size={mode}>
 	<p>
 		<b>Naturezas</b>: Confiança é definida como INT + 4. Treinadores e Pokémon não tem Naturezas,
-		mas Pokémon podem, opcionalmente, na hora da captura ou evolução, subir um atributo
-		<b>físico</b> em 1 e diminuir outro em 1.
+		mas Pokémon podem, opcionalmente, subir um atributo <b>físico</b> em 1 e diminuir outro em 1.
 	</p>
+	<p>
+		<b>Desobediência</b>: Para cado ponto de lealdade que um Pokémon tiver abaixo de 2 (ou se o
+		mestre achar necessário) role um dado quando tentar usar um Golpe ou Revidar.
+	</p>
+	<p>
+		Se tiver rolado alguma falha, o Pokémon não obedece naquele turno. Role um dado para determinar
+		o que acontece:
+	</p>
+	<ul>
+		<li>1. O Pokémon ganha o Status Sono.</li>
+		<li>2 - 5. O Pokémon não faz nada</li>
+		<li>6. O Pokémon usa um Golpe Aleatório</li>
+	</ul>
 	<p>
 		<b>Treinos invés de ranks</b>: Pokémon podem gastar 5 sucessos para fazer <b>uma</b> das seguintes
 		coisas:
@@ -50,6 +62,13 @@
 <style>
 	ul {
 		list-style-type: disc;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		padding-inline-start: 40px;
+	}
+
+	ol {
+		list-style-type: decimal;
 		margin-block-start: 1em;
 		margin-block-end: 1em;
 		padding-inline-start: 40px;
