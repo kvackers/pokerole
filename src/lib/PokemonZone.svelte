@@ -39,7 +39,7 @@
 	const maxWill = $derived(pokemon.stats[3] + 2);
 	const maxConfidence = $derived(pokemon.stats[4] + 4);
 
-	const initiative = $derived(`1d6 + ${pokemon.stats[1]}`);
+	const initiative = $derived(`1d6 + ${pokemon.stats[1] + pokemon.skills[4]}`);
 	const dodge = $derived(pokemon.stats[1] + pokemon.skills[3]);
 	const clash = $derived(
 		`${pokemon.stats[0] + pokemon.skills[2]} / ${pokemon.stats[4] + pokemon.skills[2]}`
