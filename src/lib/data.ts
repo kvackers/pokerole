@@ -103,7 +103,7 @@ export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
     },
     "fogo": {
         "água": 2,
-        "terra": 2,
+        "solo": 2,
         "pedra": 2,
         "fogo": 0.5,
         "grama": 0.5,
@@ -129,10 +129,10 @@ export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
         "água": 0.5,
         "elétrico": 0.5,
         "grama": 0.5,
-        "terra": 0.5
+        "solo": 0.5
     },
     "elétrico": {
-        "terra": 2,
+        "solo": 2,
         "elétrico": 0.5,
         "voador": 0.5,
         "aço": 0.5
@@ -153,7 +153,7 @@ export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
         "sinistro": 0.5
     },
     "veneno": {
-        "terra": 2,
+        "solo": 2,
         "psíquico": 2,
         "grama": 0.5,
         "lutador": 0.5,
@@ -161,7 +161,7 @@ export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
         "inseto": 0.5,
         "fada": 0.5
     },
-    "terra": {
+    "solo": {
         "água": 2,
         "grama": 2,
         "gelo": 2,
@@ -176,7 +176,7 @@ export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
         "grama": 0.5,
         "lutador": 0.5,
         "inseto": 0.5,
-        "terra": 0
+        "solo": 0
     },
     "psíquico": {
         "inseto": 2,
@@ -190,14 +190,14 @@ export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
         "voador": 2,
         "pedra": 2,
         "lutador": 0.5,
-        "terra": 0.5,
+        "solo": 0.5,
         "grama": 0.5
     },
     "pedra": {
         "água": 2,
         "grama": 2,
         "lutador": 2,
-        "terra": 2,
+        "solo": 2,
         "aço": 2,
         "normal": 0.5,
         "fogo": 0.5,
@@ -224,7 +224,7 @@ export const DEFENSIVE_TYPECHART: Record<string, Record<string, number>> = {
     "aço": {
         "fogo": 2,
         "lutador": 2,
-        "terra": 2,
+        "solo": 2,
         "normal": 0.5,
         "grama": 0.5,
         "gelo": 0.5,
@@ -1518,7 +1518,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Final",
         "types": ["Grama", "Veneno"]
     },
-    "tentAçool": {
+    "tentacool": {
         "baseHP": 3,
         "baseSTR": 1,
         "maxSTR": 3,
@@ -9393,7 +9393,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Médio",
         "types": ["Água", "Pedra"]
     },
-    "carrAçosta": {
+    "carracosta": {
         "baseHP": 4,
         "baseSTR": 3,
         "maxSTR": 6,
@@ -13938,7 +13938,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Devagar",
         "types": ["Solo", ""]
     },
-    "sandAçonda": {
+    "sandaconda": {
         "baseHP": 6,
         "baseSTR": 3,
         "maxSTR": 6,
@@ -14493,7 +14493,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Final",
         "types": ["Aço", ""]
     },
-    "drAçozolt": {
+    "dracozolt": {
         "baseHP": 4,
         "baseSTR": 3,
         "maxSTR": 6,
@@ -14523,7 +14523,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Final",
         "types": ["Elétrico", "Gelo"]
     },
-    "drAçovish": {
+    "dracovish": {
         "baseHP": 5,
         "baseSTR": 2,
         "maxSTR": 5,
