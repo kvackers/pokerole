@@ -28,19 +28,16 @@
 			(Math.random() * 6) | 0,
 			(Math.random() * 8) | 0
 		].map((e) => (e < 0 ? 0 : e));
-		rolls.sort();
 
 		wins = rolls.join(' / ');
 
 		// 1d4 - 3 / 1d6 - 3 / 1d8 - 3 / 1d6 / 1d8
 		rolls = [
-			((Math.random() * 4) | 0) - 3,
-			((Math.random() * 6) | 0) - 3,
-			((Math.random() * 8) | 0) - 3,
+			(Math.random() * 4) | 0,
 			(Math.random() * 6) | 0,
-			(Math.random() * 8) | 0
+			(Math.random() * 8) | 0,
+			(Math.random() * 10) | 0
 		].map((e) => (e < 0 ? 0 : e));
-		rolls.sort();
 
 		raises = rolls.join(' / ');
 	};
