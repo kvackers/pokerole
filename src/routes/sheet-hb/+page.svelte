@@ -18,7 +18,7 @@
 
 	$effect(() => {
 		console.log('Debug: ', save);
-		localStorage.setItem('database', JSON.stringify(save, null, 2));
+		localStorage.setItem('databaseHB', JSON.stringify(save, null, 2));
 	});
 
 	let mode = $derived(getMode(innerWidth.current));
