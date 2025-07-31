@@ -8,7 +8,7 @@
 	import { TYPES } from './data';
 	import { Alert, Button } from 'flowbite-svelte';
 
-	let { attacks = $bindable() } = $props();
+	let { attacks = $bindable(), learned = $bindable() } = $props();
 
 	let hidden = $state(false);
 
@@ -39,9 +39,23 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
 		style:display={hidden ? 'none' : 'block'}
 	>
+		<div class="flex">
+			<span
+				class="input-group-text min-w-[85px] rounded-l-lg border border-r-0 border-zinc-50 bg-zinc-700"
+				>Aprendidos</span
+			>
+			<input
+				type="number"
+				bind:value={learned}
+				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
+			/>
+		</div>
+
+		<hr class="my-3" />
 		<Alert border dismissable class="my-2" color="yellow">
-			<span class="font-medium">O número máximo de Golpes é igual à <b>Intuição</b>.</span>
+			<span class="font-medium">O número máximo de Golpes é <b>INT + 2</b>.</span>
 		</Alert>
+
 		{#each attacks as _, index}
 			<div class="flex">
 				<span

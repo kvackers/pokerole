@@ -89,7 +89,7 @@
 		</div>
 		<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
 		></PokemonSkills>
-		<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
+		<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}></PokemonAttacks>
 	</div>
 {:else if mode === 'lg'}
 	<div class="flex" style:width style:margin="0 auto">
@@ -130,7 +130,7 @@
 				types={pokemon.types}
 			></PokemonMisc>
 		</div>
-		<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
+		<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}></PokemonAttacks>
 	</div>
 {:else if mode === 'md'}
 	<div class="flex" style:width style:margin="0 auto">
@@ -167,7 +167,8 @@
 				{defenses}
 				types={pokemon.types}
 			></PokemonMisc>
-			<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
+			<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}
+			></PokemonAttacks>
 		</div>
 		<div class="flex flex-col">
 			<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
@@ -211,5 +212,5 @@
 	></PokemonMisc>
 	<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
 	></PokemonSkills>
-	<PokemonAttacks bind:attacks={pokemon.attacks}></PokemonAttacks>
+	<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}></PokemonAttacks>
 {/if}
