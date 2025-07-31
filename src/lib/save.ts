@@ -65,7 +65,7 @@ const SCHEMA_V1 = {
                     training: { type: 'integer', minimum: 0 },
                     happiness: { type: 'integer', minimum: 0 },
                     loyalty: { type: 'integer', minimum: 0 },
-                    stats: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'integer', minimum: 1 } },
+                    stats: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'integer', minimum: 0 } },
                     skills: { type: 'array', minItems: 12, maxItems: 12, items: { type: 'integer', minimum: 0 } },
                     extraSkills: {
                         type: 'array',

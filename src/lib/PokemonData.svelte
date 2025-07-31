@@ -210,7 +210,7 @@
 				>Vitórias</span
 			>
 			<input
-				type="text"
+				type="number"
 				bind:value={wins}
 				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
@@ -221,7 +221,7 @@
 				>Treinos</span
 			>
 			<input
-				type="text"
+				type="number"
 				bind:value={training}
 				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
@@ -232,7 +232,7 @@
 				>Felicidade</span
 			>
 			<input
-				type="text"
+				type="number"
 				bind:value={happiness}
 				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
@@ -243,7 +243,7 @@
 				>Lealdade</span
 			>
 			<input
-				type="text"
+				type="number"
 				bind:value={loyalty}
 				class="w-full rounded-r-lg border-zinc-50 bg-zinc-800 text-zinc-100"
 			/>
