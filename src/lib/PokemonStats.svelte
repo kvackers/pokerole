@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { A } from 'flowbite-svelte';
 	import { AngleDownOutline, AngleUpOutline } from 'flowbite-svelte-icons';
 
 	const { stats = $bindable(), dexEntry } = $props();

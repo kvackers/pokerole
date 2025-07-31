@@ -17,6 +17,7 @@
 	let pokemonList = $derived(save.pokemonList);
 
 	$effect(() => {
+		console.log('Debug: ', save);
 		localStorage.setItem('database', JSON.stringify(save, null, 2));
 	});
 
