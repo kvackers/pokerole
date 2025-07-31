@@ -82,6 +82,7 @@ const SCHEMA_V1 = {
                     ribbons: { type: 'integer', minimum: 0 },
                     status: { enum: STATUS },
                     notes: { type: 'string' },
+                    learned: { type: 'integer', minimum: 0 },
                     attacks: {
                         type: 'array',
                         items: {
@@ -120,7 +121,7 @@ export function validateSave(data: any) {
 }
 
 export function tryLoadSave(orelse: any) {
-    const rawData = localStorage.getItem('database');
+    const rawData = localStorage.getItem('databaseHB');
     if (rawData === null) { return { ...orelse }; }
 
     let save = JSON.parse(rawData);
