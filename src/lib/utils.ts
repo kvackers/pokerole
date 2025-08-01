@@ -18,11 +18,13 @@ export const getWidth = (mode: Mode): string => {
 }
 
 export const capitalize = (s: string): string => {
-    if (s.includes('-')) {
+    if (s.includes(' ')) {
+        return s.split(' ').map(st => st.charAt(0).toUpperCase() + st.slice(1)).join(' ');
+    } else if (s.includes('-')) {
         return s.split('-').map(st => st.charAt(0).toUpperCase() + st.slice(1)).join('-');
+    } else {
+        return s.charAt(0).toUpperCase() + s.slice(1);
     }
-
-    return s.split(' ').map(st => st.charAt(0).toUpperCase() + st.slice(1)).join(' ');
 }
 
 export const sort = <T>(arr: Array<T>): Array<T> => {
