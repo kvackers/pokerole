@@ -17989,4 +17989,19 @@ export const DEX: Record<string, Pokemon> = {
         "maxINS": 3,
         "evoTime": "Médio"
     },
+    "[F] gula crescente": {
+        "types": ["Inseto", "Veneno"],
+        "baseHP": 3,
+        "baseSTR": 2,
+        "maxSTR": 5,
+        "baseDEX": 2,
+        "maxDEX": 5,
+        "baseVIT": 1,
+        "maxVIT": 2,
+        "baseSPC": 1,
+        "maxSPC": 3,
+        "baseINS": 1,
+        "maxINS": 2,
+        "evoTime": "Rápido"
+    }
 };
