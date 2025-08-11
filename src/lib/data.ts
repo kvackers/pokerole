@@ -18004,6 +18004,21 @@ export const DEX: Record<string, Pokemon> = {
         "maxINS": 2,
         "evoTime": "Rápido"
     },
+    "[F] minério de fúria": {
+        "types": ["Inseto", "Aço"],
+        "baseHP": 4,
+        "baseSTR": 2,
+        "maxSTR": 4,
+        "baseDEX": 2,
+        "maxDEX": 4,
+        "baseVIT": 3,
+        "maxVIT": 5,
+        "baseSPC": 1,
+        "maxSPC": 2,
+        "baseINS": 1,
+        "maxINS": 2,
+        "evoTime": "Rápido"
+    },
     "[F] dratini-R": {
         "types": ["Dragão", "-"],
         "baseHP": 3,
