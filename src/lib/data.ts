@@ -18033,5 +18033,35 @@ export const DEX: Record<string, Pokemon> = {
         "baseINS": 2,
         "maxINS": 4,
         "evoTime": "Devagar"
+    },
+    "[F] promessa mantida": {
+        "types": ["Pedra", "Grama"],
+        "baseHP": 4,
+        "baseSTR": 3,
+        "maxSTR": 6,
+        "baseDEX": 1,
+        "maxDEX": 3,
+        "baseVIT": 4,
+        "maxVIT": 8,
+        "baseSPC": 2,
+        "maxSPC": 4,
+        "baseINS": 2,
+        "maxINS": 5,
+        "evoTime": "???"
+    },
+    "[F] fúria rastejante": {
+        "types": ["Inseto", "Aço"],
+        "baseHP": 5,
+        "baseSTR": 3,
+        "maxSTR": 8,
+        "baseDEX": 3,
+        "maxDEX": 8,
+        "baseVIT": 1,
+        "maxVIT": 3,
+        "baseSPC": 1,
+        "maxSPC": 2,
+        "baseINS": 1,
+        "maxINS": 3,
+        "evoTime": "Final"
     }
 };
