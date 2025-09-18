@@ -18065,7 +18065,7 @@ export const DEX: Record<string, Pokemon> = {
         "evoTime": "Final"
     },
     "[F] milotic-J": {
-        "types": ["Fada", "Fantasma"],
+        "types": ["Fada", "Água"],
         "baseHP": 7,
         "baseSTR": 2,
         "maxSTR": 4,
