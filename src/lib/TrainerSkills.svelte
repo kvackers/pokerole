@@ -2,7 +2,7 @@
 	import { Button } from 'flowbite-svelte';
 	import { AngleDownOutline, AngleUpOutline, CirclePlusSolid } from 'flowbite-svelte-icons';
 
-	let { skills = $bindable(), extraSkills = $bindable() } = $props();
+	let { skills = $bindable(), extraSkills = $bindable(), skillPoints, skillLimit } = $props();
 
 	const skillNames = [
 		'Luta',
@@ -36,7 +36,6 @@
 				.map(({ value }: { value: number }) => value)
 				.reduce((a: number, e: number) => a + e, 0)
 	);
-	const skillBase = 5;
 
 	let hidden = $state(false);
 </script>
@@ -54,7 +53,7 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
 		style:display={hidden ? 'none' : 'block'}
 	>
-		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {skillTotal - skillBase} / 13</p>
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {skillTotal} / {skillPoints}</p>
 		{#each skillNames as skill, index}
 			<div class="flex">
 				<span
@@ -68,7 +67,7 @@
 				/>
 				<span
 					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
-					>/ 5
+					>/ {skillLimit}
 				</span>
 			</div>
 			{#if index % 4 === 3}
@@ -91,7 +90,7 @@
 				/>
 				<span
 					class="input-group-text min-w-[50px] rounded-r-lg border border-l-0 border-zinc-50 bg-zinc-700"
-					>/ 5
+					>/ {skillLimit}
 				</span>
 			</div>
 		{/each}

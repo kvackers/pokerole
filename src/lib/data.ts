@@ -272,6 +272,90 @@ export type Pokemon = {
     types: Array<string>;
 };
 
+export type Rank = {
+    skillPoints: number;
+    skillPointsTotal: number;
+    skillLimit: number;
+    attributes: number;
+    attributesTotal: number;
+    social: number;
+    socialTotal: number;
+    moves: Array<[string, number]>;
+    numberMoves: number;
+};
+
+export const RANKS: Array<Rank> = [
+    {
+        skillPoints: 4, skillPointsTotal: 4, skillLimit: 1,
+        attributes: 0, attributesTotal: 0, social: 0, socialTotal: 0,
+        moves: [["premier", 0]], numberMoves: 1
+    },
+    {
+        skillPoints: 2, skillPointsTotal: 6, skillLimit: 2,
+        attributes: 0, attributesTotal: 0, social: 0, socialTotal: 0,
+        moves: [["premier", 0], ["poke", 1]], numberMoves: 1
+    },
+    {
+        skillPoints: 1, skillPointsTotal: 7, skillLimit: 2,
+        attributes: 1, attributesTotal: 1, social: 1, socialTotal: 1,
+        moves: [["premier", 0], ["poke", 2]], numberMoves: 2
+    },
+    {
+        skillPoints: 1, skillPointsTotal: 8, skillLimit: 2,
+        attributes: 1, attributesTotal: 2, social: 1, socialTotal: 2,
+        moves: [["poke", 0]], numberMoves: 2
+    },
+    {
+        skillPoints: 2, skillPointsTotal: 10, skillLimit: 3,
+        attributes: 0, attributesTotal: 2, social: 0, socialTotal: 2,
+        moves: [["poke", 0], ["great", 1]], numberMoves: 2
+    },
+    {
+        skillPoints: 1, skillPointsTotal: 11, skillLimit: 3,
+        attributes: 1, attributesTotal: 3, social: 1, socialTotal: 3,
+        moves: [["poke", 0], ["great", 2]], numberMoves: 2
+    },
+    {
+        skillPoints: 1, skillPointsTotal: 12, skillLimit: 3,
+        attributes: 1, attributesTotal: 4, social: 1, socialTotal: 4,
+        moves: [["great", 0]], numberMoves: 3
+    },
+    {
+        skillPoints: 1, skillPointsTotal: 13, skillLimit: 3,
+        attributes: 0, attributesTotal: 4, social: 0, socialTotal: 4,
+        moves: [["great", 0], ["hyper", 1]], numberMoves: 3
+    },
+    {
+        skillPoints: 1, skillPointsTotal: 14, skillLimit: 4,
+        attributes: 1, attributesTotal: 5, social: 1, socialTotal: 5,
+        moves: [["great", 0], ["hyper", 2]], numberMoves: 3
+    },
+    {
+        skillPoints: 0, skillPointsTotal: 14, skillLimit: 4,
+        attributes: 1, attributesTotal: 6, social: 1, socialTotal: 6,
+        moves: [["hyper", 0]], numberMoves: 4
+    },
+    {
+        skillPoints: 1, skillPointsTotal: 15, skillLimit: 4,
+        attributes: 0, attributesTotal: 6, social: 0, socialTotal: 6,
+        moves: [["hyper", 0], ["cherish", 1]], numberMoves: 4
+    },
+    {
+        skillPoints: 0, skillPointsTotal: 15, skillLimit: 4,
+        attributes: 1, attributesTotal: 7, social: 1, socialTotal: 7,
+        moves: [["hyper", 0], ["cherish", 2]], numberMoves: 4
+    },
+    {
+        skillPoints: 0, skillPointsTotal: 15, skillLimit: 4,
+        attributes: 1, attributesTotal: 8, social: 1, socialTotal: 8,
+        moves: [["cherish", 0]], numberMoves: 5
+    },
+    {
+        skillPoints: 2, skillPointsTotal: 17, skillLimit: 5,
+        attributes: 7, attributesTotal: 14, social: 7, socialTotal: 14,
+        moves: [["master", 0]], numberMoves: 5
+    },
+];
 
 export const DEX: Record<string, Pokemon> = {
     "bulbasaur": {

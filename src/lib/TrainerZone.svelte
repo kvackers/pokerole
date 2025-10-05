@@ -3,13 +3,28 @@
 	import TrainerData from '$lib/TrainerData.svelte';
 	import TrainerSkills from '$lib/TrainerSkills.svelte';
 	import TrainerStats from '$lib/TrainerStats.svelte';
+	import { RANKS } from './data';
 	import { getWidth } from './utils';
 
 	const { trainer = $bindable(), mode } = $props();
 
+	const rank = $derived(
+		typeof trainer.badges !== 'number'
+			? RANKS[0]
+			: RANKS[
+					trainer.badges >= 0 && trainer.badges < RANKS.length ? trainer.badges : RANKS.length - 1
+				]
+	);
+
 	const maxHP = $derived(trainer.stats[2] + 4);
 	const maxWill = $derived(trainer.stats[3] + 2);
-	const maxConfidence = $derived(trainer.stats[4] + 4);
+	const maxConfidence = $derived(trainer.stats[4] + 4 + rank.numberMoves);
+
+	const statPoints = $derived(rank.attributesTotal);
+	const socialPoints = $derived(rank.socialTotal);
+
+	const skillPoints = $derived(rank.skillPointsTotal);
+	const skillLimit = $derived(rank.skillLimit);
 
 	const width = $derived(getWidth(mode));
 </script>
@@ -29,8 +44,14 @@
 			{maxWill}
 			{maxConfidence}
 		></TrainerData>
-		<TrainerStats bind:stats={trainer.stats}></TrainerStats>
-		<TrainerSkills bind:skills={trainer.skills} bind:extraSkills={trainer.extraSkills}
+		<TrainerStats bind:stats={trainer.stats} {statPoints} {socialPoints}></TrainerStats>
+		{statPoints}
+		{socialPoints}
+		<TrainerSkills
+			bind:skills={trainer.skills}
+			bind:extraSkills={trainer.extraSkills}
+			{skillPoints}
+			{skillLimit}
 		></TrainerSkills>
 		<TrainerBag
 			bind:badges={trainer.badges}
@@ -55,7 +76,7 @@
 			{maxConfidence}
 		></TrainerData>
 		<div class="flex flex-col">
-			<TrainerStats bind:stats={trainer.stats}></TrainerStats>
+			<TrainerStats bind:stats={trainer.stats} {statPoints} {socialPoints}></TrainerStats>
 			<TrainerBag
 				bind:badges={trainer.badges}
 				bind:potions={trainer.potions}
@@ -63,7 +84,11 @@
 				bind:notes={trainer.notes}
 			></TrainerBag>
 		</div>
-		<TrainerSkills bind:skills={trainer.skills} bind:extraSkills={trainer.extraSkills}
+		<TrainerSkills
+			bind:skills={trainer.skills}
+			bind:extraSkills={trainer.extraSkills}
+			{skillPoints}
+			{skillLimit}
 		></TrainerSkills>
 	</div>
 {:else if mode === 'md'}
@@ -90,8 +115,12 @@
 			></TrainerBag>
 		</div>
 		<div class="flex flex-col">
-			<TrainerStats bind:stats={trainer.stats}></TrainerStats>
-			<TrainerSkills bind:skills={trainer.skills} bind:extraSkills={trainer.extraSkills}
+			<TrainerStats bind:stats={trainer.stats} {statPoints} {socialPoints}></TrainerStats>
+			<TrainerSkills
+				bind:skills={trainer.skills}
+				bind:extraSkills={trainer.extraSkills}
+				{skillPoints}
+				{skillLimit}
 			></TrainerSkills>
 		</div>
 	</div>
@@ -110,8 +139,12 @@
 			{maxWill}
 			{maxConfidence}
 		></TrainerData>
-		<TrainerStats bind:stats={trainer.stats}></TrainerStats>
-		<TrainerSkills bind:skills={trainer.skills} bind:extraSkills={trainer.extraSkills}
+		<TrainerStats bind:stats={trainer.stats} {statPoints} {socialPoints}></TrainerStats>
+		<TrainerSkills
+			bind:skills={trainer.skills}
+			bind:extraSkills={trainer.extraSkills}
+			{skillPoints}
+			{skillLimit}
 		></TrainerSkills>
 		<TrainerBag
 			bind:badges={trainer.badges}

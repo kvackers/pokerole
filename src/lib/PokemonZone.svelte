@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DEX } from './data';
+	import { DEX, RANKS } from './data';
 	import PokemonAttacks from './PokemonAttacks.svelte';
 	import PokemonData from './PokemonData.svelte';
 	import PokemonMisc from './PokemonMisc.svelte';
@@ -8,7 +8,7 @@
 	import PokemonStats from './PokemonStats.svelte';
 	import { getWidth } from './utils';
 
-	let { mode, currentPokemon = $bindable(), pokemonList = $bindable() } = $props();
+	let { mode, currentPokemon = $bindable(), pokemonList = $bindable(), badges } = $props();
 
 	const pokemon = $derived(pokemonList[currentPokemon]);
 
@@ -35,9 +35,23 @@
 
 	const dexEntry = $derived(DEX[pokemon.species]);
 
+	const rank = $derived(
+		typeof badges !== 'number'
+			? RANKS[0]
+			: RANKS[badges >= 0 && badges < RANKS.length ? badges : RANKS.length - 1]
+	);
+
 	const maxHP = $derived(pokemon.stats[2] + dexEntry.baseHP);
 	const maxWill = $derived(pokemon.stats[3] + 2);
-	const maxConfidence = $derived(pokemon.stats[4] + 4);
+	const maxConfidence = $derived(pokemon.stats[4] + 4 + rank.numberMoves);
+
+	const statPoints = $derived(rank.attributesTotal);
+	const socialPoints = $derived(rank.socialTotal);
+
+	const skillPoints = $derived(rank.skillPointsTotal);
+	const skillLimit = $derived(rank.skillLimit);
+
+	const maxMoves = $derived(rank.numberMoves);
 
 	const initiative = $derived(`1d6 + ${pokemon.stats[1] + pokemon.skills[4]}`);
 	const dodge = $derived(pokemon.stats[1] + pokemon.skills[3]);
@@ -73,7 +87,8 @@
 			{changeSpecies}
 		></PokemonData>
 		<div class="flex flex-col">
-			<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
+			<PokemonStats bind:stats={pokemon.stats} {dexEntry} {statPoints} {socialPoints}
+			></PokemonStats>
 			<PokemonMisc
 				bind:item={pokemon.item}
 				bind:accessory={pokemon.accessory}
@@ -87,9 +102,14 @@
 				types={pokemon.types}
 			></PokemonMisc>
 		</div>
-		<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+		<PokemonSkills
+			bind:skills={pokemon.skills}
+			bind:extraSkills={pokemon.extraSkills}
+			{skillPoints}
+			{skillLimit}
 		></PokemonSkills>
-		<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}></PokemonAttacks>
+		<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks} {maxMoves}
+		></PokemonAttacks>
 	</div>
 {:else if mode === 'lg'}
 	<div class="flex" style:width style:margin="0 auto">
@@ -114,8 +134,13 @@
 			{changeSpecies}
 		></PokemonData>
 		<div class="flex flex-col">
-			<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
-			<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+			<PokemonStats bind:stats={pokemon.stats} {dexEntry} {statPoints} {socialPoints}
+			></PokemonStats>
+			<PokemonSkills
+				bind:skills={pokemon.skills}
+				bind:extraSkills={pokemon.extraSkills}
+				{skillPoints}
+				{skillLimit}
 			></PokemonSkills>
 			<PokemonMisc
 				bind:item={pokemon.item}
@@ -130,7 +155,8 @@
 				types={pokemon.types}
 			></PokemonMisc>
 		</div>
-		<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}></PokemonAttacks>
+		<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks} {maxMoves}
+		></PokemonAttacks>
 	</div>
 {:else if mode === 'md'}
 	<div class="flex" style:width style:margin="0 auto">
@@ -167,12 +193,17 @@
 				{defenses}
 				types={pokemon.types}
 			></PokemonMisc>
-			<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}
+			<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks} {maxMoves}
 			></PokemonAttacks>
 		</div>
 		<div class="flex flex-col">
-			<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
-			<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+			<PokemonStats bind:stats={pokemon.stats} {dexEntry} {statPoints} {socialPoints}
+			></PokemonStats>
+			<PokemonSkills
+				bind:skills={pokemon.skills}
+				bind:extraSkills={pokemon.extraSkills}
+				{skillPoints}
+				{skillLimit}
 			></PokemonSkills>
 		</div>
 	</div>
@@ -197,7 +228,7 @@
 		{maxConfidence}
 		{changeSpecies}
 	></PokemonData>
-	<PokemonStats bind:stats={pokemon.stats} {dexEntry}></PokemonStats>
+	<PokemonStats bind:stats={pokemon.stats} {dexEntry} {statPoints} {socialPoints}></PokemonStats>
 	<PokemonMisc
 		bind:item={pokemon.item}
 		bind:accessory={pokemon.accessory}
@@ -210,7 +241,12 @@
 		{defenses}
 		types={pokemon.types}
 	></PokemonMisc>
-	<PokemonSkills bind:skills={pokemon.skills} bind:extraSkills={pokemon.extraSkills}
+	<PokemonSkills
+		bind:skills={pokemon.skills}
+		bind:extraSkills={pokemon.extraSkills}
+		{skillPoints}
+		{skillLimit}
 	></PokemonSkills>
-	<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks}></PokemonAttacks>
+	<PokemonAttacks bind:learned={pokemon.learned} bind:attacks={pokemon.attacks} {maxMoves}
+	></PokemonAttacks>
 {/if}

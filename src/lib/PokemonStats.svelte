@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AngleDownOutline, AngleUpOutline } from 'flowbite-svelte-icons';
 
-	const { stats = $bindable(), dexEntry } = $props();
+	const { stats = $bindable(), dexEntry, statPoints, socialPoints } = $props();
 
 	const statNames = [
 		'Força',
@@ -18,7 +18,6 @@
 
 	const physicalStatShorthand = ['STR', 'DEX', 'VIT', 'INS', 'SPC'];
 
-	const physicalTotal = $derived((stats as Array<number>).slice(0, 5).reduce((a, e) => a + e));
 	const physicalBase = $derived(
 		physicalStatShorthand
 			.map((stat) => {
@@ -26,9 +25,14 @@
 			})
 			.reduce((a, e) => a + e)
 	);
+	const physicalTotal = $derived(
+		(stats as Array<number>).slice(0, 5).reduce((a, e) => a + e) - physicalBase
+	);
 
-	const socialTotal = $derived((stats as Array<number>).slice(5).reduce((a, e) => a + e));
 	const socialBase = 5;
+	const socialTotal = $derived(
+		(stats as Array<number>).slice(5).reduce((a, e) => a + e) - socialBase
+	);
 
 	let hidden = $state(false);
 </script>
@@ -46,7 +50,7 @@
 		class="flex flex-col rounded-b-lg border border-t-0 border-solid border-zinc-50 p-2"
 		style:display={hidden ? 'none' : 'block'}
 	>
-		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {physicalTotal - physicalBase} / 8</p>
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {physicalTotal} / {statPoints}</p>
 		{#each statNames.slice(0, 5) as stat, index}
 			<div class="flex">
 				<span
@@ -67,7 +71,7 @@
 
 		<hr class="my-3" />
 
-		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {socialTotal - socialBase} / 8</p>
+		<p class="mb-2 pl-1 text-sm">Aumentos feitos: {socialTotal} / {socialPoints}</p>
 		{#each statNames.slice(5) as stat, index}
 			<div class="flex">
 				<span

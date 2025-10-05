@@ -29,11 +29,11 @@
 	class="min-h-screen bg-zinc-800 p-2 text-zinc-100"
 	style:font-family="'Roboto Condensed', sans-serif;"
 >
-	<Navbar {mode} bind:displayTrainer bind:save></Navbar>
+	<Navbar {mode} badges={trainer.badges} bind:displayTrainer bind:save></Navbar>
 	{#if displayTrainer}
 		<TrainerZone bind:trainer {mode}></TrainerZone>
 	{:else}
-		<PokemonZone bind:currentPokemon bind:pokemonList {mode}></PokemonZone>
+		<PokemonZone bind:currentPokemon bind:pokemonList badges={trainer.badges} {mode}></PokemonZone>
 	{/if}
 	{#if mode === 'sm'}
 		<Footer bind:save></Footer>

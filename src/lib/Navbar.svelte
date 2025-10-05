@@ -8,7 +8,7 @@
 
 	import { getWidth } from './utils';
 
-	let { mode, displayTrainer = $bindable(), save = $bindable() } = $props();
+	let { mode, badges, displayTrainer = $bindable(), save = $bindable() } = $props();
 
 	const width = $derived(getWidth(mode));
 </script>
@@ -26,7 +26,7 @@
 	>
 	{#if mode !== 'sm'}
 		<div>
-			<HomebrewButton {mode}></HomebrewButton>
+			<HomebrewButton {badges} {mode}></HomebrewButton>
 			<ExportButton
 				trainer={save.trainer}
 				currentPokemon={save.currentPokemon}

@@ -8,7 +8,7 @@
 	import { TYPES } from './data';
 	import { Alert, Button } from 'flowbite-svelte';
 
-	let { attacks = $bindable(), learned = $bindable() } = $props();
+	let { attacks = $bindable(), learned = $bindable(), maxMoves } = $props();
 
 	let hidden = $state(false);
 
@@ -53,7 +53,7 @@
 
 		<hr class="my-3" />
 		<Alert border dismissable class="my-2" color="yellow">
-			<span class="font-medium">O número máximo de Golpes é <b>INT + 2</b>.</span>
+			<span class="font-medium">O número máximo de Golpes é <b>INT + {maxMoves}</b>.</span>
 		</Alert>
 
 		{#each attacks as _, index}
