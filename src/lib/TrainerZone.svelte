@@ -45,8 +45,6 @@
 			{maxConfidence}
 		></TrainerData>
 		<TrainerStats bind:stats={trainer.stats} {statPoints} {socialPoints}></TrainerStats>
-		{statPoints}
-		{socialPoints}
 		<TrainerSkills
 			bind:skills={trainer.skills}
 			bind:extraSkills={trainer.extraSkills}
