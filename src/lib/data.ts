@@ -18148,4 +18148,19 @@ export const DEX: Record<string, Pokemon> = {
         "maxINS": 3,
         "evoTime": "Final"
     },
+    "[F] onix-C": {
+        "types": ["Pedra", "Fada"],
+        "baseHP": 8,
+        "baseSTR": 2,
+        "maxSTR": 4,
+        "baseDEX": 2,
+        "maxDEX": 5,
+        "baseVIT": 4,
+        "maxVIT": 8,
+        "baseSPC": 1,
+        "maxSPC": 3,
+        "baseINS": 2,
+        "maxINS": 4,
+        "evoTime": "Esotérico"
+    }
 };
